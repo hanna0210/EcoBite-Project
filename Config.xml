@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NinjaTrader>
+  <MachineId2>5d983ebc086e48dd85cc66e64ae69a55</MachineId2>
+  <CachedConnectionTokens>
+    <Google>
+      <CachedUserName>
+      </CachedUserName>
+      <CachedAccessToken>ff/s6IVw5l2jIfLq1Sp30gXlO5phgQwTKCVLil2/+MgSFt9gVjE+O8fM8lveYhj9BjJXL9pEyNLz7eDk0o8z/UZmj7iiLp/qzwXNWcCE8tlHn/CrLY05s4+OhcLw8UmjtZzODszab3YX8WB1+oMGaskTJJ1bl8nHt2XxppFm1Bh01ORzR+NR3GY1aWESa1pGWfaQ6TsdAsF3oXIySWn8aelvW4VcN97AtxmP8OYRxXqsC3fHEj6dGj7mhYBawlSfUUZ714/9NMqYXBZidzFt6LrYEB4Za7n6WlCn05YHooyX97pwTo4hSWQVQOTuTVwUK0pQDrSCmkAzkXTUwjB6siAzsCuvoVlizn+4bjkF75A=</CachedAccessToken>
+      <CachedMarketDataAccessToken>ff/s6IVw5l2jIfLq1Sp30gXlO5phgQwTKCVLil2/+MgSFt9gVjE+O8fM8lveYhj9BjJXL9pEyNLz7eDk0o8z/UZmj7iiLp/qzwXNWcCE8tlHn/CrLY05s4+OhcLw8Umj8fZUj2Jduw7XNOIjAWGCEIqZ8puDR+nnRkk3jz21bxWmmUq2MPQBlLrZy50N2x+oA/zPJIGl4EDgz0VpV6m9U9QEvZAc3YJfgAuzORLyDN4xm2AWSuQalrIOxGL93H7brFa0ytW1BQflCBIGji7gffNswjfuwqW0u2VMlDuvJtPmB21+1fzCFr7I+M7Kgi+Tp9fWPQ6V47lpOKy4x4LCu4fe5O0o6y+d0jMtni4Yku/AfcJKf4wSXjsmZG4GwN43SGim0osQRdc3ejJC4cinpR344kFJRDKXWS3UbZEwLG/4Gr1v484anYCwwvGJ5OiF250UNnVg4RzZpd7zdSMEQCf6laUERfJrOM4r9Cozf/XX1j76zoyiugp08axUuqyU</CachedMarketDataAccessToken>
+      <CachedTokenExpiration>09/23/2025 07:54:02</CachedTokenExpiration>
+      <CachedUserId>5490142</CachedUserId>
+    </Google>
+    <hannadubose>
+      <CachedUserName>ff/s6IVw5l2jIfLq1Sp30iXG+tHdNow1AZG/cZsDpJw=</CachedUserName>
+      <CachedAccessToken>ff/s6IVw5l2jIfLq1Sp30kCuHYPvE+sgQAUevFsAUQYkhSMTNPqWHH+vWb9zoxKfIdB5u7awHP7KmWUOCAXYrEakiU9okTsHqXR7obK+Yea8dLWNqMibPaXEomU8fRhA7STIOx+J1YeMlpc3inLo6o21gtbPtdlF4VWSeXGSzeKkaZxYpdCUZYDnQolY9TjXVRmud1KEfSpTUyb4cqr5urJQRRBckJBxEDwhjgJELlIhX+3zdWsA/P6LQbzGkPTSdGQeJbnmEbhgCHe+WV6bTggpILaCGgwUVg9z9Kbc4uUYqmS7oC8arz2IgLc/30anz5T9A9mTOQbSlcsiAskuu5JJlU7kMZPkXfTZsApBq1/a16P0tLSCGPTQmYM8QBi1</CachedAccessToken>
+      <CachedMarketDataAccessToken>ff/s6IVw5l2jIfLq1Sp30kCuHYPvE+sgQAUevFsAUQYkhSMTNPqWHH+vWb9zoxKfIdB5u7awHP7KmWUOCAXYrEakiU9okTsHqXR7obK+Yea8dLWNqMibPaXEomU8fRhA7STIOx+J1YeMlpc3inLo6o21gtbPtdlF4VWSeXGSzeKkaZxYpdCUZYDnQolY9TjXVRmud1KEfSpTUyb4cqr5urJQRRBckJBxEDwhjgJELlLrKMozEshp98lmZ2kOh88eu11ePVy2KSfw6YH4noQbCCUc0NflFF0pJHE2mc+0raSWEBHSSduF+akp0xyiSx1GJWhdrAAYKy+0ZPF2ZzO/sarrX/mcmX2TbXudvY29YC3N3cNtLa5prfuxr1ce6HJZ2dWZ88zUEK+YmPPBYCJwP4nlrxNnBSgBabJuSALgisZmNmDZ0rkGIGRPabU5Oxdxjt06AROhcCojh/N0G5LFvHETvitcqHVTZ2LFWoeYsOr+rFS6PB0j37xuW0xNBxLu</CachedMarketDataAccessToken>
+      <CachedTokenExpiration>09/29/2025 02:44:50</CachedTokenExpiration>
+      <CachedUserId>5510069</CachedUserId>
+    </hannadubose>
+  </CachedConnectionTokens>
+  <ConnectOptions>
+    <SimulatorOptions>
+      <CanManageOrders>true</CanManageOrders>
+      <ConnectOnStartup>false</ConnectOnStartup>
+      <DisableL2Data>false</DisableL2Data>
+      <IsHdsEnabled>false</IsHdsEnabled>
+      <IsPasswordRequiredOnStartup>false</IsPasswordRequiredOnStartup>
+      <RunAsProcess>false</RunAsProcess>
+      <TypeName>NinjaTrader.Cbi.SimulatorOptions</TypeName>
+      <Mode>Live</Mode>
+      <Name>Simulated Data Feed</Name>
+      <Password />
+      <Provider>Simulator</Provider>
+      <User />
+      <TicksPerSecond>2</TicksPerSecond>
+      <TimerMilliseconds>500</TimerMilliseconds>
+    </SimulatorOptions>
+    <KinetickOptions>
+      <CanManageOrders>true</CanManageOrders>
+      <ConnectOnStartup>false</ConnectOnStartup>
+      <DisableL2Data>false</DisableL2Data>
+      <IsHdsEnabled>false</IsHdsEnabled>
+      <IsPasswordRequiredOnStartup>false</IsPasswordRequiredOnStartup>
+      <RunAsProcess>false</RunAsProcess>
+      <TypeName>NinjaTrader.Cbi.KinetickOptions</TypeName>
+      <Mode>Live</Mode>
+      <Name>Kinetick – End Of Day (Free)</Name>
+      <Password />
+      <Provider>Provider7</Provider>
+      <User />
+      <GlobexNonProFees>false</GlobexNonProFees>
+      <BackadjustContinuousContracts>false</BackadjustContinuousContracts>
+      <Free>true</Free>
+      <NewsDaysBack>1</NewsDaysBack>
+      <UseFundamentalData>true</UseFundamentalData>
+    </KinetickOptions>
+    <PlaybackOptions>
+      <CanManageOrders>true</CanManageOrders>
+      <ConnectOnStartup>false</ConnectOnStartup>
+      <DisableL2Data>false</DisableL2Data>
+      <IsHdsEnabled>false</IsHdsEnabled>
+      <IsPasswordRequiredOnStartup>false</IsPasswordRequiredOnStartup>
+      <RunAsProcess>false</RunAsProcess>
+      <TypeName>NinjaTrader.Cbi.PlaybackOptions</TypeName>
+      <Mode>Live</Mode>
+      <Name>Playback Connection</Name>
+      <Password />
+      <Provider>Playback</Provider>
+      <User />
+    </PlaybackOptions>
+  </ConnectOptions>
+  <LastMachineId>3276155B1780D53F8C3DBAA9FBFBF188</LastMachineId>
+  <AddOnRegistry>
+    <ArrayOfAddOnAuthorization xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </AddOnRegistry>
+  <Backup>
+    <ScheduleInterval>Monday</ScheduleInterval>
+    <LastTimeBackup>01/01/1800 00:00:00</LastTimeBackup>
+    <IsBackupReminderActive>False</IsBackupReminderActive>
+  </Backup>
+  <SALogLimit>5000</SALogLimit>
+  <Username>hannadubose</Username>
+  <References>
+    <ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <string>*Windows*\Microsoft.NET\Framework64\v4.0.30319\mscorlib.dll</string>
+      <string>System.dll</string>
+      <string>System.ComponentModel.DataAnnotations.dll</string>
+      <string>System.Core.dll</string>
+      <string>System.Net.Http.dll</string>
+      <string>System.Web.Extensions.dll</string>
+      <string>System.Windows.Forms.dll</string>
+      <string>System.Xaml.dll</string>
+      <string>System.Xml.dll</string>
+      <string>System.Xml.Linq.dll</string>
+      <string>Microsoft.CSharp.dll</string>
+      <string>*ProgramFiles*\NinjaTrader 8\bin\InfragisticsWPF4.DataPresenter.v15.1.dll</string>
+      <string>*ProgramFiles*\NinjaTrader 8\bin\Infralution.Localization.Wpf.dll</string>
+      <string>*ProgramFiles*\NinjaTrader 8\bin\NinjaTrader.Core.dll</string>
+      <string>*ProgramFiles*\NinjaTrader 8\bin\NinjaTrader.Gui.dll</string>
+      <string>*ProgramFiles*\NinjaTrader 8\bin\SharpDX.dll</string>
+      <string>*ProgramFiles*\NinjaTrader 8\bin\SharpDX.Direct2D1.dll</string>
+      <string>*MyDocuments*\NinjaTrader 8\bin\Custom\NinjaTrader.Vendor.dll</string>
+      <string>*Windows*\Microsoft.NET\Framework\v4.0.30319\WPF\WindowsBase.dll</string>
+      <string>*Windows*\Microsoft.NET\Framework\v4.0.30319\WPF\PresentationCore.dll</string>
+      <string>*Windows*\Microsoft.NET\Framework\v4.0.30319\WPF\PresentationFramework.dll</string>
+      <string>*Windows*\Microsoft.NET\Framework\v4.0.30319\WPF\UIAutomationProvider.dll</string>
+    </ArrayOfString>
+  </References>
+  <AtiOptions>
+    <AtiOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <IsAtiEnabled>false</IsAtiEnabled>
+      <DefaultAccount />
+      <IgnoreDuplicateOifFiles>false</IgnoreDuplicateOifFiles>
+      <IsTradeStationEmailInterfaceEnabled>false</IsTradeStationEmailInterfaceEnabled>
+      <Name>Automated trading interface</Name>
+      <ServerPort>36973</ServerPort>
+      <TradeStationLimitPriceOffset>10</TradeStationLimitPriceOffset>
+      <TradeStationOrderHandlingSubmit>SubmitMarketOrder</TradeStationOrderHandlingSubmit>
+      <TradeStationStopOrderHandlingSubmit>SubmitAsIs</TradeStationStopOrderHandlingSubmit>
+      <TradeStationSubmitMarketOrderIfStopRejected>false</TradeStationSubmitMarketOrderIfStopRejected>
+      <TradeStationSyncTimeout>20</TradeStationSyncTimeout>
+      <TradeStationUnfilledToMarketDelay>10</TradeStationUnfilledToMarketDelay>
+    </AtiOptions>
+  </AtiOptions>
+  <GeneralOptions>
+    <GeneralOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <LogsMaintainedDays>20</LogsMaintainedDays>
+      <MailAlertMessagesTo />
+      <TimeZoneInfoSerializable />
+      <ConfirmWindowClose>true</ConfirmWindowClose>
+      <IsGlobalDrawingObjectsAcrossWorkspaces>false</IsGlobalDrawingObjectsAcrossWorkspaces>
+      <IsGlobalLinkButtonEnabled>true</IsGlobalLinkButtonEnabled>
+      <Language>English</Language>
+      <MultiProvider>false</MultiProvider>
+      <PerformanceMetrics />
+      <ReopenWorkspaces>false</ReopenWorkspaces>
+      <SaveUsername>true</SaveUsername>
+      <ShowAccountNumbersAndBalances>true</ShowAccountNumbersAndBalances>
+      <ShowDefaultWorkspaces>true</ShowDefaultWorkspaces>
+      <ShowToolTips>true</ShowToolTips>
+      <Skin>NinjaTrader</Skin>
+      <RecoveryWorkspaces>10</RecoveryWorkspaces>
+      <SoundPlayConsecutively>false</SoundPlayConsecutively>
+      <SoundAnnouncement>C:\Program Files\NinjaTrader 8\sounds\Announcement.wav</SoundAnnouncement>
+      <SoundAutoBreakeven>C:\Program Files\NinjaTrader 8\sounds\AutoBreakEven.wav</SoundAutoBreakeven>
+      <SoundAutoChase>C:\Program Files\NinjaTrader 8\sounds\AutoChase.wav</SoundAutoChase>
+      <SoundAutoTrail>C:\Program Files\NinjaTrader 8\sounds\AutoTrail.wav</SoundAutoTrail>
+      <SoundCompiledSuccessfully>C:\Program Files\NinjaTrader 8\sounds\CompiledSuccessfully.wav</SoundCompiledSuccessfully>
+      <SoundConnected>C:\Program Files\NinjaTrader 8\sounds\Connected.wav</SoundConnected>
+      <SoundConnectionLost>C:\Program Files\NinjaTrader 8\sounds\ConnectionLost.wav</SoundConnectionLost>
+      <SoundOrderCanceled>C:\Program Files\NinjaTrader 8\sounds\OrderCanceled.wav</SoundOrderCanceled>
+      <SoundOrderFilled>C:\Program Files\NinjaTrader 8\sounds\OrderFilled.wav</SoundOrderFilled>
+      <SoundOrderPending>C:\Program Files\NinjaTrader 8\sounds\OrderPending.wav</SoundOrderPending>
+      <SoundReversing>C:\Program Files\NinjaTrader 8\sounds\Reversing.wav</SoundReversing>
+      <SoundStopFilled>C:\Program Files\NinjaTrader 8\sounds\StopFilled.wav</SoundStopFilled>
+      <SoundTargetFilled>C:\Program Files\NinjaTrader 8\sounds\TargetFilled.wav</SoundTargetFilled>
+      <BrushUpPrimarySerialize>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FF32CD32&lt;/SolidColorBrush&gt;</BrushUpPrimarySerialize>
+      <BrushUpSecondarySerialize>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FF008B8B&lt;/SolidColorBrush&gt;</BrushUpSecondarySerialize>
+      <BrushDownPrimarySerialize>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FFFF0000&lt;/SolidColorBrush&gt;</BrushDownPrimarySerialize>
+      <BrushDownSecondarySerialize>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FFDC143C&lt;/SolidColorBrush&gt;</BrushDownSecondarySerialize>
+      <BrushUpPrimarySerializeKo>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FFFF0000&lt;/SolidColorBrush&gt;</BrushUpPrimarySerializeKo>
+      <BrushUpSecondarySerializeKo>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FFDC143C&lt;/SolidColorBrush&gt;</BrushUpSecondarySerializeKo>
+      <BrushDownPrimarySerializeKo>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FF115BCB&lt;/SolidColorBrush&gt;</BrushDownPrimarySerializeKo>
+      <BrushDownSecondarySerializeKo>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#FF4682B4&lt;/SolidColorBrush&gt;</BrushDownSecondarySerializeKo>
+      <CurrentUICultureSerializable>en-US</CurrentUICultureSerializable>
+      <KinetickGlobexNonProFees>false</KinetickGlobexNonProFees>
+      <LogsLoaded>1000</LogsLoaded>
+      <Name>General</Name>
+      <PromptLanguageWarningForBasicEntry>false</PromptLanguageWarningForBasicEntry>
+    </GeneralOptions>
+  </GeneralOptions>
+  <MarketDataOptions>
+    <MarketDataOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <AdjustForSplitsOnDaily>true</AdjustForSplitsOnDaily>
+      <AdjustForSplitsOnIntraday>true</AdjustForSplitsOnIntraday>
+      <AdjustForDividends>false</AdjustForDividends>
+      <AutoSubscribe>true</AutoSubscribe>
+      <DownloadCotData>false</DownloadCotData>
+      <FilterBadTicks>false</FilterBadTicks>
+      <FilterBadTicksPercent>0.1</FilterBadTicksPercent>
+      <GetDataFromServer>true</GetDataFromServer>
+      <GlobalMergePolicy>MergeBackAdjusted</GlobalMergePolicy>
+      <IsTickReplayEnabled>true</IsTickReplayEnabled>
+      <Name>Market data</Name>
+      <PreferredCfdConnection>Unknown</PreferredCfdConnection>
+      <PreferredCryptocurrencyConnection>Unknown</PreferredCryptocurrencyConnection>
+      <PreferredForexConnection>Unknown</PreferredForexConnection>
+      <PreferredFutureConnection>Provider31</PreferredFutureConnection>
+      <PreferredIndexConnection>Unknown</PreferredIndexConnection>
+      <PreferredOptionConnection>Unknown</PreferredOptionConnection>
+      <PreferredStockConnection>Unknown</PreferredStockConnection>
+      <PreferredRealtimeCfdConnection>Unknown</PreferredRealtimeCfdConnection>
+      <PreferredRealtimeCryptocurrencyConnection>Unknown</PreferredRealtimeCryptocurrencyConnection>
+      <PreferredRealtimeForexConnection>Unknown</PreferredRealtimeForexConnection>
+      <PreferredRealtimeFutureConnection>Unknown</PreferredRealtimeFutureConnection>
+      <PreferredRealtimeIndexConnection>Unknown</PreferredRealtimeIndexConnection>
+      <PreferredRealtimeOptionConnection>Unknown</PreferredRealtimeOptionConnection>
+      <PreferredRealtimeStockConnection>Unknown</PreferredRealtimeStockConnection>
+      <RecordForPlayback>false</RecordForPlayback>
+      <SaveDataAsHistorical>false</SaveDataAsHistorical>
+    </MarketDataOptions>
+  </MarketDataOptions>
+  <ServerOptions>
+    <ServerOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <AdapterServerPort>4530</AdapterServerPort>
+      <AdminPort>31660</AdminPort>
+      <DbConnectionString />
+      <DbType>SQLite</DbType>
+      <DSDomainName />
+      <DSPort>31659</DSPort>
+      <DSPortWebSocket>31664</DSPortWebSocket>
+      <DSPrimaryLicenseServer />
+      <DSPrimaryLicenseServerPassword />
+      <DSPrimaryLicenseServerUserName />
+      <DSPrimaryLicenseServerUseSsl>false</DSPrimaryLicenseServerUseSsl>
+      <DSRunWebServer>false</DSRunWebServer>
+      <DSSecondaryLicenseServer />
+      <DSSecondaryLicenseServerPassword />
+      <DSSecondaryLicenseServerUserName />
+      <DSSecondaryLicenseServerUseSsl>false</DSSecondaryLicenseServerUseSsl>
+      <DSCustomerServicesUrl />
+      <DSCustomerServicesApiKey />
+      <DSTokenValidSeconds>3600</DSTokenValidSeconds>
+      <HDSPort>31655</HDSPort>
+      <HDSPortWebSocket>31653</HDSPortWebSocket>
+      <HDSNoSSL>false</HDSNoSSL>
+      <HDSTokenValidSeconds>60</HDSTokenValidSeconds>
+      <ISPort>31658</ISPort>
+      <Name>Server</Name>
+      <ServerId>0</ServerId>
+      <System>NT</System>
+      <ApplicationType>Desktop</ApplicationType>
+      <ServerName />
+      <UseNagle>false</UseNagle>
+    </ServerOptions>
+  </ServerOptions>
+  <StrategiesOptions>
+    <StrategiesOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UseServerAtmSerialize>false</UseServerAtmSerialize>
+      <ModifyInnerBracket>true</ModifyInnerBracket>
+      <ModifyNearestBracket>true</ModifyNearestBracket>
+      <SimulatedOrderAsYellow>true</SimulatedOrderAsYellow>
+      <UseLastPrice4AutoTrail>true</UseLastPrice4AutoTrail>
+      <CancelEntriesOnStrategyDisable>false</CancelEntriesOnStrategyDisable>
+      <CancelExitsOnStrategyDisable>false</CancelExitsOnStrategyDisable>
+      <ConnectionLossHandling>Recalculate</ConnectionLossHandling>
+      <NoAlertStrategySetting>Always</NoAlertStrategySetting>
+      <DisconnectDelaySeconds>10</DisconnectDelaySeconds>
+      <Name>Strategies</Name>
+      <NumberRestartAttempts>4</NumberRestartAttempts>
+      <RestartsWithinMinutes>5</RestartsWithinMinutes>
+    </StrategiesOptions>
+  </StrategiesOptions>
+  <TradingOptions>
+    <TradingOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <AutoClosePosition>false</AutoClosePosition>
+      <AutoClosePositionTime>2025-09-22T00:00:00Z</AutoClosePositionTime>
+      <AutoClosePositionAllInstruments>false</AutoClosePositionAllInstruments>
+      <AutoClosePositionInstrumentsSerializable />
+      <IsGlobalSimulationMode>false</IsGlobalSimulationMode>
+      <IsKeyboardFocusAllowed>false</IsKeyboardFocusAllowed>
+      <IsOrderEntryHotKeysEnabled>false</IsOrderEntryHotKeysEnabled>
+      <LocalOcoCancelBehavior>CancelOtherSide</LocalOcoCancelBehavior>
+      <Name>Trading</Name>
+      <SimulationColorSerialize>&lt;SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&gt;#00FFFFFF&lt;/SolidColorBrush&gt;</SimulationColorSerialize>
+      <SimulatorEnforceImmediateFills>false</SimulatorEnforceImmediateFills>
+      <SimulatorEnforcePartialFills>false</SimulatorEnforcePartialFills>
+      <StartInGlobalSimulationMode>false</StartInGlobalSimulationMode>
+      <RealizedPnlIncludesCommissions>false</RealizedPnlIncludesCommissions>
+      <UseLastPrice4ProfitLossCalc>true</UseLastPrice4ProfitLossCalc>
+      <ConfirmOrderPlacement>true</ConfirmOrderPlacement>
+      <PositionCloseWaitMilliSeconds>5000</PositionCloseWaitMilliSeconds>
+      <IsBuySellFlippedSerialize>true</IsBuySellFlippedSerialize>
+    </TradingOptions>
+  </TradingOptions>
+</NinjaTrader>

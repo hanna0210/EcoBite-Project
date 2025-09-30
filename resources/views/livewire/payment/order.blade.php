@@ -44,7 +44,9 @@
         @if ($selectedModel->payment_method->slug != 'offline')
             <div class="" wire:init="initPayment">
                 <div class="w-11/12 p-12 mx-auto mt-20 border rounded shadow md:w-6/12 lg:w-4/12">
-                    <x-heroicon-o-clock class="w-12 h-12 mx-auto text-gray-400 md:h-24 md:w-24" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-12 h-12 mx-auto text-gray-400 md:h-24 md:w-24">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+</svg>
                     <p class="text-xl font-medium text-center">{{ __('Order Payment') }}</p>
                     <p class="text-sm text-center">
                         {{ __('Please wait while we process your payment') }}</p>

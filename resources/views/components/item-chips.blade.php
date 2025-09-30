@@ -6,7 +6,9 @@
               {{ $item->name }}</div>
           <div class="flex flex-row-reverse flex-auto">
               <div wire:click="{{ $onRemove ?? 'removeItem' }}({{ $item->id ?? $item['id'] ?? '' }})">
-                  <x-heroicon-o-x class="w-4 h-4 ml-2 rounded-full cursor-pointer feather feather-x hover:text-red-400" />
+                  <svg class="w-4 h-4 ml-2 rounded-full cursor-pointer feather feather-x hover:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
               </div>
           </div>
       </div>

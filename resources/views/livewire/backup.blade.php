@@ -5,10 +5,14 @@
         @production
             <div class="ml-auto flex space-x-2 justify-end items-end w-full md:w-4/12 lg:w-4/12">
                 <x-buttons.primary title="{{ __('Backup Database') }}" wireClick='newBackUp'>
-                    <x-heroicon-o-download class="w-5 h-5 mx-2" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-5 h-5 mx-2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+</svg>
                 </x-buttons.primary>
                 <x-buttons.primary title="{{ __('Files + Database') }}" wireClick='newFullBackUp'>
-                    <x-heroicon-o-download class="w-5 h-5 mx-2" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-5 h-5 mx-2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+</svg>
                 </x-buttons.primary>
             </div>
         @endproduction
@@ -48,7 +52,9 @@
                                 <td class="flex p-2 space-x-4">
                                     {{-- Actions --}}
                                     <x-buttons.plain wireClick="downloadBackup('{{ $backup }}')" title="Download">
-                                        <x-heroicon-o-cloud-download class="w-5 h-5 mr-2" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-5 h-5 mr-2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
+</svg>
                                         <span class="">Download</span>
                                     </x-buttons.plain>
                                     <x-buttons.delete id="'{{ $backup }}'" />

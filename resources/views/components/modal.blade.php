@@ -14,7 +14,9 @@
             {{-- close model  --}}
             <button class="absolute p-2 text-white bg-red-500 rounded-full hover:shadow top-4 rtl:left-4 ltr:right-4"
                 @if ($onCancel ?? false) wire:click="{{ $onCancel }}" @else wire:click="$emitUp('dismissModal')" @endif>
-                <x-heroicon-o-x class="w-5 h-5" />
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
             @if ($withForm ?? true)
                 <form wire:submit.prevent="{{ $action ?? '' }}">

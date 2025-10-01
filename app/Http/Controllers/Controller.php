@@ -31,6 +31,7 @@ class Controller extends BaseController
     //
     public function isDemo()
     {
+        return;
         if (!\App::environment('production')) {
             throw new \Exception(__("App is in demo version. Some changes can't be made"));
         };

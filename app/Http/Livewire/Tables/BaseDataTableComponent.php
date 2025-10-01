@@ -256,6 +256,7 @@ class BaseDataTableComponent extends DataTableComponent
 
     public function isDemo($catchError = false)
     {
+        return;
         if (!App::environment('production')) {
             $errorMessage = __("App is in demo version. Some changes can't be made");
 

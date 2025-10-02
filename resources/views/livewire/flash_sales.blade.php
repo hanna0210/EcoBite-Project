@@ -39,7 +39,9 @@
                                 <p class="w-full">{{ $selectedProduct->name ?? '' }}</p>
                                 <x-buttons.plain h="h-8" bgColor="bg-red-400"
                                     wireClick="removeItem('{{ $key }}')">
-                                    <x-heroicon-o-x class="w-4 h-4" />
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
                                 </x-buttons.plain>
                             </div>
                         @endforeach
@@ -88,7 +90,9 @@
                                 <p class="w-full">{{ $selectedProduct->name ?? '' }}</p>
                                 <x-buttons.plain h="h-8" bgColor="bg-red-400"
                                     wireClick="removeItem('{{ $key }}')">
-                                    <x-heroicon-o-x class="w-4 h-4" />
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
                                 </x-buttons.plain>
                             </div>
                         @endforeach

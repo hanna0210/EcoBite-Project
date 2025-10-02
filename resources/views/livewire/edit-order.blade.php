@@ -78,7 +78,9 @@
                                 {{-- actions --}}
                                 <x-buttons.plain wireClick="$emit('removeProductFromOrder', '{{ $product->id }}' )"
                                     bgColor="bg-red-500">
-                                    <x-heroicon-o-trash class="w-5 h-5" />
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
                                 </x-buttons.plain>
                             </td>
                         </tr>
@@ -91,7 +93,9 @@
             <div class="ml-auto block md:flex gap-4 w-full md:w-8/12 lg:w-4/12 items-end justify-end">
                 <div class="w-full md:w-6/12">
                     <x-buttons.primary title="{{ __('Save') }}" wireClick="updateOrderProducts">
-                        <x-heroicon-o-check class="mr-2 w-4 h-4" />
+                        <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
                     </x-buttons.primary>
                 </div>
                 @if (
@@ -99,7 +103,9 @@
                         !in_array($selectedModel->payment_status, ['request', 'failed', 'cancelled', 'successful']))
                     <div class="w-full md:w-6/12">
                         <x-buttons.primary title="{{ __('Request Payment') }}" wireClick="requestPayment">
-                            <x-heroicon-o-credit-card class="mr-2 w-4 h-4" />
+                            <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                            </svg>
                         </x-buttons.primary>
                     </div>
                 @endif

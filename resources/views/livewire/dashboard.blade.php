@@ -8,23 +8,31 @@
 
             {{-- Orders --}}
             <x-dashboard-card bg="bg-primary-100" title="{{ __('TOTAL ORDERS') }}" value="{{ $this->totalOrders }}">
-                <x-heroicon-s-shopping-bag class="w-16 text-primary-600" />
+                <svg class="w-16 text-primary-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
             </x-dashboard-card>
 
             {{-- Earning --}}
             <x-dashboard-card bg="bg-blue-100" title="{{ __('TOTAL EARNINGS') }}"
                 value="{{ setting('currency') }} {{ $this->totalEarnings }}">
-                <x-heroicon-s-cash class="w-16 text-primary-600" />
+                <svg class="w-16 text-primary-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
             </x-dashboard-card>
             @role('admin')
                 {{-- Total Vendors --}}
                 <x-dashboard-card bg="bg-red-100" title="{{ __('TOTAL VENDORS') }}" value="{{ $this->totalVendors }}">
-                    <x-heroicon-s-cake class="w-16 text-primary-600" />
+                    <svg class="w-16 text-primary-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
                 </x-dashboard-card>
 
                 {{-- Users --}}
                 <x-dashboard-card bg="bg-yellow-100" title="{{ __('TOTAL Clients') }}" value="{{ $this->totalClients }}">
-                    <x-heroicon-s-users class="w-16 text-primary-600" />
+                    <svg class="w-16 text-primary-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                    </svg>
                 </x-dashboard-card>
             @endrole
         </div>
@@ -103,7 +111,9 @@
                                         <div class="">
                                             <p class="text-sm">{{ $vendor->name }}</p>
                                             <p class="text-xs font-light flex space-x-2">
-                                                <x-heroicon-s-star class="w-4 h-4 text-primary-500" />
+                                                <svg class="w-4 h-4 text-primary-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                                </svg>
                                                 {{ $vendor->rating ?? 0 }}
                                             </p>
                                         </div>

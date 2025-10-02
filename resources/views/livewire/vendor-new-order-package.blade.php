@@ -95,7 +95,9 @@
                                                 <h3 class="text-lg font-bold"> &nbsp; </h3>
                                                 <x-buttons.plain wireClick="openMapPicker({{ $key }})"
                                                     bgColor="bg-primary-600">
-                                                    <x-heroicon-o-map class="w-5 h-5" />
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                                                    </svg>
                                                 </x-buttons.plain>
                                             </div>
                                         @else
@@ -104,7 +106,9 @@
                                                 <h3 class="text-lg font-bold"> &nbsp; </h3>
                                                 <x-buttons.plain wireClick="openAddressPicker({{ $key }})"
                                                     bgColor="bg-primary-600">
-                                                    <x-heroicon-o-search class="w-5 h-5" />
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                                    </svg>
                                                 </x-buttons.plain>
                                             </div>
                                         @endif
@@ -113,7 +117,9 @@
                                             <h3 class="text-lg font-bold"> &nbsp; </h3>
                                             <x-buttons.plain wireClick="removeOrderStop({{ $key }})"
                                                 bgColor="bg-red-600">
-                                                <x-heroicon-o-trash class="w-5 h-5" />
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
                                             </x-buttons.plain>
                                         </div>
                                     </div>
@@ -124,7 +130,9 @@
                             @if ((bool) setting('enableParcelMultipleStops'))
                                 <div class="mt-2 flex justify-start">
                                     <x-buttons.plain wireClick="addOrderStop" bgColor="bg-primary-600">
-                                        <x-heroicon-o-plus class="w-5 h-5" />
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
                                         <span class="mx-1">{{ __('Add New Stop') }}</span>
                                     </x-buttons.plain>
                                 </div>
@@ -152,8 +160,12 @@
                                         </div>
                                         {{-- toggle button --}}
                                         <button x-on:click="isOpen = !isOpen">
-                                            <x-heroicon-o-chevron-down x-show="!isOpen" class="w-5 h-5 text-gray-500" />
-                                            <x-heroicon-o-chevron-up x-show="isOpen" class="w-5 h-5 text-gray-500" />
+                                            <svg x-show="!isOpen" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                            <svg x-show="isOpen" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                                            </svg>
                                         </button>
                                     </div>
                                     {{-- info --}}
@@ -233,7 +245,10 @@
                                         <div class="rounded border px-4 py-2 mb-2">
                                             <div class="px-4 py-2 flex items-center">
                                                 <div class="mr-2">
-                                                    <x-heroicon-o-location-marker class="w-6 h-6 text-gray-500" />
+                                                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                    </svg>
                                                 </div>
                                                 <div class="w-full">
                                                     <p class="font-semibold">

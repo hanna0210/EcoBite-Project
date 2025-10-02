@@ -5,10 +5,14 @@
         @production
             <div class="ml-auto flex space-x-2 justify-end items-end w-full md:w-4/12 lg:w-4/12">
                 <x-buttons.primary title="{{ __('Backup Database') }}" wireClick='newBackUp'>
-                    <x-heroicon-o-download class="w-5 h-5 mx-2" />
+                    <svg class="w-5 h-5 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
                 </x-buttons.primary>
                 <x-buttons.primary title="{{ __('Files + Database') }}" wireClick='newFullBackUp'>
-                    <x-heroicon-o-download class="w-5 h-5 mx-2" />
+                    <svg class="w-5 h-5 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
                 </x-buttons.primary>
             </div>
         @endproduction
@@ -48,7 +52,9 @@
                                 <td class="flex p-2 space-x-4">
                                     {{-- Actions --}}
                                     <x-buttons.plain wireClick="downloadBackup('{{ $backup }}')" title="Download">
-                                        <x-heroicon-o-cloud-download class="w-5 h-5 mr-2" />
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                                        </svg>
                                         <span class="">Download</span>
                                     </x-buttons.plain>
                                     <x-buttons.delete id="'{{ $backup }}'" />

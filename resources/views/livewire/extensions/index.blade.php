@@ -4,7 +4,9 @@
     <x-baseview title="{{ __('Extensions') }}" showNew="{{ $showDetails }}" actionTitle="{{ __('Install') }}">
         <x-slot:newBtn>
             <x-buttons.plain title="{{ __('Install') }}" bgColor="bg-primary-500" onClick="openModal = true">
-                <x-heroicon-o-plus class="w-5 h-5 mr-1" />
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
                 <p>{{ __('Install') }}</p>
             </x-buttons.plain>
         </x-slot:newBtn>

@@ -25,22 +25,30 @@
 
                 {{-- update --}}
                 <x-settings-item title="{{ __('Update System') }}" wireClick="upgradeAppSystem">
-                    <x-heroicon-o-cloud-upload class="w-5 h-5 mr-4" />
+                    <svg class="w-5 h-5 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
                 </x-settings-item>
 
                 {{-- roll back --}}
                 <x-settings-item title="{{ __('Roll Back Update') }}" wireClick="showEditModal">
-                    <x-heroicon-o-sort-descending class="w-5 h-5 mr-4" />
+                    <svg class="w-5 h-5 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"></path>
+                    </svg>
                 </x-settings-item>
 
                 {{-- terminal --}}
                 <x-settings-item title="{{ __('Terminal') }}" wireClick="showCreateModal">
-                    <x-heroicon-o-terminal class="w-5 h-5 mr-4" />
+                    <svg class="w-5 h-5 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
                 </x-settings-item>
 
                 {{-- update --}}
                 {{--  <x-settings-item title="{{ __('Update Remotely') }}" wireClick="getRemoteVersions">
-                <x-heroicon-o-cloud-download class="w-5 h-5 mr-4" />
+                <svg class="w-5 h-5 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                </svg>
             </x-settings-item>  --}}
 
             </div>
@@ -81,12 +89,16 @@
                             <span class="flex-grow">{{ __('Configuration') }}</span>
                             <span x-show="opened">
                                 <x-buttons.plain onClick="opened = false">
-                                    <x-heroicon-o-chevron-up class="w-3 h-4" />
+                                    <svg class="w-3 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                                    </svg>
                                 </x-buttons.plain>
                             </span>
                             <span x-show="!opened">
                                 <x-buttons.plain onClick="opened = true">
-                                    <x-heroicon-o-chevron-down class="w-3 h-4" />
+                                    <svg class="w-3 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
                                 </x-buttons.plain>
                             </span>
                         </p>

@@ -14,7 +14,9 @@
             {{-- close model  --}}
             <button class="absolute p-2 text-white bg-red-500 rounded-full hover:shadow top-4 rtl:left-4 ltr:right-4"
                 @if ($onCancel ?? false) wire:click="{{ $onCancel }}" @else wire:click="$emitUp('dismissModal')" @endif>
-                <x-heroicon-o-x class="w-5 h-5" />
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
             </button>
             <form wire:submit.prevent="{{ $action ?? '' }}">
                 <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4 {{ isRTL() ? 'text-right' : 'text-left' }}">

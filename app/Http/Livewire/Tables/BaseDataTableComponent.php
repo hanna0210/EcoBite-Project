@@ -19,8 +19,8 @@ class BaseDataTableComponent extends DataTableComponent
 
     public array $perPageAccepted = [5, 10, 15, 20, 50, 100];
     public $checkDemo = false;
-    public ?string $defaultSortColumn = 'id';
-    public ?string $defaultSortDirection = 'desc';
+    public string $defaultSortColumn = 'id';
+    public string $defaultSortDirection = 'desc';
     public bool $singleColumnSorting = true;
     public $index = 0;
 
@@ -256,7 +256,6 @@ class BaseDataTableComponent extends DataTableComponent
 
     public function isDemo($catchError = false)
     {
-        return;
         if (!App::environment('production')) {
             $errorMessage = __("App is in demo version. Some changes can't be made");
 

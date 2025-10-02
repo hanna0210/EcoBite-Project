@@ -48,9 +48,7 @@
                                                 class="w-full text-primary-500 hover:underline">
                                                 <div
                                                     class="w-full border shadow-sm rounded p-2 flex items-center justify-center space-x-2 rtl:space-x-reverse hover:shadow-md">
-                                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.5V3m-3.75 9.75h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v7.5a2.25 2.25 0 002.25 2.25z" />
-                                                    </svg>
+                                                    <x-tabler-home-dollar class="w-5 h-5" />
                                                     <p class="md:my-2 text-sm font-medium">
                                                         {{ __('Become a Vendor/Seller') }}
                                                     </p>
@@ -62,9 +60,7 @@
                                                 class="w-full text-primary-500 hover:underline">
                                                 <div
                                                     class="w-full border shadow-sm rounded p-2 flex items-center justify-center space-x-2 rtl:space-x-reverse hover:shadow-md">
-                                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-1.5-1.5V6.75a1.5 1.5 0 011.5-1.5h7.5a1.5 1.5 0 011.5 1.5v10.5a1.5 1.5 0 01-1.5 1.5h-7.5zM12 12a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" />
-                                                    </svg>
+                                                    <x-tabler-steering-wheel class="w-5 h-5 " />
                                                     <p class="md:my-2 text-sm font-medium">
                                                         {{ __('Join as a Driver') }}
                                                     </p>

@@ -25,30 +25,22 @@
 
                 {{-- update --}}
                 <x-settings-item title="{{ __('Update System') }}" wireClick="upgradeAppSystem">
-                    <svg class="w-5 h-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                    </svg>
+                    <x-heroicon-o-cloud-upload class="w-5 h-5 mr-4" />
                 </x-settings-item>
 
                 {{-- roll back --}}
                 <x-settings-item title="{{ __('Roll Back Update') }}" wireClick="showEditModal">
-                    <svg class="w-5 h-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
-                    </svg>
+                    <x-heroicon-o-sort-descending class="w-5 h-5 mr-4" />
                 </x-settings-item>
 
                 {{-- terminal --}}
                 <x-settings-item title="{{ __('Terminal') }}" wireClick="showCreateModal">
-                    <svg class="w-5 h-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
-                    </svg>
+                    <x-heroicon-o-terminal class="w-5 h-5 mr-4" />
                 </x-settings-item>
 
                 {{-- update --}}
                 {{--  <x-settings-item title="{{ __('Update Remotely') }}" wireClick="getRemoteVersions">
-                <svg class="w-5 h-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                </svg>
+                <x-heroicon-o-cloud-download class="w-5 h-5 mr-4" />
             </x-settings-item>  --}}
 
             </div>
@@ -89,16 +81,12 @@
                             <span class="flex-grow">{{ __('Configuration') }}</span>
                             <span x-show="opened">
                                 <x-buttons.plain onClick="opened = false">
-                                    <svg class="w-3 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                                    </svg>
+                                    <x-heroicon-o-chevron-up class="w-3 h-4" />
                                 </x-buttons.plain>
                             </span>
                             <span x-show="!opened">
                                 <x-buttons.plain onClick="opened = true">
-                                    <svg class="w-3 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                    </svg>
+                                    <x-heroicon-o-chevron-down class="w-3 h-4" />
                                 </x-buttons.plain>
                             </span>
                         </p>

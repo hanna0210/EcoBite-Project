@@ -56,9 +56,7 @@
             @else
                 {{-- empty state --}}
                 <p class="flex items-center text-sm font-light text-gray-400">
-                    <svg class="w-6 h-6 p-1 text-gray-500 border rounded-full shadow ltr:mr-3 rtl:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
+                    <x-heroicon-o-plus class="w-6 h-6 p-1 text-gray-500 border rounded-full shadow ltr:mr-3 rtl:ml-3" />
                     {{ __('Click/Tap to select media') }} | {{ $types ?? 'Any File' }}
                 </p>
 

@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Storage;
-use NaoPon\Flysystem\GoogleDrive\GoogleDriveAdapter;
-use Google\Client;
-use Google\Service\Drive;
+use Masbug\Flysystem\GoogleDriveAdapter;
+use Google_Client;
+use Google_Service_Drive;
 
 class GoogleDriveServiceProvider extends ServiceProvider
 {
@@ -28,13 +28,13 @@ class GoogleDriveServiceProvider extends ServiceProvider
     public function boot()
     {
         Storage::extend('google', function ($app, $config) {
-            $client = new Client();
+            $client = new Google_Client();
             $client->setClientId($config['clientId']);
             $client->setClientSecret($config['clientSecret']);
             $client->refreshToken($config['refreshToken']);
 
-            $service = new Drive($client);
-            $adapter = new GoogleDriveAdapter($service, $config['folderId'] ?? null);
+            $service = new Google_Service_Drive($client);
+            $adapter = new GoogleDriveAdapter($service, $config['folderId']);
 
             return new \League\Flysystem\Filesystem($adapter);
         });

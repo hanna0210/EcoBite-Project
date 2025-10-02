@@ -151,7 +151,6 @@ class QueueJobsTable extends Component
     //misc
     public function isDemo($catchError = false)
     {
-        return;
         if (!App::environment('production')) {
             $errorMessage = __("App is in demo version. Some changes can't be made");
             if ($catchError) {

@@ -36,6 +36,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "ahsankhatri/firestore-php": "master",
         "aloha/twilio": "*",
         "ambrosethebuild/epcv": "^0.0.9",
         "anandsiddharth/laravel-paytm-wallet": "^2.0",
@@ -56,6 +57,7 @@
         "google/cloud-storage": "*",
         "google/cloud-translate": "1.17.2",
         "google/apiclient": "^2.15",
+        "masbug/flysystem-google-drive-ext": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
         "jantinnerezo/livewire-alert": "^2.2",
         "joshhanley/livewire-autocomplete": "^0.1.9",

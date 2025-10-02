@@ -49,15 +49,11 @@
                                 <div class="flex space-x-2 mx-auto rtl:flex-row-reverse">
                                     <x-buttons.plain bgColor="bg-red-500 w-6/12" wireClick="rejectOrder">
                                         <p class="mx-2">{{ __('Reject') }}</p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-5 h-5">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-</svg>
+                                        <x-heroicon-o-x class="w-5 h-5" />
                                     </x-buttons.plain>
                                     <x-buttons.plain bgColor="bg-green-500 w-6/12" wireClick="acceptOrder">
                                         <p class="mx-2">{{ __('Accept') }}</p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-5 h-5">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-</svg>
+                                        <x-heroicon-o-check class="w-5 h-5" />
                                     </x-buttons.plain>
                                 </div>
                             </div>

@@ -2,9 +2,7 @@
     <div class="">
         <div wire:loading.flex>
             <div class="w-11/12 p-12 mx-auto mt-10 border rounded shadow md:w-6/12 lg:w-4/12">
-                <svg class="w-12 h-12 mx-auto text-gray-400 md:h-24 md:w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <x-heroicon-o-clock class="w-12 h-12 mx-auto text-gray-400 md:h-24 md:w-24" />
                 <p class="text-xl font-medium text-center">{{ __('Wallet Topup') }}</p>
                 <p class="text-sm text-center">{{ __('Please wait while we process your payment') }}</p>
             </div>
@@ -47,13 +45,9 @@
             {{-- completed --}}
             <div class="{{ $done ? 'block' : 'hidden' }}">
                 @if ($error)
-                    <svg class="w-12 h-12 mx-auto text-red-500 md:h-24 md:w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                    </svg>
+                    <x-heroicon-o-emoji-sad class="w-12 h-12 mx-auto text-red-500 md:h-24 md:w-24" />
                 @else
-                    <svg class="w-12 h-12 mx-auto text-green-500 md:h-24 md:w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 0h.008v.008H12V12zm-2.25 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                    </svg>
+                    <x-heroicon-o-emoji-happy class="w-12 h-12 mx-auto text-green-500 md:h-24 md:w-24" />
                 @endif
                 <p class="text-sm font-medium text-center">{{ $errorMessage }}</p>
             </div>

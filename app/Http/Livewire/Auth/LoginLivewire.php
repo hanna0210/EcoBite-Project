@@ -37,14 +37,13 @@ class LoginLivewire extends BaseLivewireComponent
     public function login()
     {
 
-
         $this->validate(
             [
                 "email" => "required|email|exists:users",
                 "password" => "required|string",
             ],
             [
-                "email.exists" => __("Email not associated with any account")
+                "email.exists" => __("Email not associated with any account---")
             ]
         );
 

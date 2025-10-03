@@ -168,7 +168,7 @@ class SMSGatewayLivewire extends BaseLivewireComponent
 
         //validate
         $this->validate([
-            "phoneNumber" => "required|phone:" . setting('countryCode', "GH") . "",
+            "phoneNumber" => "required|phone:HN,mobile",
             "testMessage" => "required|string",
         ]);
 

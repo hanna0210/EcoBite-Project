@@ -87,7 +87,7 @@ class VendorLivewire extends VendorTimingLivewire
             "commission" => "nullable|sometimes|numeric",
             "photo" => "required|image|max:1024",
             "secondPhoto" => "required|image|max:2048",
-            "phone" => "required|phone:" . setting('countryCode', "INTERNATIONAL") . "",
+            "phone" => "required|phone:HN,mobile",
         ];
     }
 
@@ -318,7 +318,7 @@ class VendorLivewire extends VendorTimingLivewire
             [
                 "name" => "required|string",
                 "description" => "required|string",
-                "phone" => "required|phone:" . setting('countryCode', "INTERNATIONAL") . "",
+                "phone" => "required|phone:HN,mobile",
                 "email" => "required|email|unique:vendors,email," . $this->selectedModel->id . "",
                 "address" => "required|string",
                 "latitude" => "required|numeric",

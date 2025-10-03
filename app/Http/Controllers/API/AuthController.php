@@ -133,7 +133,7 @@ class AuthController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'phone' => 'phone:' . setting('countryCode', "GH"),
+                'phone' => 'phone:HN,mobile',
             ],
             $messages = [
                 'phone.exists' => __('Phone not associated with any account'),
@@ -154,7 +154,7 @@ class AuthController extends Controller
         if (!empty($user)) {
 
             //
-            $internationalFormat = (new PhoneNumber($phone, setting('countryCode', "GH")))->formatInternational();
+            $internationalFormat = (new PhoneNumber($phone, 'HN'))->formatInternational();
             return response()->json([
                 "phone" => $internationalFormat
             ], 200);
@@ -172,7 +172,7 @@ class AuthController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'phone' => 'phone:' . setting('countryCode', "GH"),
+                'phone' => 'phone:HN,mobile',
             ],
             $messages = [
                 'phone.exists' => __('Phone not associated with any account'),

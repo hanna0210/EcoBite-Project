@@ -35,7 +35,7 @@ class UserLivewire extends BaseLivewireComponent
             "name" => "required|string",
             "email" => "required|email|unique:users",
             // "phone" => "required|unique:users",
-            "phone" => "required|phone:" . setting('countryCode', "GH") . "|unique:users",
+            "phone" => "required|phone:HN,mobile|unique:users",
             "password" => "sometimes|nullable|string",
             "commission" => "sometimes|nullable|numeric",
         ];
@@ -151,7 +151,7 @@ class UserLivewire extends BaseLivewireComponent
                 "name" => "required|string",
                 "email" => "required|email|unique:users,email," . $this->selectedModel->id . "",
                 // "phone" => "required|unique:users,phone," . $this->selectedModel->id . "",
-                "phone" => "required|phone:" . setting('countryCode', "GH") . "|unique:users,phone," . $this->selectedModel->id . "",
+                "phone" => "required|phone:HN,mobile|unique:users,phone," . $this->selectedModel->id . "",
                 "password" => "sometimes|nullable|string",
                 "commission" => "sometimes|nullable|numeric",
             ]

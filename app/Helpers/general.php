@@ -146,5 +146,5 @@ function isUsingWebsocket()
 
 function phoneRules()
 {
-    return setting('countryCode', "GH");
+    return 'HN,mobile';
 }

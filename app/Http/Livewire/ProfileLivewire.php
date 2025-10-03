@@ -44,7 +44,7 @@ class ProfileLivewire extends BaseLivewireComponent
             [
                 "name" => "required|string",
                 "email" => "required|email|unique:users,email," . Auth::id() . "",
-                'phone' => 'phone:' . setting('countryCode', "GH") . '|unique:users,phone,' . Auth::id(),
+                'phone' => 'phone:HN,mobile|unique:users,phone,' . Auth::id(),
             ]
         );
 

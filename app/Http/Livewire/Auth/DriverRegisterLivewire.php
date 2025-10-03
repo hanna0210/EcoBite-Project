@@ -53,7 +53,7 @@ class DriverRegisterLivewire extends BaseLivewireComponent
         return [
             "name" => "required",
             "email" => "required|email|unique:users",
-            "phone" => "required|phone:" . setting('countryCode', "GH") . "|unique:users",
+            "phone" => "required|phone:HN,mobile|unique:users",
             "password" => "required|string|min:6",
         ];
     }

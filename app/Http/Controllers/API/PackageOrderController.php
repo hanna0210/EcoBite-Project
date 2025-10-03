@@ -16,6 +16,7 @@ use App\Models\PackageTypePricing;
 use App\Models\Vendor;
 use App\Models\Coupon;
 use App\Models\CouponUser;
+use App\Services\CouponService;
 use App\Traits\GeoBoundaryCheckTrait;
 use App\Traits\GoogleMapApiTrait;
 use Illuminate\Http\Request;
@@ -314,54 +315,24 @@ class PackageOrderController extends Controller
             $coupon = null;
             //if coupon is used
             if (!empty($request->coupon_code)) {
-
-                //
                 $vendor = Vendor::find($request->vendor_id);
-                $coupon = Coupon::where('code', $request->coupon_code)->first();
+                
+                $couponService = app(CouponService::class);
+                $result = $couponService->validateAndApplyCoupon(
+                    $request->coupon_code,
+                    $subTotalAmount,
+                    $vendor->id,
+                    $vendor->vendor_type_id,
+                    [], // No specific products for package orders
+                    Auth::id()
+                );
 
-                if ($coupon == null) {
-                    throw new \Exception(__("Coupon code is invalid"));
-                }
-                //check if the coupon vendor type is same as the selected vendor
-                if ($coupon->vendor_type_id != null && $coupon->vendor_type_id != $vendor->vendor_type_id) {
-                    throw new \Exception(__("Coupon code is invalid for this vendor type"));
-                }
-
-                //also check if user has use this coupon before and if the coupon is not reusable
-                $usedTimes = CouponUser::where('coupon_id', $coupon->id)
-                    ->where('user_id', Auth::id())
-                    ->count() ?? 0;
-                if ($coupon->times != null && $usedTimes >= $coupon->times) {
-                    throw new \Exception(__("You have exceeded number of use"), 1);
+                if (!$result['success']) {
+                    throw new \Exception($result['message']);
                 }
 
-                //check if vendor id is in the list of allowed vendors for this coupon
-                $vendorIds = $coupon->vendors->pluck('id')->toArray();
-                if (count($vendorIds) > 0 && !in_array($vendor->id, $vendorIds)) {
-                    throw new \Exception(__("Coupon code is invalid for this vendor"));
-                }
-
-                if ($coupon) {
-                    if ($coupon->percentage) {
-                        $discount = floatval(($coupon->discount / 100)) * floatval($subTotalAmount);
-                    } else {
-                        $discount = $coupon->discount;
-                    }
-
-                    //check if discount is greater than the max discount
-                    if ($coupon->max_coupon_amount != null && $discount > $coupon->max_coupon_amount) {
-                        $discount = $coupon->max_coupon_amount;
-                    }
-
-                    //check if subtotal is greater than the min order amount
-                    if ($coupon->min_order_amount != null && $subTotalAmount < $coupon->min_order_amount) {
-                        $discount = 0;
-                    }
-
-
-                    //
-                    // $subTotalAmount -= $discount;
-                }
+                $discount = $result['discount'];
+                $coupon = $result['coupon'];
             }
 
 

@@ -10,6 +10,7 @@ use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\Vendor;
 use App\Models\Wallet;
+use App\Services\CouponService;
 use App\Traits\OrderTrait;
 use App\Traits\WalletTrait;
 use Illuminate\Http\Request;
@@ -84,13 +85,11 @@ class RegularOrderService
 
 
             //save the coupon used
-            $coupon = Coupon::where("code", $request->coupon_code)->first();
-            if (!empty($coupon)) {
-                $couponUser = new CouponUser();
-                $couponUser->coupon_id = $coupon->id;
-                $couponUser->user_id = \Auth::id();
-                $couponUser->order_id = $order->id;
-                $couponUser->save();
+            if (!empty($request->coupon_code)) {
+                $coupon = Coupon::where("code", $request->coupon_code)->first();
+                if ($coupon) {
+                    app(CouponService::class)->recordCouponUsage($coupon, \Auth::id(), $order->id);
+                }
             }
 
 

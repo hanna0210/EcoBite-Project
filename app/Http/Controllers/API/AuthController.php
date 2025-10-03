@@ -36,7 +36,7 @@ class AuthController extends Controller
                 'password' => 'required',
             ],
             $messages = [
-                'email.exists' => __('Email not associated with any account2222'),
+                'email.exists' => __('Email not associated with any account'),
             ]
         );
 

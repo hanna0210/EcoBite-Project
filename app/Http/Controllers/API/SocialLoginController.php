@@ -27,7 +27,7 @@ class SocialLoginController extends Controller
                 'firebase_id_token' => 'required',
             ],
             $messages = [
-                'email.exists' => __('Email not associated with any account===='),
+                'email.exists' => __('Email not associated with any account'),
             ]
         );
 

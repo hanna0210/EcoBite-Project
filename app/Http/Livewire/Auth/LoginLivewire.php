@@ -43,7 +43,7 @@ class LoginLivewire extends BaseLivewireComponent
                 "password" => "required|string",
             ],
             [
-                "email.exists" => __("Email not associated with any account---")
+                "email.exists" => __("Email not associated with any account")
             ]
         );
 

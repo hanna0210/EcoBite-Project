@@ -74,7 +74,7 @@
             </div>
 
             {{-- Pickup Instructions --}}
-            <x-input.textarea title="{{ __('Pickup Instructions') }}" name="pickup_instructions" 
+            <x-textarea title="{{ __('Pickup Instructions') }}" name="pickup_instructions" 
                 placeholder="{{ __('Special instructions for customers picking up this rescue offer...') }}" />
 
             {{-- Status --}}
@@ -151,7 +151,7 @@
             </div>
 
             {{-- Pickup Instructions --}}
-            <x-input.textarea title="{{ __('Pickup Instructions') }}" name="pickup_instructions" 
+            <x-textarea title="{{ __('Pickup Instructions') }}" name="pickup_instructions" 
                 placeholder="{{ __('Special instructions for customers picking up this rescue offer...') }}" />
 
             {{-- Status --}}

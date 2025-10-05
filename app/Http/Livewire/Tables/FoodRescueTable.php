@@ -5,15 +5,12 @@ namespace App\Http\Livewire\Tables;
 use App\Models\FoodRescue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
-class FoodRescueTable extends DataTableComponent
+class FoodRescueTable extends BaseDataTableComponent
 {
-    protected $model = FoodRescue::class;
+    public $model = FoodRescue::class;
     public $columnSearch = [
         'title' => null,
         'vendor.name' => null,
@@ -28,7 +25,7 @@ class FoodRescueTable extends DataTableComponent
         });
     }
 
-    public function builder(): Builder
+    public function query()
     {
         $query = FoodRescue::query()->with(['vendor']);
         
@@ -41,56 +38,51 @@ class FoodRescueTable extends DataTableComponent
             });
         }
 
+        // Apply filters
+        $query->when($this->getFilter('status'), function ($query, $status) {
+            if ($status === '1') {
+                $query->where('is_active', true);
+            } elseif ($status === '0') {
+                $query->where('is_active', false);
+            }
+        });
+
+        $query->when($this->getFilter('availability'), function ($query, $availability) {
+            if ($availability === 'available') {
+                $query->available();
+            } elseif ($availability === 'expired') {
+                $query->where('available_until', '<', now());
+            } elseif ($availability === 'sold_out') {
+                $query->where('available_quantity', '<=', 0);
+            }
+        });
+
         return $query;
     }
 
     public function filters(): array
     {
         return [
-            SelectFilter::make('Status')
-                ->options([
-                    '' => 'All',
-                    '1' => 'Active',
-                    '0' => 'Inactive',
-                ])
-                ->filter(function (Builder $builder, string $value) {
-                    if ($value === '1') {
-                        $builder->where('is_active', true);
-                    } elseif ($value === '0') {
-                        $builder->where('is_active', false);
-                    }
-                }),
-            SelectFilter::make('Availability')
-                ->options([
-                    '' => 'All',
-                    'available' => 'Available',
-                    'expired' => 'Expired',
-                    'sold_out' => 'Sold Out',
-                ])
-                ->filter(function (Builder $builder, string $value) {
-                    if ($value === 'available') {
-                        $builder->available();
-                    } elseif ($value === 'expired') {
-                        $builder->where('available_until', '<', now());
-                    } elseif ($value === 'sold_out') {
-                        $builder->where('available_quantity', '<=', 0);
-                    }
-                }),
+            'status' => Filter::make(__('Status'))
+                ->select([
+                    '' => __('All'),
+                    '1' => __('Active'),
+                    '0' => __('Inactive'),
+                ]),
+            'availability' => Filter::make(__('Availability'))
+                ->select([
+                    '' => __('All'),
+                    'available' => __('Available'),
+                    'expired' => __('Expired'),
+                    'sold_out' => __('Sold Out'),
+                ]),
         ];
     }
 
     public function columns(): array
     {
         return [
-            ImageColumn::make('Photo')
-                ->location(function ($row) {
-                    return $row->photo;
-                })
-                ->attributes(function ($row) {
-                    return [
-                        'class' => 'w-16 h-16 object-cover rounded',
-                    ];
-                }),
+            $this->smImageColumn(),
 
             Column::make('Title', 'title')
                 ->sortable()
@@ -149,11 +141,17 @@ class FoodRescueTable extends DataTableComponent
                     if (count($tags) > 3) {
                         $html .= '<span class="text-xs text-gray-500">+' . (count($tags) - 3) . ' more</span>';
                     }
-                    return $html;
-                })
-                ->html(),
+                    return view('components.table.plain', [
+                        'text' => $html
+                    ]);
+                }),
 
-            BooleanColumn::make('Active', 'is_active')
+            Column::make('Active', 'is_active')
+                ->format(function ($value, $column, $row) {
+                    return view('components.table.active', [
+                        'model' => $row
+                    ]);
+                })
                 ->sortable(),
 
             Column::make('Actions')
@@ -188,8 +186,7 @@ class FoodRescueTable extends DataTableComponent
                             ]
                         ]
                     ]);
-                })
-                ->html(),
+                }),
         ];
     }
 }

@@ -139,6 +139,7 @@ view-tags
             "manage-product-brands",
             "edit-order",
             "review-order-payment",
+            "view-food-rescues",
         ];
         //managers roles only
         $managerRolePermissions = [
@@ -148,6 +149,7 @@ view-tags
             'change-order-status',
             "edit-order",
             "allow-select-payment-gateway",
+            "view-food-rescues",
         ];
         //admin & manager permissions
         $adminManagerRolePermissions = [

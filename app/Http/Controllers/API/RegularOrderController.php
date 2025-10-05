@@ -11,12 +11,13 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\ServiceOption;
 use App\Traits\GoogleMapApiTrait;
+use App\Traits\DynamicPricingTrait;
 use Illuminate\Http\Request;
 
 
 class RegularOrderController extends Controller
 {
-    use GoogleMapApiTrait;
+    use GoogleMapApiTrait, DynamicPricingTrait;
     //
     public function deliveryFeeSummary(Request $request)
     {
@@ -112,11 +113,41 @@ class RegularOrderController extends Controller
             $distanceAmount = $vendor->delivery_fee;
         }
         //
-        $distanceAmount += $vendor->base_delivery_fee;
+        $baseDeliveryFee = $vendor->base_delivery_fee;
+        $originalDeliveryFee = $distanceAmount + $baseDeliveryFee;
 
-        return response()->json([
-            "delivery_fee" => $distanceAmount,
-        ]);
+        // Apply dynamic pricing if enabled
+        $dynamicPricingResult = null;
+        if ($this->isDynamicPricingEnabled($vendor->id)) {
+            $dynamicPricingResult = $this->applyDynamicPricingToDeliveryFee(
+                $vendor->id,
+                $baseDeliveryFee,
+                $distanceAmount,
+                $latitude,
+                $longitude,
+                'delivery'
+            );
+            
+            if ($dynamicPricingResult['success']) {
+                $finalDeliveryFee = $dynamicPricingResult['dynamic_delivery_fee'];
+            } else {
+                $finalDeliveryFee = $originalDeliveryFee;
+            }
+        } else {
+            $finalDeliveryFee = $originalDeliveryFee;
+        }
+
+        $response = [
+            "delivery_fee" => $finalDeliveryFee,
+        ];
+
+        // Add dynamic pricing information if available
+        if ($dynamicPricingResult && $dynamicPricingResult['success']) {
+            $response['dynamic_pricing'] = $this->getDynamicPricingInfo($dynamicPricingResult);
+            $response['original_delivery_fee'] = $dynamicPricingResult['original_delivery_fee'];
+        }
+
+        return response()->json($response);
     }
 
     //

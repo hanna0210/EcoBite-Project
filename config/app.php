@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\GoogleDriveServiceProvider::class,
+        App\Providers\DynamicPricingServiceProvider::class,
 
     ],
 

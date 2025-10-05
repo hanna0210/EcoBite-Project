@@ -569,3 +569,4 @@ Route::group(['middleware' => ['web']], function () {
             ->middleware(['permission:view-favourites']);
     });
 });
+

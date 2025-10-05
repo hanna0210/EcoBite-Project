@@ -19,14 +19,14 @@ use App\Models\CouponUser;
 use App\Services\CouponService;
 use App\Traits\GeoBoundaryCheckTrait;
 use App\Traits\GoogleMapApiTrait;
+use App\Traits\DynamicPricingTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 class PackageOrderController extends Controller
 {
-    use GoogleMapApiTrait;
-    use GeoBoundaryCheckTrait;
+    use GoogleMapApiTrait, GeoBoundaryCheckTrait, DynamicPricingTrait;
 
     //fetch vendors that service the provided locations
     public function fetchVendors(Request $request)
@@ -303,14 +303,33 @@ class PackageOrderController extends Controller
             } else {
                 $distanceAmount = $packageTypePricing->distance_price;
             }
-            $distanceAmount += $packageTypePricing->base_price;
+            $basePrice = $packageTypePricing->base_price;
+            $distanceAmount += $basePrice;
             //multiple stop fee
             if (!empty($request->stops) && count($request->stops) > 2) {
                 $distanceAmount += ($packageTypePricing->multiple_stop_fee) * count($request->stops);
             }
 
-            //total amount
-            $subTotalAmount = floatval($distanceAmount + $sizeAmount);
+            // Apply dynamic pricing if enabled
+            $dynamicPricingResult = null;
+            if ($this->isDynamicPricingEnabled($request->vendor_id)) {
+                $dynamicPricingResult = $this->applyDynamicPricingToPackageDelivery(
+                    $request->vendor_id,
+                    $basePrice,
+                    $distanceAmount - $basePrice, // Distance price without base
+                    $sizeAmount,
+                    $request->pickup_latitude ?? $request->latitude,
+                    $request->pickup_longitude ?? $request->longitude
+                );
+                
+                if ($dynamicPricingResult['success']) {
+                    $subTotalAmount = floatval($dynamicPricingResult['dynamic_price']);
+                } else {
+                    $subTotalAmount = floatval($distanceAmount + $sizeAmount);
+                }
+            } else {
+                $subTotalAmount = floatval($distanceAmount + $sizeAmount);
+            }
             $discount = 0;
             $coupon = null;
             //if coupon is used

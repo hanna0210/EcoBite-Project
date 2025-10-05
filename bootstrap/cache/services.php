@@ -76,6 +76,7 @@
     72 => 'App\\Providers\\RouteServiceProvider',
     73 => 'App\\Providers\\TelescopeServiceProvider',
     74 => 'App\\Providers\\GoogleDriveServiceProvider',
+    75 => 'App\\Providers\\DynamicPricingServiceProvider',
   ),
   'eager' => 
   array (
@@ -138,6 +139,7 @@
     56 => 'App\\Providers\\RouteServiceProvider',
     57 => 'App\\Providers\\TelescopeServiceProvider',
     58 => 'App\\Providers\\GoogleDriveServiceProvider',
+    59 => 'App\\Providers\\DynamicPricingServiceProvider',
   ),
   'deferred' => 
   array (

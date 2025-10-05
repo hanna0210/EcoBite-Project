@@ -43,6 +43,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('order:auto_assignment_cancel')->everyMinute();
         $schedule->command('subscription:manage')->hourly();
         $schedule->command('order:driver:clear')->hourly();
+        
+        // Dynamic pricing demand tracking updates
+        $schedule->command('dynamic-pricing:update-demand-tracking')->everyFifteenMinutes();
+        
         //
         $schedule->command('order:cancel-pending-payments')->everyMinute();
         $schedule->command('wallet:cancel-pending-transactions')->everyMinute();

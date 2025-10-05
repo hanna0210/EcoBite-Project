@@ -306,3 +306,4 @@ Route::group(['middleware' => ['auth:sanctum', "user.active.check"]], function (
         Route::get('/driver/earnings/report', [DriverReportController::class, 'earnings']);
     });
 });
+

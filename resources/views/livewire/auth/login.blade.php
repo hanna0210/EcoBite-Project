@@ -13,6 +13,15 @@
                         <div class="w-full">
                             <form wire:submit.prevent="login">
                                 @csrf
+                                <div class="mb-4">
+                                    <a href="{{ url('/') }}" 
+                                        class="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                        </svg>
+                                        {{ __('Back') }}
+                                    </a>
+                                </div>
                                 <div class="flex items-center justify-between">
                                     <h1 class="mb-4 text-xl font-semibold text-gray-700">{{ __('Login') }}</h1>
                                     <livewire:select.language-selector />

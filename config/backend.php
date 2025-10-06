@@ -15,34 +15,14 @@ return [
         "review" => "#D67D3E",
     ],
     "languages" => [
-        "English",
-        "French",
         "Spanish",
-        "Korean",
-        "German",
-        "Portuguese",
-        "Arabic",
-        "Hindi",
-        "Turkish",
-        "Russian",
-        "Burmese",
-        "Chinese",
-        "Japanese"
+        "English",
+        "Portuguese"
     ],
     "languageCodes" => [
-        "en",
-        "fr",
         "es",
-        "ko",
-        "de",
+        "en",
         "pt",
-        "ar",
-        "hi",
-        "tr",
-        "ru",
-        "my",
-        "zh",
-        "ja",
     ],
     "support" => [
         "email" => "info@edentech.online"

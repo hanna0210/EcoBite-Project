@@ -13,7 +13,7 @@ class LanguageSelector extends Component
 {
     use LivewireAlert;
     public $languages = [];
-    public $lan = "en";
+    public $lan = "es";
     protected $queryString = ['lan'];
     public $link;
     //
@@ -46,9 +46,9 @@ class LanguageSelector extends Component
 
         if (empty($this->lan)) {
             if (!\Auth::user()) {
-                $this->lan = session('lan', 'en');
+                $this->lan = session('lan', 'es');
             } else if (!\Schema::hasColumn("users", 'language')) {
-                $this->lan = setting('locale', 'en');
+                $this->lan = setting('locale', 'es');
             } else {
                 $this->lan = \Auth::user()->language ?? "es";
             }

@@ -14,7 +14,7 @@
             <img src="{{ appLogo() }}" class="w-16 h-16" />
             <div class="ltr:pl-6 rtl:pr-6">
                 <p>{{ setting('websiteName', env('APP_NAME')) }}</p>
-                <p class="text-xs text-gray-200">{{ __('version') }} {{ setting('appVerison', '1.0.0') }}</p>
+                <!-- <p class="text-xs text-gray-200">{{ __('version') }} {{ setting('appVerison', '1.0.0') }}</p> -->
             </div>
         </a>
         @include('layouts.partials.nav.menu')

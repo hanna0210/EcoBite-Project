@@ -116,9 +116,9 @@
 
             </div>
         </div>
-        <div class="p-2 mx-auto text-center">
+        <!-- <div class="p-2 mx-auto text-center">
             <p class="text-xs text-gray-500">{{ __('version') }} {{ setting('appVerison', '1.0.0') }}</p>
-        </div>
+        </div> -->
     </div>
     {{-- loading --}}
     <x-loading />

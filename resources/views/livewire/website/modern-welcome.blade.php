@@ -165,169 +165,199 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Content -->
-                <div class="text-center lg:text-left">
-                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                        {!! setting('website.modern.websiteHeaderTitle', '') !!}
-                    </h1>
-                    <p class="text-xl md:text-2xl text-white/90 mb-8">
-                        {!! nl2br(setting('website.modern.websiteHeaderSubtitle', '')) !!}
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#download"
-                            class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
-                            📱 {{ __('Download App') }}
-                        </a>
+                <div class="flex flex-col gap-12">
+                    <!-- Left Content -->
+                    <div class="text-center lg:text-left">
+                        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                            {!! setting('website.modern.websiteHeaderTitle', '') !!}
+                        </h1>
+                        <p class="text-xl md:text-2xl text-white/90 mb-8">
+                            {!! nl2br(setting('website.modern.websiteHeaderSubtitle', '')) !!}
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="#download"
+                                class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                                📱 {{ __('Download App') }}
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Right Image Showcase -->
-                <div class="relative flex justify-center lg:justify-end">
-                    <div class="relative">
-                        <!-- Main Phone Mockup -->
-                        <div class="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-700">
-                            <div class="bg-gray-900 rounded-3xl p-2 shadow-2xl">
-                                <div class="bg-white rounded-2xl overflow-hidden" style="width: 280px; height: 580px;">
-                                    <!-- Phone Screen Content -->
-                                    <div class="bg-gradient-to-br from-primary-600 to-primary-600 p-4 h-full flex flex-col">
-                                        <!-- Status Bar -->
-                                        <div class="flex justify-between items-center text-white text-sm mb-4">
-                                            <span>9:41</span>
-                                            <span>●●●●●</span>
-                                            <span>🔋 100%</span>
-                                        </div>
-
-                                        <!-- App Header -->
-                                        <div class="text-center mb-6">
-                                            <h2 class="text-white text-2xl font-bold">{{ $appName }}</h2>
-                                            <p class="text-white/80 text-sm">
-                                                {{ cached_setting('website.modern.websitePhoneSubtitle', __('What do you need today?')) }}
-                                            </p>
-                                        </div>
-
-                                        <!-- Service Grid -->
-                                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
-                                            @if ($foodModule)
-                                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
-                                                    <div class="text-2xl mb-2">🍕</div>
-                                                    <div class="text-white text-sm font-medium">{{ __('Food') }}</div>
-                                                </div>
-                                            @endif
-                                            @if ($groceryModule)
-                                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
-                                                    <div class="text-2xl mb-2">🥬</div>
-                                                    <div class="text-white text-sm font-medium">{{ __('Grocery') }}</div>
-                                                </div>
-                                            @endif
-                                            @if ($taxiModule)
-                                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
-                                                    <div class="text-2xl mb-2">🚗</div>
-                                                    <div class="text-white text-sm font-medium">{{ __('Taxi') }}</div>
-                                                </div>
-                                            @endif
-                                            @if ($parcelModule)
-                                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
-                                                    <div class="text-2xl mb-2">📦</div>
-                                                    <div class="text-white text-sm font-medium">{{ __('Parcel') }}</div>
-                                                </div>
-                                            @endif
-                                            @if ($serviceModule)
-                                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
-                                                    <div class="text-2xl mb-2">🛠️</div>
-                                                    <div class="text-white text-sm font-medium">{{ __('Service') }}</div>
-                                                </div>
-                                            @endif
-
-                                        </div>
-
-                                        <!-- Popular Section -->
-                                        <div class="flex-1">
-                                            <h3 class="text-white font-semibold mb-3">{{ __('Popular') }}</h3>
-                                            <div class="space-y-2">
+    
+                    <!-- Right Image Showcase -->
+                    <div class="relative flex justify-center lg:justify-end">
+                        <div class="relative">
+                            <!-- Main Phone Mockup -->
+                            <div class="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                                <div class="bg-gray-900 rounded-3xl p-2 shadow-2xl">
+                                    <div class="bg-white rounded-2xl overflow-hidden" style="width: 280px; height: 580px;">
+                                        <!-- Phone Screen Content -->
+                                        <div class="bg-gradient-to-br from-primary-600 to-primary-600 p-4 h-full flex flex-col">
+                                            <!-- Status Bar -->
+                                            <div class="flex justify-between items-center text-white text-sm mb-4">
+                                                <span>9:41</span>
+                                                <span>●●●●●</span>
+                                                <span>🔋 100%</span>
+                                            </div>
+    
+                                            <!-- App Header -->
+                                            <div class="text-center mb-6">
+                                                <h2 class="text-white text-2xl font-bold">{{ $appName }}</h2>
+                                                <p class="text-white/80 text-sm">
+                                                    {{ cached_setting('website.modern.websitePhoneSubtitle', __('What do you need today?')) }}
+                                                </p>
+                                            </div>
+    
+                                            <!-- Service Grid -->
+                                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
                                                 @if ($foodModule)
-                                                    <div
-                                                        class="bg-white/20 backdrop-blur-sm rounded-lg p-3 flex items-center">
-                                                        <div
-                                                            class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm mr-3">
-                                                            🍔
-                                                        </div>
-                                                        <div>
-                                                            <div class="text-white text-sm font-medium">
-                                                                {{ __('Burger Palace') }}
-                                                            </div>
-                                                            <div class="text-white/70 text-xs">15 min • 4.8 ⭐</div>
-                                                        </div>
+                                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                                        <div class="text-2xl mb-2">🍕</div>
+                                                        <div class="text-white text-sm font-medium">{{ __('Food') }}</div>
                                                     </div>
                                                 @endif
                                                 @if ($groceryModule)
-                                                    <div
-                                                        class="bg-white/20 backdrop-blur-sm rounded-lg p-3 flex items-center">
-                                                        <div
-                                                            class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm mr-3">
-                                                            🥗
-                                                        </div>
-                                                        <div>
-                                                            <div class="text-white text-sm font-medium">
-                                                                {{ __('Fresh Market') }}
-                                                            </div>
-                                                            <div class="text-white/70 text-xs">8 min • 4.9 ⭐</div>
-                                                        </div>
+                                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                                        <div class="text-2xl mb-2">🥬</div>
+                                                        <div class="text-white text-sm font-medium">{{ __('Grocery') }}</div>
                                                     </div>
                                                 @endif
                                                 @if ($taxiModule)
-                                                    <div
-                                                        class="bg-white/20 backdrop-blur-sm rounded-lg p-3 flex items-center">
-                                                        <div
-                                                            class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm mr-3">
-                                                            🚙
-                                                        </div>
-                                                        <div>
-                                                            <div class="text-white text-sm font-medium">
-                                                                {{ __('Quick Ride') }}
-                                                            </div>
-                                                            <div class="text-white/70 text-xs">2 min pickup • 4.7 ⭐</div>
-                                                        </div>
+                                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                                        <div class="text-2xl mb-2">🚗</div>
+                                                        <div class="text-white text-sm font-medium">{{ __('Taxi') }}</div>
                                                     </div>
                                                 @endif
-
+                                                @if ($parcelModule)
+                                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                                        <div class="text-2xl mb-2">📦</div>
+                                                        <div class="text-white text-sm font-medium">{{ __('Parcel') }}</div>
+                                                    </div>
+                                                @endif
+                                                @if ($serviceModule)
+                                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                                        <div class="text-2xl mb-2">🛠️</div>
+                                                        <div class="text-white text-sm font-medium">{{ __('Service') }}</div>
+                                                    </div>
+                                                @endif
+    
+                                            </div>
+    
+                                            <!-- Popular Section -->
+                                            <div class="flex-1">
+                                                <h3 class="text-white font-semibold mb-3">{{ __('Popular') }}</h3>
+                                                <div class="space-y-2">
+                                                    @if ($foodModule)
+                                                        <div
+                                                            class="bg-white/20 backdrop-blur-sm rounded-lg p-3 flex items-center">
+                                                            <div
+                                                                class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm mr-3">
+                                                                🍔
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-white text-sm font-medium">
+                                                                    {{ __('Burger Palace') }}
+                                                                </div>
+                                                                <div class="text-white/70 text-xs">15 min • 4.8 ⭐</div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if ($groceryModule)
+                                                        <div
+                                                            class="bg-white/20 backdrop-blur-sm rounded-lg p-3 flex items-center">
+                                                            <div
+                                                                class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm mr-3">
+                                                                🥗
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-white text-sm font-medium">
+                                                                    {{ __('Fresh Market') }}
+                                                                </div>
+                                                                <div class="text-white/70 text-xs">8 min • 4.9 ⭐</div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if ($taxiModule)
+                                                        <div
+                                                            class="bg-white/20 backdrop-blur-sm rounded-lg p-3 flex items-center">
+                                                            <div
+                                                                class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm mr-3">
+                                                                🚙
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-white text-sm font-medium">
+                                                                    {{ __('Quick Ride') }}
+                                                                </div>
+                                                                <div class="text-white/70 text-xs">2 min pickup • 4.7 ⭐</div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+    
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+    
+                            <!-- Floating Service Icons -->
+                            @if ($foodModule)
+                                <div
+                                    class="absolute -top-8 -left-8 bg-white/20 backdrop-blur-sm rounded-full p-4 floating-animation">
+                                    <div class="text-3xl">🍕</div>
+                                </div>
+                            @endif
+                            @if ($taxiModule)
+                                <div
+                                    class="absolute -bottom-8 -right-8 bg-white/20 backdrop-blur-sm rounded-full p-4 floating-animation">
+                                    <div class="text-3xl">🚗</div>
+                                </div>
+                            @endif
+                            @if ($parcelModule)
+                                <div
+                                    class="absolute top-1/2 -left-12 bg-white/20 backdrop-blur-sm rounded-full p-3 floating-animation">
+                                    <div class="text-2xl">📦</div>
+                                </div>
+                            @endif
+                            @if ($groceryModule)
+                                <div
+                                    class="absolute top-1/4 -right-12 bg-white/20 backdrop-blur-sm rounded-full p-3 floating-animation">
+                                    <div class="text-2xl">🥬</div>
+                                </div>
+                            @endif
+                            @if ($serviceModule)
+                                <div
+                                    class="absolute top-1/2 -right-12 bg-white/20 backdrop-blur-sm rounded-full p-3 floating-animation">
+                                    <div class="text-2xl">🛠️</div>
+                                </div>
+                            @endif
                         </div>
-
-                        <!-- Floating Service Icons -->
-                        @if ($foodModule)
-                            <div
-                                class="absolute -top-8 -left-8 bg-white/20 backdrop-blur-sm rounded-full p-4 floating-animation">
-                                <div class="text-3xl">🍕</div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-12">
+                    <div class="mt-8">
+                        <div class="relative w-full max-w-lg mx-auto">
+                            <div id="welcome-slider" class="overflow-hidden rounded-2xl shadow-lg">
+                                <div class="flex transition-transform duration-700" x-data="{ slide: 0, slides: [
+                                    '{{ setting('website.modern.headerSlider1', asset('images/slide (1).png')) }}',
+                                    '{{ setting('website.modern.headerSlider2', asset('images/slide (2).png')) }}',
+                                    '{{ setting('website.modern.headerSlider3', asset('images/slide (3).png')) }}'
+                                ] }" x-init="setInterval(() => { slide = (slide + 1) % slides.length }, 4000)">
+                                    <template x-for="(img, idx) in slides" :key="idx">
+                                        <img :src="img" alt="Slide" class="w-full h-64 object-cover"
+                                            x-show="slide === idx" x-transition:enter="transition-opacity duration-500"
+                                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                            x-transition:leave="transition-opacity duration-500"
+                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                                    </template>
+                                </div>
                             </div>
-                        @endif
-                        @if ($taxiModule)
-                            <div
-                                class="absolute -bottom-8 -right-8 bg-white/20 backdrop-blur-sm rounded-full p-4 floating-animation">
-                                <div class="text-3xl">🚗</div>
+                            <div class="flex justify-center mt-3 space-x-2" x-data="{ slide: 0, slides: [0,1,2] }" x-init="$watch('slide', value => {})">
+                                <template x-for="idx in [0,1,2]" :key="idx">
+                                    <button class="w-3 h-3 rounded-full"
+                                        :class="slide === idx ? 'bg-primary-600' : 'bg-gray-300'"
+                                        @click="slide = idx"></button>
+                                </template>
                             </div>
-                        @endif
-                        @if ($parcelModule)
-                            <div
-                                class="absolute top-1/2 -left-12 bg-white/20 backdrop-blur-sm rounded-full p-3 floating-animation">
-                                <div class="text-2xl">📦</div>
-                            </div>
-                        @endif
-                        @if ($groceryModule)
-                            <div
-                                class="absolute top-1/4 -right-12 bg-white/20 backdrop-blur-sm rounded-full p-3 floating-animation">
-                                <div class="text-2xl">🥬</div>
-                            </div>
-                        @endif
-                        @if ($serviceModule)
-                            <div
-                                class="absolute top-1/2 -right-12 bg-white/20 backdrop-blur-sm rounded-full p-3 floating-animation">
-                                <div class="text-2xl">🛠️</div>
-                            </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>

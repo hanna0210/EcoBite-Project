@@ -15,7 +15,7 @@
 
     <!-- Dropdown -->
     <div x-cloak x-show="open" @click.outside="open = false" x-transition
-        class="absolute mt-2 w-40 bg-white border border-gray-200 rounded shadow-md z-50">
+        class="absolute mt-2 w-32 right-0 bg-white border border-gray-200 rounded shadow-md z-50">
         @foreach ($languages as $language)
             <button type="button" wire:click="onLanSelected('{{ $language['id'] }}')"
                 class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100

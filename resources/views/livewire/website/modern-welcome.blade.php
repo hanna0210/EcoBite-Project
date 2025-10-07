@@ -163,9 +163,9 @@
         <div class="absolute top-40 right-20 w-16 h-16 bg-white/15 rounded-full floating-animation"></div>
         <div class="absolute bottom-32 left-1/4 w-12 h-12 bg-white/25 rounded-full floating-animation"></div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="flex flex-col gap-12">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between gap-12 items-center">
+                <div class="flex flex-col gap-12" style="width: 30%;">
                     <!-- Left Content -->
                     <div class="text-center lg:text-left">
                         <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
@@ -174,7 +174,7 @@
                         <p class="text-xl md:text-2xl text-white/90 mb-8">
                             {!! nl2br(setting('website.modern.websiteHeaderSubtitle', '')) !!}
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
                             <a href="#download"
                                 class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
                                 📱 {{ __('Download App') }}
@@ -183,7 +183,7 @@
                     </div>
     
                     <!-- Right Image Showcase -->
-                    <div class="relative flex justify-center lg:justify-end">
+                    <div class="relative flex justify-center ">
                         <div class="relative">
                             <!-- Main Phone Mockup -->
                             <div class="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-700">
@@ -332,27 +332,42 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col gap-12">
+                <div class="flex flex-col gap-12" style="width: 60%;">
                     <div class="mt-8">
-                        <div class="relative w-full max-w-lg mx-auto">
-                            <div id="welcome-slider" class="overflow-hidden rounded-2xl shadow-lg">
-                                <div class="flex transition-transform duration-700" x-data="{ slide: 0, slides: [
-                                    '{{ setting('website.modern.headerSlider1', asset('images/slide (1).png')) }}',
-                                    '{{ setting('website.modern.headerSlider2', asset('images/slide (2).png')) }}',
-                                    '{{ setting('website.modern.headerSlider3', asset('images/slide (3).png')) }}'
-                                ] }" x-init="setInterval(() => { slide = (slide + 1) % slides.length }, 4000)">
+                        <div class="relative w-full mx-auto" x-data="{ slide: 0, slides: [
+                            'https://customers.edentech.online/storage/10475/Glover-fresh-preview---2024.png',
+                            'https://customers.edentech.online/storage/10479/d020d06e84d069030c61f6bc402ed960.png',
+                            'https://customers.edentech.online/storage/10478/Meetup.png'
+                        ] }" x-init="setInterval(() => { slide = (slide + 1) % slides.length }, 4000)">
+                            <div id="welcome-slider" class="overflow-hidden rounded-2xl shadow-lg relative group">
+                                <div class="flex transition-transform duration-700 ease-in-out" 
+                                    :style="`transform: translateX(-${slide * 100}%)`">
                                     <template x-for="(img, idx) in slides" :key="idx">
-                                        <img :src="img" alt="Slide" class="w-full h-64 object-cover"
-                                            x-show="slide === idx" x-transition:enter="transition-opacity duration-500"
-                                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                            x-transition:leave="transition-opacity duration-500"
-                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                                        <img :src="img" alt="Slide" 
+                                            class="w-full flex-shrink-0 object-cover">
                                     </template>
                                 </div>
+                                
+                                <!-- Left Arrow -->
+                                <button @click="slide = slide === 0 ? slides.length - 1 : slide - 1"
+                                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                
+                                <!-- Right Arrow -->
+                                <button @click="slide = (slide + 1) % slides.length"
+                                    class="absolute top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+                                    style="right: 16px; left: auto;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
                             </div>
-                            <div class="flex justify-center mt-3 space-x-2" x-data="{ slide: 0, slides: [0,1,2] }" x-init="$watch('slide', value => {})">
+                            <div class="flex justify-center mt-3 space-x-2">
                                 <template x-for="idx in [0,1,2]" :key="idx">
-                                    <button class="w-3 h-3 rounded-full"
+                                    <button class="w-3 h-3 rounded-full transition-colors duration-300"
                                         :class="slide === idx ? 'bg-primary-600' : 'bg-gray-300'"
                                         @click="slide = idx"></button>
                                 </template>

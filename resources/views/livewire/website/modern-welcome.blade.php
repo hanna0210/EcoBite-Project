@@ -749,9 +749,9 @@
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('nav');
             if (window.scrollY > 50) {
-                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backgroundColor = 'rgba(6, 186, 105, 0.95)';
             } else {
-                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                navbar.style.backgroundColor = 'rgba(6, 186, 105, 0.8)';
             }
         });
 

@@ -62,10 +62,6 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, {{ $colors['shades'][500] }} 0%, {{ $colors['shades'][900] }} 100%);
-        }
-
         .service-card {
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -535,11 +531,11 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="download" class="py-20 gradient-bg relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/20"></div>
+    <section id="download" class="py-20 relative overflow-hidden" style="background-color:#06ba69;">
+        <div class="absolute inset-0" ></div>
         <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                {{ __('Ready to Experience') }} <span class="text-primary-400">{{ $appName }}</span>?
+                {{ __('Ready to Experience') }} <span style="color:#061a0e;">{{ $appName }}</span>?
             </h2>
             <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
                 {{ __("Join thousands of satisfied customers who've made :app_name their go-to for everything local.", ['app_name' => $appName]) }}
@@ -568,7 +564,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="text-white py-12" style="background-color:#061a0e;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -576,6 +572,28 @@
                     <p class="text-gray-400">
                         {!! nl2br(e(setting('website.modern.websiteFooterBrief', ''))) !!}
                     </p>
+                    
+                    <!-- Newsletter Subscription -->
+                    <div class="mt-6">
+                        <h4 class="font-semibold mb-3">{{ __('Subscribe to our Newsletter') }}</h4>
+                        <p class="text-gray-400 text-sm mb-3">{{ __('Get updates on new features and special offers') }}</p>
+                        <form class="flex flex-col gap-3" id="newsletter-form">
+                            <input 
+                                type="email" 
+                                name="email" 
+                                placeholder="{{ __('Enter your email') }}" 
+                                required
+                                class="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                            />
+                            <button 
+                                type="submit"
+                                class="w-full px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                            >
+                                {{ __('Subscribe') }}
+                            </button>
+                            <p class="text-xs text-gray-500">{{ __('We respect your privacy. Unsubscribe at any time.') }}</p>
+                        </form>
+                    </div>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Services</h4>
@@ -737,6 +755,34 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // Newsletter form handler (ready for emailer extension integration)
+        document.getElementById('newsletter-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[name="email"]').value;
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            // UI feedback
+            button.textContent = '{{ __("Subscribing...") }}';
+            button.disabled = true;
+            
+            // TODO: Connect to emailer extension here
+            // For now, just show success message
+            setTimeout(() => {
+                button.textContent = '{{ __("Subscribed!") }}';
+                button.classList.add('bg-green-600');
+                button.classList.remove('bg-primary-600');
+                
+                setTimeout(() => {
+                    this.reset();
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.classList.remove('bg-green-600');
+                    button.classList.add('bg-primary-600');
+                }, 2000);
+            }, 1000);
         });
     </script>
 @endsection

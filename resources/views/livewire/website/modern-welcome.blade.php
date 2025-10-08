@@ -132,7 +132,7 @@
     </style>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
+    <nav class="fixed top-0 w-full backdrop-blur-md z-50 border-b border-gray-200" style="background-color:#06ba69;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
@@ -140,14 +140,18 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#services"
-                        class="text-gray-700 hover:text-primary-600 transition-colors">{{ __('Services') }}</a>
+                        class="text-white hover:text-primary-600 transition-colors">{{ __('Services') }}</a>
                     <a href="#how-it-works"
-                        class="text-gray-700 hover:text-primary-600 transition-colors">{{ __('How It Works') }}</a>
+                        class="text-white hover:text-primary-600 transition-colors">{{ __('How It Works') }}</a>
                     <a href="#download"
-                        class="text-gray-700 hover:text-primary-600 transition-colors">{{ __('Download') }}</a>
+                        class="text-white hover:text-primary-600 transition-colors">{{ __('Download') }}</a>
                     <a href="{{ route('login') }}"
                         class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-all pulse-glow">
                         {{ __('Admin/Store Login') }}
+                    </a>
+                    <a href="https://customers.edentech.online/login"
+                        class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-all pulse-glow">
+                        {{ __('Users') }}
                     </a>
                 </div>
             </div>

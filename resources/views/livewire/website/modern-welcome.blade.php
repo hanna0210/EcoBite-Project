@@ -125,6 +125,10 @@
         .to-primary-600 {
             --tw-gradient-to: {{ $colors['shades'][600] }};
         }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, {{ $colors['shades'][500] }} 0%, {{ $colors['shades'][900] }} 100%);
+        }
     </style>
 
     <!-- Navigation -->
@@ -562,7 +566,8 @@
                 {{ __('Free Download') }}</p>
         </div>
     </section>
-
+    <!-- Banner -->
+    
     <!-- Footer -->
     <footer class="text-white py-12" style="background-color:#061a0e;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

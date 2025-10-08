@@ -333,18 +333,18 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-12" style="width: 60%;">
-                    <div class="mt-8">
-                        <div class="relative w-full mx-auto" x-data="{ slide: 0, slides: [
+                    <div class="mt-20">
+                        <div class="mt-20 relative w-full mx-auto" x-data="{ slide: 0, slides: [
                             'https://customers.edentech.online/storage/10475/Glover-fresh-preview---2024.png',
                             'https://customers.edentech.online/storage/10479/d020d06e84d069030c61f6bc402ed960.png',
                             'https://customers.edentech.online/storage/10478/Meetup.png'
                         ] }" x-init="setInterval(() => { slide = (slide + 1) % slides.length }, 4000)">
-                            <div id="welcome-slider" class="overflow-hidden rounded-2xl shadow-lg relative group">
-                                <div class="flex transition-transform duration-700 ease-in-out" 
+                            <div id="welcome-slider" class="overflow-hidden rounded-2xl shadow-lg relative group" style="height: 500px;">
+                                <div class="flex transition-transform duration-700 ease-in-out h-full" 
                                     :style="`transform: translateX(-${slide * 100}%)`">
                                     <template x-for="(img, idx) in slides" :key="idx">
                                         <img :src="img" alt="Slide" 
-                                            class="w-full flex-shrink-0 object-cover">
+                                            class="w-full h-full flex-shrink-0 object-cover">
                                     </template>
                                 </div>
                                 

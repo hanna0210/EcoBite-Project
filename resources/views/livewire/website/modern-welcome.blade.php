@@ -136,7 +136,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <div class="text-2xl font-bold text-gradient">{{ $appName }}</div>
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ $appName }}" class="h-10" />
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#services"

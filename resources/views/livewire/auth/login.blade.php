@@ -24,6 +24,9 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <h1 class="mb-4 text-xl font-semibold text-gray-700">{{ __('Login') }}</h1>
+                                    <a href="{{ url('/') }}" class="flex items-center">
+                                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10" />
+                                    </a>
                                     <livewire:select.language-selector />
                                 </div>
                                 <x-input title="{{ __('Email') }}" type="email" placeholder="info@mail.com"

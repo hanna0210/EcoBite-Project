@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Glover - Your Local Everything, Delivered')
+@section('title', 'Glover')
 
 @section('content')
     @php

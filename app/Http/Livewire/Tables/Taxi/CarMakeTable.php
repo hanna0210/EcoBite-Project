@@ -23,6 +23,7 @@ class CarMakeTable extends BaseTableComponent
             Column::make(__('ID'),"id")->searchable()->sortable(),
             Column::make(__('Name'),'name')->searchable(),
             Column::make(__('Actions'))->view('components.buttons.edit'),
+            Column::make(__('Delete'))->view('components.buttons.delete'),
         ];
     }
 }

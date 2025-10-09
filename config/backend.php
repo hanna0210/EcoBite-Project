@@ -15,9 +15,9 @@ return [
         "review" => "#D67D3E",
     ],
     "languages" => [
-        "Spanish",
+        "Español",
         "English",
-        "Portuguese"
+        "Português"
     ],
     "languageCodes" => [
         "es",

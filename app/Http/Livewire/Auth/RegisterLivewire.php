@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorType;
 use App\Traits\WithFormWizard;
+use App\Traits\ReferralTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Propaganistas\LaravelPhone\PhoneNumber;
@@ -16,7 +17,7 @@ use Propaganistas\LaravelPhone\PhoneNumber;
 class RegisterLivewire extends BaseLivewireComponent
 {
 
-    use WithFormWizard;
+    use WithFormWizard, ReferralTrait;
 
     public $type = "";
     public $vendor_name;
@@ -157,6 +158,9 @@ class RegisterLivewire extends BaseLivewireComponent
             //assign manager to vendor
             $user->vendor_id = $vendor->id;
             $user->save();
+
+            //refer system is enabled
+            $this->handleDriverRegLivewireReferral($this->referalCode, $user);
 
             DB::commit();
             $this->showSuccessAlert(__("Account Created Successfully. Your account will be reviewed and you will be notified via email/sms when account gets approved. Thank you"), 100000);

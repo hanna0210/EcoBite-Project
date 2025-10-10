@@ -124,6 +124,9 @@ class PartnerController extends Controller
             $user->vendor_id = $vendor->id;
             $user->save();
 
+            //refer system is enabled
+            $this->handlePartnerControllerReferral($request->referral_code, $user);
+
             DB::commit();
             //
             return response()->json([

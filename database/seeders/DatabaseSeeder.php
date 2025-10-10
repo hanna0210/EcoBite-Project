@@ -57,5 +57,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(VehicleTypesTableSeeder::class);
         $this->call(VehicleTypeMediaSeeder::class);
+        
+        // Food Rescue offers
+        $this->call(FoodRescueSeeder::class);
     }
 }

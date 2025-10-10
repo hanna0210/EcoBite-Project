@@ -78,7 +78,7 @@ class SubscribeLivewire extends BaseLivewireComponent
                 $this->selectedSubscription->amount * 100,
                 setting('currencyCode', 'INR'),
                 setting('websiteName', env("APP_NAME")),
-                setting('websiteLogo', asset('images/logo.png')),
+                setting('websiteLogo', asset('images/logo2.jpg')),
                 $razorpayOrderData[1],
                 //callback url
                 route('api.subscription.callback', ["code" => $razorpayOrderData[0], "status" => "success"]),
@@ -123,7 +123,7 @@ class SubscribeLivewire extends BaseLivewireComponent
             //     //company info
             //     [
             //         setting('websiteName', env("APP_NAME")),
-            //         setting('websiteLogo', asset('images/logo.png')),
+            //         setting('websiteLogo', asset('images/logo2.jpg')),
             //     ],
             // ]);
         } else if ($paymentMethodSlug == "billplz") {

@@ -48,6 +48,16 @@
                 <div class="flex-1 lg:w-3/5 flex items-center justify-center p-6 lg:p-16">
                     <div class="w-full max-w-lg lg:max-w-xl">
                         <div class="animate-fadeInUp">
+                            <!-- Back Button -->
+                            <div class="mb-4">
+                                <a href="{{ url('/') }}" 
+                                    class="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
+                                    <svg class="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                    {{ __('Back') }}
+                                </a>
+                            </div>
                             <!-- Logo/Brand -->
                             <div class="text-center mb-8">
                                 <div

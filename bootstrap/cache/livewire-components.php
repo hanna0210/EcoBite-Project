@@ -39,6 +39,7 @@
   'driver-remittance-livewire' => 'App\\Http\\Livewire\\DriverRemittanceLivewire',
   'drivers-locations-livewire' => 'App\\Http\\Livewire\\DriversLocationsLivewire',
   'dynamic-link-settings-livewire' => 'App\\Http\\Livewire\\DynamicLinkSettingsLivewire',
+  'dynamic-pricing-rules-livewire' => 'App\\Http\\Livewire\\DynamicPricingRulesLivewire',
   'earning-livewire' => 'App\\Http\\Livewire\\EarningLivewire',
   'edit-order-livewire' => 'App\\Http\\Livewire\\EditOrderLivewire',
   'exchange-rates-manager' => 'App\\Http\\Livewire\\ExchangeRatesManager',

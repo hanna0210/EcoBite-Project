@@ -86,7 +86,7 @@ class WalletTopUpLivewire extends BaseLivewireComponent
                 $this->selectedModel->amount * 100,
                 setting('currencyCode', 'INR'),
                 setting('websiteName', env("APP_NAME")),
-                setting('websiteLogo', asset('images/logo.png')),
+                setting('websiteLogo', asset('images/logo2.jpg')),
                 $razorpayOrderId,
                 //callback url
                 route('api.wallet.topup.callback', ["code" => $this->selectedModel->ref, "status" => "success"]),
@@ -130,7 +130,7 @@ class WalletTopUpLivewire extends BaseLivewireComponent
             //     //company info
             //     [
             //         setting('websiteName', env("APP_NAME")),
-            //         setting('websiteLogo', asset('images/logo.png')),
+            //         setting('websiteLogo', asset('images/logo2.jpg')),
             //     ],
             // ]);
         } else if ($paymentMethodSlug == "billplz") {

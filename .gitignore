@@ -1,23 +1,70 @@
+# Dependencies
 /node_modules
+/vendor
+
+# Laravel & PHP
 /public/hot
 /public/storage
 /storage/*.key
-/vendor
 .env
 .env.backup
+.env.production
 .phpunit.result.cache
-docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-*.DS_Store
-lang.txt
+auth.json
 
-storage/app/vault/firebase_service.json
-storage/framework/*
+# Docker
+docker-compose.override.yml
+
+# Storage directories
+/storage/logs/*
+!/storage/logs/.gitignore
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/debugbar/*
+/storage/env-editor/*
+/storage/media-library/temp/*
+
+# Bootstrap cache
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+
+# Public directories
+/public/env-editor/*
+/public/storage/*
+
+# IDE & Editor files
+.idea/
+.vscode/
+.fleet/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# IDE Helper files
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+
+# Language files (project-specific)
+lang.txt
 lang-full.txt
 website-lang-full.txt
 website-lang.txt
 resources/lang/website/*
 resources/lang/web/*
+
+# Sensitive files
+storage/app/vault/firebase_service.json
+
+# Mix
+/public/mix-manifest.json

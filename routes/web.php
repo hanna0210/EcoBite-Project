@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthRedirectController;
 use App\Http\Livewire\Auth\LoginLivewire;
+use App\Http\Livewire\Auth\UserLoginLivewire;
 use App\Http\Livewire\Auth\TwoFactorVerifyLivewire;
 use App\Http\Livewire\Auth\RegisterLivewire;
 use App\Http\Livewire\Auth\DriverRegisterLivewire;
@@ -232,6 +233,7 @@ Route::group(['middleware' => ['web']], function () {
     })->name('vendor.document.instructions');
     // Auth
     Route::get('login', LoginLivewire::class)->name('login');
+    Route::get('users/login', UserLoginLivewire::class)->name('users.login');
     Route::get('two-factor-verify', TwoFactorVerifyLivewire::class)->middleware(['auth'])->name('two-factor.verify');
     Route::get('register/driver', DriverRegisterLivewire::class)->name('register.driver');
 

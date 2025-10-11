@@ -149,7 +149,7 @@
                         class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-all pulse-glow">
                         {{ __('Admin/Store Login') }}
                     </a>
-                    <a href="https://customers.edentech.online/login"
+                    <a href="{{ route('users.login') }}"
                         class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-all pulse-glow">
                         {{ __('Users') }}
                     </a>
@@ -570,8 +570,104 @@
                 {{ __('Free Download') }}</p>
         </div>
     </section>
-    <!-- Banner -->
     
+    <!-- Banner Section - Partner Logos -->
+    @php
+        $bannerTitle = setting('website.modern.bannerTitle', 'Find Your Favorite Products with Our Partners');
+        $showBanner = setting('website.modern.showBanner', true);
+        
+        // Partner logos from vendors folder
+        $partnerLogos = [
+            ['name' => 'Walmart', 'logo' => asset('images/vendors/walmart.png')],
+            ['name' => 'Target', 'logo' => asset('images/vendors/target.png')],
+            ['name' => 'Burger King', 'logo' => asset('images/vendors/burgerking.png')],
+            ['name' => 'KFC', 'logo' => asset('images/vendors/kfc.png')],
+            ['name' => 'McDonald\'s', 'logo' => asset('images/vendors/mcdonalds.png')],
+            ['name' => 'Subway', 'logo' => asset('images/vendors/subway.png')],
+            ['name' => 'CVS', 'logo' => asset('images/vendors/cvs.png')],
+            ['name' => 'Bloom Bask', 'logo' => asset('images/vendors/bloombask.png')],
+            ['name' => 'Auto Revive Garage', 'logo' => asset('images/vendors/autorevivegarage.png')],
+            ['name' => 'Byte Medic', 'logo' => asset('images/vendors/bytemedic.png')],
+            ['name' => 'Glow Grace Studio', 'logo' => asset('images/vendors/glowgracestudio.png')],
+            ['name' => 'Handy Hive', 'logo' => asset('images/vendors/handyhive.png')],
+            ['name' => 'Hype Lane', 'logo' => asset('images/vendors/hypelane.png')],
+            ['name' => 'Plug & Play Installations', 'logo' => asset('images/vendors/plug&playinstallations.png')],
+        ];
+    @endphp
+    
+    @if($showBanner)
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Banner Header -->
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                    {{ $bannerTitle }}
+                </h2>
+                <div class="text-sm text-gray-600">
+                    Banner
+                </div>
+            </div>
+            
+            <!-- Partner Logos Carousel -->
+            <div class="relative" x-data="{ 
+                currentIndex: 0,
+                itemsPerView: 6,
+                autoPlay: true,
+                autoPlayInterval: null,
+                totalItems: {{ count($partnerLogos) }},
+                maxIndex: {{ ceil(count($partnerLogos) / 6) - 1 }},
+                moveLeft() {
+                    this.currentIndex = this.currentIndex === 0 ? this.maxIndex : this.currentIndex - 1;
+                },
+                moveRight() {
+                    this.currentIndex = (this.currentIndex + 1) % (this.maxIndex + 1);
+                }
+            }" x-init="
+                if (autoPlay) {
+                    autoPlayInterval = setInterval(() => {
+                        this.moveRight();
+                    }, 4000);
+                }
+            " x-on:destroy="if (autoPlayInterval) clearInterval(autoPlayInterval)">
+                
+                <!-- Carousel Container -->
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-500 ease-in-out" 
+                         :style="`transform: translateX(-${currentIndex * (100 / itemsPerView)}%)`">
+                        @foreach($partnerLogos as $index => $partner)
+                            <div class="flex-shrink-0 px-4" style="width: {{ 100 / 6 }}%">
+                                <div class="flex items-center justify-center py-6">
+                                    <img src="{{ $partner['logo'] }}" alt="{{ $partner['name'] }}" 
+                                         class="h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                
+                <!-- Left Arrow -->
+                <button @click="moveLeft()"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10 border border-gray-200">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Right Arrow -->
+                <button @click="moveRight()"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10 border border-gray-200">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Debug Info (remove in production) -->
+                <div class="text-xs text-gray-400 mt-2 text-center" x-text="`Slide: ${currentIndex + 1}/${maxIndex + 1}`"></div>
+            </div>
+        </div>
+    </section>
+    @endif
+     
     <!-- Footer -->
     <footer class="text-white py-12" style="background-color:#061a0e;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

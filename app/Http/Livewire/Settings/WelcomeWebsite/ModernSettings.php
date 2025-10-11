@@ -18,6 +18,14 @@ class ModernSettings extends BaseLivewireComponent
     public $twLink;
     public $yuLink;
     public $liLink;
+    //banner settings
+    public $showBanner;
+    public $bannerImage;
+    public $oldBannerImage;
+    public $bannerTitle;
+    public $bannerSubtitle;
+    public $bannerButtonText;
+    public $bannerButtonLink;
 
 
 
@@ -33,6 +41,13 @@ class ModernSettings extends BaseLivewireComponent
         $this->twLink = setting('website.modern.social.twLink', '');
         $this->yuLink = setting('website.modern.social.yuLink', '');
         $this->liLink = setting('website.modern.social.liLink', '');
+        //banner
+        $this->showBanner = setting('website.modern.showBanner', true);
+        $this->oldBannerImage = setting('website.modern.bannerImage', '');
+        $this->bannerTitle = setting('website.modern.bannerTitle', '');
+        $this->bannerSubtitle = setting('website.modern.bannerSubtitle', '');
+        $this->bannerButtonText = setting('website.modern.bannerButtonText', '');
+        $this->bannerButtonLink = setting('website.modern.bannerButtonLink', '');
     }
 
 
@@ -47,10 +62,19 @@ class ModernSettings extends BaseLivewireComponent
     public function saveAppSettings()
     {
 
+        $this->validate([
+            "bannerImage" => "sometimes|nullable|image|max:3072",
+        ]);
 
         try {
 
             $this->isDemo();
+            
+            // store new banner image
+            if ($this->bannerImage) {
+                $this->oldBannerImage = \Illuminate\Support\Facades\Storage::url($this->bannerImage->store('public/banners'));
+            }
+            
             $websiteSettings = [
                 'website.modern.websiteHeaderTitle' =>  $this->websiteHeaderTitle,
                 'website.modern.websiteHeaderSubtitle' =>  $this->websiteHeaderSubtitle,
@@ -63,6 +87,12 @@ class ModernSettings extends BaseLivewireComponent
                     'yuLink' =>  $this->yuLink,
                     'liLink' =>  $this->liLink,
                 ],
+                'website.modern.showBanner' =>  $this->showBanner ?? true,
+                'website.modern.bannerImage' =>  $this->oldBannerImage,
+                'website.modern.bannerTitle' =>  $this->bannerTitle,
+                'website.modern.bannerSubtitle' =>  $this->bannerSubtitle,
+                'website.modern.bannerButtonText' =>  $this->bannerButtonText,
+                'website.modern.bannerButtonLink' =>  $this->bannerButtonLink,
             ];
 
 

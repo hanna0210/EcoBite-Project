@@ -14,6 +14,15 @@ class TaxiZone extends Model
     use Geographical;
     protected static $kilometers = true;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Delete related points when deleting a taxi zone
+        static::deleting(function ($taxiZone) {
+            $taxiZone->points()->delete();
+        });
+    }
 
     public function points()
     {

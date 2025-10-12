@@ -609,36 +609,17 @@
             </div>
             
             <!-- Partner Logos Carousel -->
-            <div class="relative" x-data="{ 
-                currentIndex: 0,
-                itemsPerView: 6,
-                autoPlay: true,
-                autoPlayInterval: null,
-                totalItems: {{ count($partnerLogos) }},
-                maxIndex: {{ ceil(count($partnerLogos) / 6) - 1 }},
-                moveLeft() {
-                    this.currentIndex = this.currentIndex === 0 ? this.maxIndex : this.currentIndex - 1;
-                },
-                moveRight() {
-                    this.currentIndex = (this.currentIndex + 1) % (this.maxIndex + 1);
-                }
-            }" x-init="
-                if (autoPlay) {
-                    autoPlayInterval = setInterval(() => {
-                        this.moveRight();
-                    }, 4000);
-                }
-            " x-on:destroy="if (autoPlayInterval) clearInterval(autoPlayInterval)">
+            <div class="relative" x-data="carouselData()" x-init="startAutoPlay()" @mouseenter="pauseAutoPlay()" @mouseleave="resumeAutoPlay()">
                 
                 <!-- Carousel Container -->
                 <div class="overflow-hidden">
                     <div class="flex transition-transform duration-500 ease-in-out" 
-                         :style="`transform: translateX(-${currentIndex * (100 / itemsPerView)}%)`">
+                         :style="`transform: translateX(-${currentIndex * 100}%)`">
                         @foreach($partnerLogos as $index => $partner)
-                            <div class="flex-shrink-0 px-4" style="width: {{ 100 / 6 }}%">
-                                <div class="flex items-center justify-center py-6">
+                            <div class="flex-shrink-0 px-2 sm:px-3 md:px-4" style="min-width: 16.666%">
+                                <div class="flex items-center justify-center py-4 sm:py-5 md:py-6">
                                     <img src="{{ $partner['logo'] }}" alt="{{ $partner['name'] }}" 
-                                         class="h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300">
+                                         class="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                                 </div>
                             </div>
                         @endforeach
@@ -661,8 +642,6 @@
                     </svg>
                 </button>
                 
-                <!-- Debug Info (remove in production) -->
-                <div class="text-xs text-gray-400 mt-2 text-center" x-text="`Slide: ${currentIndex + 1}/${maxIndex + 1}`"></div>
             </div>
         </div>
     </section>
@@ -888,6 +867,60 @@
                     button.classList.add('bg-primary-600');
                 }, 2000);
             }, 1000);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.carouselData = function() {
+                return {
+                    currentIndex: 0,
+                    totalSlides: {{ ceil(count($partnerLogos) / 6) }},
+                    autoPlayInterval: null,
+                    isPaused: false,
+                    
+                    startAutoPlay() {
+                        console.log('Starting carousel auto-play... Total slides:', this.totalSlides);
+                        if (this.autoPlayInterval) {
+                            clearInterval(this.autoPlayInterval);
+                        }
+                        this.autoPlayInterval = setInterval(() => {
+                            if (!this.isPaused) {
+                                console.log('Auto-advancing from slide:', this.currentIndex);
+                                this.moveRight();
+                            }
+                        }, 4000);
+                    },
+                    
+                    stopAutoPlay() {
+                        console.log('Stopping carousel auto-play...');
+                        if (this.autoPlayInterval) {
+                            clearInterval(this.autoPlayInterval);
+                            this.autoPlayInterval = null;
+                        }
+                    },
+                    
+                    moveLeft() {
+                        this.currentIndex = this.currentIndex === 0 ? this.totalSlides - 1 : this.currentIndex - 1;
+                        console.log('Moved left to slide:', this.currentIndex);
+                    },
+                    
+                    moveRight() {
+                        this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+                        console.log('Moved right to slide:', this.currentIndex);
+                    },
+                    
+                    pauseAutoPlay() {
+                        this.isPaused = true;
+                        console.log('Paused auto-play');
+                    },
+                    
+                    resumeAutoPlay() {
+                        this.isPaused = false;
+                        console.log('Resumed auto-play');
+                    }
+                }
+            }
         });
     </script>
 @endsection

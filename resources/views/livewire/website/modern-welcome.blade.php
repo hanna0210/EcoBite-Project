@@ -336,6 +336,8 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Home Banner -->
                 <div class="flex flex-col gap-12" style="width: 60%;">
                     <div class="mt-20">
                         <div class="mt-20 relative w-full mx-auto" x-data="{ slide: 0, slides: [

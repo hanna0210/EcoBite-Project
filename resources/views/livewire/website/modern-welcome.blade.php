@@ -671,9 +671,13 @@
                             />
                             <button 
                                 type="submit"
-                                class="w-full px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                class="w-full px-8 py-2 bg-white text-primary-600 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg space-x-2 flex items-center justify-center"
                             >
-                                {{ __('Subscribe') }}
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                <p>{{ __('Subscribe') }}</p>
                             </button>
                             <p class="text-xs text-gray-500">{{ __('We respect your privacy. Unsubscribe at any time.') }}</p>
                         </form>

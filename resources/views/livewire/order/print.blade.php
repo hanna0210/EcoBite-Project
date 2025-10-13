@@ -26,7 +26,7 @@
             <div class="flex">
                 <div class="mx-auto min-w-max" style="min-width: 100mm;">
                     {{-- logo --}}
-                    <img src="{{ url(setting('websiteLogo', asset('images/logo2.jpg'))) }}" alt=""
+                    <img src="{{ url(setting('websiteLogo', asset('images/logo2.png'))) }}" alt=""
                         class="w-12 h-12 mx-auto my-1 rounded" />
                     {{-- title --}}
                     <h1 class="text-2xl font-semibold text-center mb-2">{{ setting('websiteName', env('APP_NAME')) }}</h1>

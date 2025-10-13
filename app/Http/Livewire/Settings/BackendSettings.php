@@ -70,7 +70,7 @@ class BackendSettings extends BaseSettingsComponent
         $this->websiteColor = setting('websiteColor', '#246fd0');
         $this->countryCode = setting('countryCode', "GH");
         $this->timeZone = setting('timeZone', "UTC");
-        $this->oldWebsiteLogo = getValidValue(setting('websiteLogo'), asset('images/logo2.jpg'));
+        $this->oldWebsiteLogo = getValidValue(setting('websiteLogo'), asset('images/logo2.png'));
         $this->oldFavicon = getValidValue(setting('favicon'), asset('favicon.ico'));
         $this->oldLoginImage = getValidValue(setting('loginImage'), asset('images/login.jpeg'));
         $this->oldRegisterImage = getValidValue(setting('registerImage'), asset('images/register.jpg'));

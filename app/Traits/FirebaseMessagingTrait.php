@@ -428,7 +428,7 @@ trait FirebaseMessagingTrait
                 'notification' => [
                     'title' => $title,
                     'body' => $body,
-                    'icon' => setting('websiteLogo', asset('images/logo2.jpg')),
+                    'icon' => setting('websiteLogo', asset('images/logo2.png')),
                 ],
                 'fcm_options' => [
                     'link' => $data[0],

@@ -135,7 +135,7 @@ function appName()
 }
 function appLogo()
 {
-    return getValidValue(setting('websiteLogo'), asset('images/logo2.jpg'));
+    return getValidValue(setting('websiteLogo'), asset('images/logo2.png'));
 }
 
 function isUsingWebsocket()

@@ -4,7 +4,7 @@
     <div class="bg-gray-100">
         <div class="w-full p-12 md:w-10/12 lg:w-6/12 mx-auto">
             {{-- logo --}}
-            <img src="{{ url(setting('websiteLogo', asset('images/logo2.jpg'))) }}" alt="logo"
+            <img src="{{ url(setting('websiteLogo', asset('images/logo2.png'))) }}" alt="logo"
                 class="w-24 h-24 mx-auto mt-10 mb-8" />
             {{-- intro --}}
             <div>

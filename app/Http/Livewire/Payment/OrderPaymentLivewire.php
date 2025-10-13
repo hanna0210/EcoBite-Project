@@ -101,7 +101,7 @@ class OrderPaymentLivewire extends BaseLivewireComponent
                 $this->selectedModel->payable_total * 100,
                 $this->selectedModel->getCurrencyCode(),
                 setting('websiteName', env("APP_NAME")),
-                setting('websiteLogo', asset('images/logo2.jpg')),
+                setting('websiteLogo', asset('images/logo2.png')),
                 $razorpayOrderId,
                 //callback url
                 route('api.payment.callback', ["code" => $this->selectedModel->code, "status" => "success"]),
@@ -145,7 +145,7 @@ class OrderPaymentLivewire extends BaseLivewireComponent
             //     //company info
             //     [
             //         setting('websiteName', env("APP_NAME")),
-            //         setting('websiteLogo', asset('images/logo2.jpg')),
+            //         setting('websiteLogo', asset('images/logo2.png')),
             //     ],
             // ]);
         } else if ($paymentMethodSlug == "billplz") {

@@ -90,7 +90,7 @@
 
                                         <div style="margin-right:0;margin-left:0;line-height:28px;font-weight:600;font-size:21px;color:#111111;text-align:center;margin-top:0;margin-bottom:0px;">
 
-                                            <img src="{{ url(setting('websiteLogo', asset('images/logo2.jpg') )) }}" alt="" style="width: 32px;height: 32px;" class="mx-auto">
+                                            <img src="{{ url(setting('websiteLogo', asset('images/logo2.png') )) }}" alt="" style="width: 32px;height: 32px;" class="mx-auto">
                                         </div>
                                         <p class="logo" style="margin-right:0;margin-left:0;line-height:28px;font-weight:600;font-size:21px;color:#111111;text-align:center;margin-top:0;margin-bottom:40px;">{{ env('APP_NAME','Glover') }}</p>
 

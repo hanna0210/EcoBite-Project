@@ -56,29 +56,25 @@
             <div>
                 {{-- logo --}}
                 <div class="flex items-center mt-5 space-x-10">
-                    <img src="{{ $websiteLogo != null ? $websiteLogo->temporaryUrl() : $oldWebsiteLogo }}"
-                        class="w-24 h-24 rounded" />
+                    <img src="{{ $oldWebsiteLogo }}" class="w-24 h-24 rounded" />
                     <x-input title="{{ __('Website Logo') }}" name="websiteLogo" :defer="false" type="file" />
                 </div>
 
                 {{-- favicon --}}
                 <div class="flex items-center mt-5 space-x-10">
-                    <img src="{{ $favicon != null ? $favicon->temporaryUrl() : $oldFavicon }}"
-                        class="w-24 h-24 rounded" />
+                    <img src="{{ $oldFavicon }}" class="w-24 h-24 rounded" />
                     <x-input title="{{ __('Website Favicon') }}" name="favicon" :defer="false" type="file" />
                 </div>
 
                 {{-- loginImage --}}
                 <div class="flex items-center mt-5 space-x-10">
-                    <img src="{{ $loginImage != null ? $loginImage->temporaryUrl() : $oldLoginImage }}"
-                        class="w-24 h-24 rounded" />
+                    <img src="{{ $oldLoginImage }}" class="w-24 h-24 rounded" />
                     <x-input title="{{ __('Login Image') }}" name="loginImage" :defer="false" type="file" />
                 </div>
 
                 {{-- registerImage --}}
                 <div class="flex items-center my-5 space-x-10">
-                    <img src="{{ $registerImage != null ? $registerImage->temporaryUrl() : $oldRegisterImage }}"
-                        class="w-24 h-24 rounded" />
+                    <img src="{{ $oldRegisterImage }}" class="w-24 h-24 rounded" />
                     <x-input title="{{ __('Register Image') }}" name="registerImage" :defer="false"
                         type="file" />
                 </div>

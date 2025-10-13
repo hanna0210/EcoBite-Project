@@ -91,7 +91,7 @@
                         {{-- logo --}}
                         <div class="flex items-center space-x-10 mx-auto my-auto">
 
-                            <img src="{{ $websiteHeaderImage != null ? $websiteHeaderImage->temporaryUrl() : $oldWebsiteHeaderImage }}"
+                            <img src="{{ $oldWebsiteHeaderImage }}"
                                 class="w-24 h-24 rounded" />
 
                             <x-input title="{{ __('Website Home Image') }}" name="websiteHeaderImage" :defer="false"
@@ -103,7 +103,7 @@
                         {{-- intro image --}}
                         <div class="flex items-center space-x-10 mx-auto my-auto">
 
-                            <img src="{{ $websiteIntroImage != null ? $websiteIntroImage->temporaryUrl() : $oldWebsiteIntroImage }}"
+                            <img src="{{ $oldWebsiteIntroImage }}"
                                 class="w-24 h-24 rounded" />
 
                             <x-input title="{{ __('Website Intro Image') }}" name="websiteIntroImage" :defer="false"
@@ -115,7 +115,7 @@
                         {{-- footer image --}}
                         <div class="flex items-center space-x-10 mx-auto my-auto">
 
-                            <img src="{{ $websiteFooterImage != null ? $websiteFooterImage->temporaryUrl() : $oldWebsiteFooterImage }}"
+                            <img src="{{ $oldWebsiteFooterImage }}"
                                 class="w-24 h-24 rounded" />
 
                             <x-input title="{{ __('Website Footer Image') }}" name="websiteFooterImage"

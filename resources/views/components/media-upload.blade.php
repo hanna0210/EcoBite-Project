@@ -23,7 +23,16 @@
 
                 <div class="flex items-center space-x-4">
                     @if ( $image ?? true )
-                        <img src="{{ $photo->temporaryUrl() ?? '' }}" class="w-20 h-20">
+                        @php
+                            try {
+                                $tempUrl = $photo->temporaryUrl();
+                            } catch (\Exception $e) {
+                                $tempUrl = '';
+                            }
+                        @endphp
+                        @if($tempUrl)
+                            <img src="{{ $tempUrl }}" class="w-20 h-20">
+                        @endif
                     @endif
                     <div class="font-light text-gray-500">
                         <p>Type: {{ Str::upper($photoInfo["extension"]) }}</p>

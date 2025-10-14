@@ -593,23 +593,23 @@
         $bannerTitle = setting('website.modern.bannerTitle', 'Find Your Favorite Products with Our Partners');
         $showBanner = setting('website.modern.showBanner', true);
         
-        // Partner logos from vendors folder
-        $partnerLogos = [
-            ['name' => 'Walmart', 'logo' => asset('images/vendors/walmart.png')],
-            ['name' => 'Target', 'logo' => asset('images/vendors/target.png')],
-            ['name' => 'Burger King', 'logo' => asset('images/vendors/burgerking.png')],
-            ['name' => 'KFC', 'logo' => asset('images/vendors/kfc.png')],
-            ['name' => 'McDonald\'s', 'logo' => asset('images/vendors/mcdonalds.png')],
-            ['name' => 'Subway', 'logo' => asset('images/vendors/subway.png')],
-            ['name' => 'CVS', 'logo' => asset('images/vendors/cvs.png')],
-            ['name' => 'Bloom Bask', 'logo' => asset('images/vendors/bloombask.png')],
-            ['name' => 'Auto Revive Garage', 'logo' => asset('images/vendors/autorevivegarage.png')],
-            ['name' => 'Byte Medic', 'logo' => asset('images/vendors/bytemedic.png')],
-            ['name' => 'Glow Grace Studio', 'logo' => asset('images/vendors/glowgracestudio.png')],
-            ['name' => 'Handy Hive', 'logo' => asset('images/vendors/handyhive.png')],
-            ['name' => 'Hype Lane', 'logo' => asset('images/vendors/hypelane.png')],
-            ['name' => 'Plug & Play Installations', 'logo' => asset('images/vendors/plug&playinstallations.png')],
-        ];
+        // Fetch partner logos from database
+        $partnerLogos = remember_result(
+            'partner_logos_fetch',
+            function () {
+                return \App\Models\PartnerLogo::active()
+                    ->inorder()
+                    ->get()
+                    ->map(function($logo) {
+                        return [
+                            'name' => $logo->name,
+                            'logo' => $logo->photo
+                        ];
+                    })
+                    ->toArray();
+            },
+            60
+        );
     @endphp
     
     @if($showBanner)

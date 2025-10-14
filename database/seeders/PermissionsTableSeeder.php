@@ -20,6 +20,7 @@ class PermissionsTableSeeder extends Seeder
         /*
         LIST OF PERMISSIONS
 view-banners
+view-partner-logos
 view-vendors
 view-vendor-types
 view-zones
@@ -81,6 +82,7 @@ view-tags
             "view-vendor-types",
             "view-zones",
             "view-banners",
+            "view-partner-logos",
             "view-cities",
             "view-states",
             "view-countries",

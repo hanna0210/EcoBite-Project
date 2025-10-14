@@ -12,6 +12,7 @@ use App\Http\Livewire\Auth\ForgotPasswordLivewire;
 use App\Http\Livewire\InAppSupportLivewire;
 use App\Http\Livewire\InAppSupportPageLivewire;
 use App\Http\Livewire\BannerLivewire;
+use App\Http\Livewire\PartnerLogoLivewire;
 use App\Http\Livewire\DashboardLivewire;
 use App\Http\Livewire\TagLivewire;
 use App\Http\Livewire\TagLinkLivewire;
@@ -311,6 +312,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('operations/troubleshooting', TroubleShootLivewire::class)->name('troubleshooting');
 
             Route::get('banners', BannerLivewire::class)->name('banners');
+            Route::get('partner/logos', PartnerLogoLivewire::class)->name('partner.logos');
             Route::get('tags', TagLivewire::class)->name('tags');
             Route::get('tags/link/{id}', TagLinkLivewire::class)->name('tags.link');
             Route::get('categories', CategoryLivewire::class)->name('categories');

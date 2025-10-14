@@ -259,4 +259,10 @@ class BannerLivewire extends BaseLivewireComponent
     {
         $this->deliveryZonesIDs = $data;
     }
+
+    // Get the current banner photo for preview
+    public function getCurrentPhotoProperty()
+    {
+        return $this->selectedModel?->photo ?? '';
+    }
 }

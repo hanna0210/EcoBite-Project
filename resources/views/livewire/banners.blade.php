@@ -64,7 +64,7 @@
         <x-modal confirmText="{{ __('Update') }}" action="update" :clickAway="false">
 
             <p class="text-xl font-semibold">{{ __('Edit Banner') }}</p>
-            <x-media-upload title="{{ __('Photo') }}" name="photo" preview="{{ $selectedModel->photo ?? '' }}"
+            <x-media-upload title="{{ __('Photo') }}" name="photo" preview="{{ $this->currentPhoto }}"
                 :photo="$photo" :photoInfo="$photoInfo" types="PNG or JPEG" rules="image/*" />
             <hr class="my-2">
             {{-- zones --}}

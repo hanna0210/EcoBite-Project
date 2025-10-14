@@ -340,22 +340,28 @@
                 <!-- Home Banner -->
                 <div class="flex flex-col gap-12" style="width: 60%;">
                     <div class="mt-20">
-                        <div class="mt-20 relative w-full mx-auto" x-data="{ slide: 0, slides: [
-                            'https://customers.edentech.online/storage/10475/Glover-fresh-preview---2024.png',
-                            'https://customers.edentech.online/storage/10479/d020d06e84d069030c61f6bc402ed960.png',
-                            'https://customers.edentech.online/storage/10478/Meetup.png'
-                        ] }" x-init="setInterval(() => { slide = (slide + 1) % slides.length }, 4000)">
+                        @if(isset($banners) && $banners->count() > 0)
+                        <div class="mt-20 relative w-full mx-auto" x-data="{ 
+                            slide: 0, 
+                            slides: @js($banners->pluck('photo')->toArray()),
+                            links: @js($banners->pluck('link')->toArray()),
+                            totalSlides: {{ $banners->count() }}
+                        }" x-init="setInterval(() => { slide = (slide + 1) % totalSlides }, 4000)">
                             <div id="welcome-slider" class="overflow-hidden rounded-2xl shadow-lg relative group" style="height: 500px;">
                                 <div class="flex transition-transform duration-700 ease-in-out h-full" 
                                     :style="`transform: translateX(-${slide * 100}%)`">
                                     <template x-for="(img, idx) in slides" :key="idx">
-                                        <img :src="img" alt="Slide" 
-                                            class="w-full h-full flex-shrink-0 object-cover">
+                                        <a :href="links[idx] && links[idx] !== '#' ? links[idx] : 'javascript:void(0)'" 
+                                           :class="links[idx] && links[idx] !== '#' ? 'cursor-pointer' : 'cursor-default'"
+                                           class="w-full h-full flex-shrink-0">
+                                            <img :src="img" alt="Banner Slide" 
+                                                class="w-full h-full object-cover">
+                                        </a>
                                     </template>
                                 </div>
                                 
                                 <!-- Left Arrow -->
-                                <button @click="slide = slide === 0 ? slides.length - 1 : slide - 1"
+                                <button @click="slide = slide === 0 ? totalSlides - 1 : slide - 1"
                                     class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 z-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -363,7 +369,7 @@
                                 </button>
                                 
                                 <!-- Right Arrow -->
-                                <button @click="slide = (slide + 1) % slides.length"
+                                <button @click="slide = (slide + 1) % totalSlides"
                                     class="absolute top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
                                     style="right: 16px; left: auto;">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -372,13 +378,22 @@
                                 </button>
                             </div>
                             <div class="flex justify-center mt-3 space-x-2">
-                                <template x-for="idx in [0,1,2]" :key="idx">
+                                <template x-for="idx in Array.from({length: totalSlides}, (v, k) => k)" :key="idx">
                                     <button class="w-3 h-3 rounded-full transition-colors duration-300"
                                         :class="slide === idx ? 'bg-primary-600' : 'bg-gray-300'"
                                         @click="slide = idx"></button>
                                 </template>
                             </div>
                         </div>
+                        @else
+                        <!-- Fallback when no banners are available -->
+                        <div class="mt-20 bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl shadow-lg p-12 text-center" style="height: 500px; display: flex; align-items: center; justify-content: center;">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-800 mb-4">{{ __('Welcome to') }} {{ $appName }}</h3>
+                                <p class="text-xl text-gray-600">{{ __('Your one-stop solution for all local services') }}</p>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

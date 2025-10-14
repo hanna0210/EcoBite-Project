@@ -18,7 +18,6 @@ class EnableReferralSystem extends Migration
             ['key' => 'enableReferSystem'],
             [
                 'value' => '1', // Enable referral system
-                'updated_at' => now(),
             ]
         );
         
@@ -27,7 +26,6 @@ class EnableReferralSystem extends Migration
             ['key' => 'referRewardAmount'],
             [
                 'value' => '5.00', // $5.00 reward for referrals
-                'updated_at' => now(),
             ]
         );
         
@@ -36,7 +34,6 @@ class EnableReferralSystem extends Migration
             ['key' => 'enableOnRegistrationReferReward'],
             [
                 'value' => '1', // Enable immediate reward
-                'updated_at' => now(),
             ]
         );
     }
@@ -53,7 +50,6 @@ class EnableReferralSystem extends Migration
             ['key' => 'enableReferSystem'],
             [
                 'value' => '0', // Disable referral system
-                'updated_at' => now(),
             ]
         );
     }

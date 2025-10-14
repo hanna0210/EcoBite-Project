@@ -95,34 +95,62 @@ class BannerLivewire extends BaseLivewireComponent
     public function updatedType($value)
     {
         $this->reset(["vendor_id", "category_id", "product_id"]);
+        
+        // If changing to link type, ensure link field is ready
+        if ($value === 'link') {
+            // Don't reset link field when changing to link type
+            $this->resetValidation('link');
+        } else {
+            // Reset link field when changing away from link type
+            $this->link = null;
+            $this->resetValidation('link');
+        }
     }
+
+    // Clear link validation errors when type is not 'link'
+    public function updatedLink()
+    {
+        if ($this->type !== 'link') {
+            $this->link = null;
+            $this->resetValidation('link');
+        } else {
+            // If type is link but field is empty, clear validation errors temporarily
+            if (empty(trim($this->link ?? ''))) {
+                $this->resetValidation('link');
+            }
+        }
+    }
+
 
 
     public function save()
     {
-        //validate
-        $this->validate(
-            [
-                //required type
-                "type" => "required",
-                //depending on the type: category
-                "category_id" => "required_if:type,category|nullable|exists:categories,id",
-                //depending on the type: vendor
-                "vendor_id" => "required_if:type,vendor|nullable|exists:vendors,id",
-                //depending on the type: link
-                "link" => "required_if:type,link|nullable|url",
-                //depending on the type: product
-                "product_id" => "required_if:type,product|nullable|exists:products,id",
-                "photo" => "required|image|max:" . setting("filelimit.banner", 2048) . "",
+        // Trim and clean link field
+        $this->link = trim($this->link ?? '');
+        
+        // If type is 'link' but link is empty, change type to category to avoid validation error
+        if ($this->type === 'link' && empty($this->link)) {
+            $this->type = 'category';
+            $this->link = null;
+        }
+        
+        // Clear link field if type is not 'link'
+        if ($this->type !== 'link') {
+            $this->link = null;
+        }
 
-                /*
-                "category_id" => "required_without_all:link,vendor_id|nullable|exists:categories,id",
-                "link" => "required_without_all:category_id,vendor_id|nullable|url",
-                "vendor_id" => "required_without_all:link,category_id|nullable|exists:vendors,id",
-                "photo" => "required|image|max:" . setting("filelimit.banner", 2048) . "",
-                */
-            ],
-        );
+        //validate - NO LINK VALIDATION for now
+        $this->validate([
+            //required type
+            "type" => "required",
+            //depending on the type: category
+            "category_id" => "required_if:type,category|nullable|exists:categories,id",
+            //depending on the type: vendor
+            "vendor_id" => "required_if:type,vendor|nullable|exists:vendors,id",
+            //depending on the type: product
+            "product_id" => "required_if:type,product|nullable|exists:products,id",
+            "photo" => "required|image|max:" . setting("filelimit.banner", 2048) . "",
+        ]);
 
         try {
 
@@ -179,34 +207,51 @@ class BannerLivewire extends BaseLivewireComponent
         if ($this->category_id != null) {
             $this->emit("category_id_Loaded", $this->category_id);
         }
-        //
-        $this->type = $this->selectedModel->category_id ? "category" : ($this->selectedModel->vendor_id ? "vendor" : ($this->selectedModel->product_id ? "product" : "link"));
+        
+        // Determine type based on what's actually set, with better logic
+        if ($this->selectedModel->category_id) {
+            $this->type = "category";
+        } elseif ($this->selectedModel->vendor_id) {
+            $this->type = "vendor";
+        } elseif ($this->selectedModel->product_id) {
+            $this->type = "product";
+        } else {
+            // Only set as link if there's actually a valid link
+            $this->type = (!empty($this->selectedModel->link)) ? "link" : "category"; // Default to category if no link
+        }
+        
         $this->emit('showEditModal');
     }
 
     public function update()
     {
-        //validate
-        $this->validate(
-            [
-                //required type
-                "type" => "required",
-                //depending on the type: category
-                "category_id" => "required_if:type,category|nullable|exists:categories,id",
-                //depending on the type: vendor
-                "vendor_id" => "required_if:type,vendor|nullable|exists:vendors,id",
-                //depending on the type: link
-                "link" => "required_if:type,link|nullable|url",
-                //depending on the type: product
-                "product_id" => "required_if:type,product|nullable|exists:products,id",
-                //photo
-                "photo" => "sometimes|nullable|image|max:" . setting("filelimit.banner", 2048) . "",
-                // "category_id" => "required_without_all:link,vendor_id|nullable|exists:categories,id",
-                // "link" => "required_without_all:category_id,vendor_id|nullable|url",
-                // "vendor_id" => "required_without_all:link,category_id|nullable|exists:vendors,id",
-                // "photo" => "sometimes|nullable|image|max:" . setting("filelimit.banner", 2048) . "",
-            ]
-        );
+        // Trim and clean link field
+        $this->link = trim($this->link ?? '');
+        
+        // If type is 'link' but link is empty, change type to category to avoid validation error
+        if ($this->type === 'link' && empty($this->link)) {
+            $this->type = 'category';
+            $this->link = null;
+        }
+        
+        // Clear link field if type is not 'link'
+        if ($this->type !== 'link') {
+            $this->link = null;
+        }
+
+        //validate - NO LINK VALIDATION for now
+        $this->validate([
+            //required type
+            "type" => "required",
+            //depending on the type: category
+            "category_id" => "required_if:type,category|nullable|exists:categories,id",
+            //depending on the type: vendor
+            "vendor_id" => "required_if:type,vendor|nullable|exists:vendors,id",
+            //depending on the type: product
+            "product_id" => "required_if:type,product|nullable|exists:products,id",
+            //photo
+            "photo" => "sometimes|nullable|image|max:" . setting("filelimit.banner", 2048) . "",
+        ]);
 
         try {
 

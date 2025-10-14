@@ -18,7 +18,6 @@ class UpdateCountryCodeToHonduras extends Migration
             ['key' => 'countryCode'],
             [
                 'value' => 'HN', // Honduras
-                'updated_at' => now(),
             ]
         );
     }
@@ -35,7 +34,6 @@ class UpdateCountryCodeToHonduras extends Migration
             ['key' => 'countryCode'],
             [
                 'value' => 'GH', // Ghana
-                'updated_at' => now(),
             ]
         );
     }

@@ -18,7 +18,6 @@ class DisableVendorSubscriptionSystem extends Migration
             ['key' => 'vendorUseSubscriptionDefault'],
             [
                 'value' => '0', // Disable by default
-                'updated_at' => now(),
             ]
         );
     }
@@ -35,7 +34,6 @@ class DisableVendorSubscriptionSystem extends Migration
             ['key' => 'vendorUseSubscriptionDefault'],
             [
                 'value' => '1', // Enable by default
-                'updated_at' => now(),
             ]
         );
     }

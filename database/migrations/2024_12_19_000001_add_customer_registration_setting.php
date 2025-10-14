@@ -17,8 +17,6 @@ class AddCustomerRegistrationSetting extends Migration
         DB::table('settings')->insert([
             'key' => 'customersCanRegister',
             'value' => '0', // Disable by default
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
     }
 

@@ -612,7 +612,7 @@
         );
     @endphp
     
-    @if($showBanner)
+    @if($showBanner && count($partnerLogos) > 0)
     <section class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Banner Header -->
@@ -621,7 +621,7 @@
                     {{ $bannerTitle }}
                 </h2>
                 <div class="text-sm text-gray-600">
-                    Banner
+                    {{ __('Our Trusted Partners') }}
                 </div>
             </div>
             
@@ -643,6 +643,7 @@
                     </div>
                 </div>
                 
+                @if(count($partnerLogos) > 6)
                 <!-- Left Arrow -->
                 <button @click="moveLeft()"
                         class="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10 border border-gray-200">
@@ -658,6 +659,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
+                @endif
                 
             </div>
         </div>
@@ -896,25 +898,27 @@
             window.carouselData = function() {
                 return {
                     currentIndex: 0,
-                    totalSlides: {{ ceil(count($partnerLogos) / 6) }},
+                    totalSlides: Math.max(1, {{ ceil(count($partnerLogos) / 6) }}),
                     autoPlayInterval: null,
                     isPaused: false,
                     
                     startAutoPlay() {
-                        console.log('Starting carousel auto-play... Total slides:', this.totalSlides);
+                        // Only start auto-play if there are multiple slides
+                        if (this.totalSlides <= 1) {
+                            return;
+                        }
+                        
                         if (this.autoPlayInterval) {
                             clearInterval(this.autoPlayInterval);
                         }
                         this.autoPlayInterval = setInterval(() => {
                             if (!this.isPaused) {
-                                console.log('Auto-advancing from slide:', this.currentIndex);
                                 this.moveRight();
                             }
                         }, 4000);
                     },
                     
                     stopAutoPlay() {
-                        console.log('Stopping carousel auto-play...');
                         if (this.autoPlayInterval) {
                             clearInterval(this.autoPlayInterval);
                             this.autoPlayInterval = null;
@@ -922,23 +926,21 @@
                     },
                     
                     moveLeft() {
+                        if (this.totalSlides <= 1) return;
                         this.currentIndex = this.currentIndex === 0 ? this.totalSlides - 1 : this.currentIndex - 1;
-                        console.log('Moved left to slide:', this.currentIndex);
                     },
                     
                     moveRight() {
+                        if (this.totalSlides <= 1) return;
                         this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-                        console.log('Moved right to slide:', this.currentIndex);
                     },
                     
                     pauseAutoPlay() {
                         this.isPaused = true;
-                        console.log('Paused auto-play');
                     },
                     
                     resumeAutoPlay() {
                         this.isPaused = false;
-                        console.log('Resumed auto-play');
                     }
                 }
             }

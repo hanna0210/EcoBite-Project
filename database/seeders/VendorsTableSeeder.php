@@ -43,12 +43,13 @@ class VendorsTableSeeder extends Seeder
             $model->save();
 
             //
-            try {
-                $model->addMediaFromUrl("https://source.unsplash.com/800x480/?logo")->toMediaCollection("logo");
-                $model->addMediaFromUrl("https://source.unsplash.com/1280x720/?vendor")->toMediaCollection("feature_image");
-            } catch (\Exception $ex) {
-                logger("Error", [$ex->getMessage()]);
-            }
+            // Skip image fetching for faster seeding - can be added via admin panel later
+            // try {
+            //     $model->addMediaFromUrl("https://source.unsplash.com/800x480/?logo")->toMediaCollection("logo");
+            //     $model->addMediaFromUrl("https://source.unsplash.com/1280x720/?vendor")->toMediaCollection("feature_image");
+            // } catch (\Exception $ex) {
+            //     logger("Error", [$ex->getMessage()]);
+            // }
         }
     }
 }

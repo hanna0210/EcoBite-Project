@@ -161,13 +161,13 @@ class SettingsTableSeeder extends Seeder
             array(
                 'id' => 32,
                 'key' => 'appName',
-                'value' => 'Glover',
+                'value' => 'EcoBite',
             ),
             24 =>
             array(
                 'id' => 33,
                 'key' => 'websiteName',
-                'value' => 'Glover',
+                'value' => 'EcoBite',
             ),
             25 =>
             array(
@@ -329,7 +329,7 @@ class SettingsTableSeeder extends Seeder
             array(
                 'id' => 65,
                 'key' => 'websiteHeaderSubtitle',
-                'value' => 'Glover is a multi-service delivery app that allows you to order food, parcel, grocery, taxi and more from your favourite local stores and restaurants. ',
+                'value' => 'EcoBite is a multi-service delivery app that allows you to order food, parcel, grocery, taxi and more from your favourite local stores and restaurants. ',
             ),
             52 =>
             array(
@@ -1143,13 +1143,13 @@ window.location = "https://tawk.to/chat/5d2378ca7a48df6da2438c6a/default"
             array(
                 'id' => 710,
                 'key' => 'websiteFeatureTitle',
-                'value' => 'Glover your go-to super app ',
+                'value' => 'EcoBite your go-to super app ',
             ),
             187 =>
             array(
                 'id' => 711,
                 'key' => 'websiteFeatureSubtitle',
-                'value' => 'Discover the powerful features that make Glover your go-to super app for all your daily needs from food - parcel - grocery - taxi and more. ',
+                'value' => 'Discover the powerful features that make EcoBite your go-to super app for all your daily needs from food - parcel - grocery - taxi and more. ',
             ),
             188 =>
             array(
@@ -1161,7 +1161,7 @@ window.location = "https://tawk.to/chat/5d2378ca7a48df6da2438c6a/default"
             array(
                 'id' => 713,
                 'key' => 'websiteDriverJoinDescription',
-                'value' => '<p>Join the Glover team and become a part of our growing community of drivers! As a Glover driver, you\'ll enjoy the flexibility, competitive earnings, and the satisfaction of providing a valuable service to your community.</p><h3><strong>Benefits</strong></h3><ul><li>Full control of your vehicle</li><li>Choose your deliveries</li><li>Choose your own hours</li><li>Accurate navigation</li><li>Easy &amp; fast payment</li></ul><h3><strong>How it works</strong></h3><ul><li>Receive delivery requests directly on the app</li><li>Pick up and deliver orders to customers</li><li>View earnings and track your progress</li><li>Fast payout options</li></ul><p>Ready to join us? <a href="#">Sign up now</a> and start your journey with Glover today!</p>',
+                'value' => '<p>Join the EcoBite team and become a part of our growing community of drivers! As a EcoBite driver, you\'ll enjoy the flexibility, competitive earnings, and the satisfaction of providing a valuable service to your community.</p><h3><strong>Benefits</strong></h3><ul><li>Full control of your vehicle</li><li>Choose your deliveries</li><li>Choose your own hours</li><li>Accurate navigation</li><li>Easy &amp; fast payment</li></ul><h3><strong>How it works</strong></h3><ul><li>Receive delivery requests directly on the app</li><li>Pick up and deliver orders to customers</li><li>View earnings and track your progress</li><li>Fast payout options</li></ul><p>Ready to join us? <a href="#">Sign up now</a> and start your journey with EcoBite today!</p>',
             ),
             190 =>
             array(
@@ -1179,7 +1179,7 @@ window.location = "https://tawk.to/chat/5d2378ca7a48df6da2438c6a/default"
             array(
                 'id' => 716,
                 'key' => 'websiteVendorJoinDescription',
-                'value' => '<p>Join the Glover team and become a part of our growing community of drivers! As a Glover driver, you\'ll enjoy the flexibility, competitive earnings, and the satisfaction of providing a valuable service to your community.</p><h3><strong>Benefits</strong></h3><ul><li>Full control of your vehicle</li><li>Choose your deliveries</li><li>Choose your own hours</li><li>Accurate navigation</li><li>Easy &amp; fast payment</li></ul><h3><strong>How it works</strong></h3><ul><li>Receive delivery requests directly on the app</li><li>Pick up and deliver orders to customers</li><li>View earnings and track your progress</li><li>Fast payout options</li></ul><p>Ready to join us? <a href="#">Sign up now</a> and start your journey with Glover today!</p>',
+                'value' => '<p>Join the EcoBite team and become a part of our growing community of drivers! As a EcoBite driver, you\'ll enjoy the flexibility, competitive earnings, and the satisfaction of providing a valuable service to your community.</p><h3><strong>Benefits</strong></h3><ul><li>Full control of your vehicle</li><li>Choose your deliveries</li><li>Choose your own hours</li><li>Accurate navigation</li><li>Easy &amp; fast payment</li></ul><h3><strong>How it works</strong></h3><ul><li>Receive delivery requests directly on the app</li><li>Pick up and deliver orders to customers</li><li>View earnings and track your progress</li><li>Fast payout options</li></ul><p>Ready to join us? <a href="#">Sign up now</a> and start your journey with EcoBite today!</p>',
             ),
             193 =>
             array(
@@ -1191,13 +1191,13 @@ window.location = "https://tawk.to/chat/5d2378ca7a48df6da2438c6a/default"
             array(
                 'id' => 718,
                 'key' => 'websiteAboutUs',
-                'value' => '<p>At Glover, we believe in making life simpler and more convenient. As a comprehensive super app, Glover integrates food delivery, parcel services, grocery shopping, and taxi hailing all in one place, ensuring you have access to essential services right at your fingertips.</p><p>Our mission is to connect communities through innovative technology, providing seamless access to everyday services. We strive to offer reliable, efficient, and high-quality solutions that cater to the diverse needs of our users.</p>',
+                'value' => '<p>At EcoBite, we believe in making life simpler and more convenient. As a comprehensive super app, EcoBite integrates food delivery, parcel services, grocery shopping, and taxi hailing all in one place, ensuring you have access to essential services right at your fingertips.</p><p>Our mission is to connect communities through innovative technology, providing seamless access to everyday services. We strive to offer reliable, efficient, and high-quality solutions that cater to the diverse needs of our users.</p>',
             ),
             195 =>
             array(
                 'id' => 719,
                 'key' => 'websiteContactUs',
-                'value' => '<p>We\'re always here to assist you with any questions or concerns you may have. Whether you need help with our services, have feedback, or just want to get in touch, feel free to reach out to us through the following channels:</p><p>&nbsp;</p><p>Have questions or feedback? We\'re here to help! Reach out to our customer support team at <a href="mailto:info@edentech.online.com"><u>info@edentech.online.com </u></a>or call us at <a href="tel:+234 123 456 7890"><u>+234 123 456 7890</u> </a>.</p><p>&nbsp;</p><p>Your satisfaction is our priority, and we\'re committed to providing you with the best possible service. Thank you for choosing Glover!</p>',
+                'value' => '<p>We\'re always here to assist you with any questions or concerns you may have. Whether you need help with our services, have feedback, or just want to get in touch, feel free to reach out to us through the following channels:</p><p>&nbsp;</p><p>Have questions or feedback? We\'re here to help! Reach out to our customer support team at <a href="mailto:info@edentech.online.com"><u>info@edentech.online.com </u></a>or call us at <a href="tel:+234 123 456 7890"><u>+234 123 456 7890</u> </a>.</p><p>&nbsp;</p><p>Your satisfaction is our priority, and we\'re committed to providing you with the best possible service. Thank you for choosing EcoBite!</p>',
             ),
             196 =>
             array(

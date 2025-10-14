@@ -2,7 +2,7 @@
 <div>
     <div class="min-h-screen bg-white">
         <!-- Top Blue Header Bar -->
-        <div class="w-full bg-blue-600 px-6 py-4">
+        <!-- <div class="w-full bg-blue-600 px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <button onclick="history.back()" class="mr-4 text-white hover:text-blue-200 transition-colors">
@@ -10,7 +10,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                         </svg>
                     </button>
-                    <span class="text-white font-medium text-lg">Glover</span>
+                    <span class="text-white font-medium text-lg">EcoBite</span>
                 </div>
                 <div class="flex items-center space-x-4">
                     <select class="bg-blue-700 text-white border-none rounded px-3 py-1 text-sm">
@@ -31,7 +31,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Main Content Area -->
         <div class="flex min-h-screen">
@@ -130,7 +130,7 @@
         <!-- Bottom Blue Footer Bar -->
         <div class="w-full bg-blue-600 px-6 py-4">
             <div class="flex items-center justify-center">
-                <p class="text-white text-sm">© {{ date('Y') }} Glover. All rights reserved.</p>
+                <p class="text-white text-sm">© {{ date('Y') }} EcoBite. All rights reserved.</p>
             </div>
         </div>
     </div>

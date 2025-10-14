@@ -21,7 +21,7 @@ class DemoBannerSeeder extends Seeder
         $banner->save();
         $banner->clearMediaCollection();
 
-        $imageUrl = "https://market-resized.envatousercontent.com/codecanyon.net/files/524543847/Glover%20fresh%20preview%20-%202024.png?auto=format&q=94&cf_fit=crop&gravity=top&h=8000&w=590&s=09b3b7a6d96adc3ec1b1b395b3147d787a488e9571b73283e81e871381061c26";
+        $imageUrl = "https://market-resized.envatousercontent.com/codecanyon.net/files/524543847/EcoBite%20fresh%20preview%20-%202024.png?auto=format&q=94&cf_fit=crop&gravity=top&h=8000&w=590&s=09b3b7a6d96adc3ec1b1b395b3147d787a488e9571b73283e81e871381061c26";
         $banner->addMediaFromUrl($imageUrl)->toMediaCollection();
         //instahaul
         $banner = new Banner();

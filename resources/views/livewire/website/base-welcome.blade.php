@@ -289,7 +289,7 @@
                 <!-- Logo -->
                 <div class="text-2xl font-bold">
                     <a href="#" class="flex items-center space-x-3">
-                        <img src="{{ appLogo() }}" alt="Glover Logo" class="h-10" />
+                        <img src="{{ appLogo() }}" alt="EcoBite Logo" class="h-10" />
                         <span>{{ setting('websiteName', env('APP_NAME')) }}</span>
                     </a>
                 </div>
@@ -620,7 +620,7 @@
         <div class="block lg:flex items-center justify-between">
             <div class="text-start w-full lg:max-w-4/12 my-16">
                 <div class="flex space-x-2 items-center mb-4">
-                    <img src="{{ appLogo() }}" alt="Glover Logo" class="h-8" />
+                    <img src="{{ appLogo() }}" alt="EcoBite Logo" class="h-8" />
                     <p>{{ setting('websiteName', env('APP_NAME')) }}</p>
                 </div>
 

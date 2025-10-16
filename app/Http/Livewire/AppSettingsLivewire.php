@@ -141,7 +141,7 @@ class AppSettingsLivewire extends BaseLivewireComponent
         $this->enableEmailLogin = (bool) setting('enableEmailLogin', true);
         $this->enableProfileUpdate = (bool) setting('enableProfileUpdate', true);
         $this->otpGateway = setting('otpGateway');
-        $this->appCountryCode = setting('countryCode', 'GH');
+        $this->appCountryCode = setting('countryCode', 'HN');
         $this->customPhoneNumberRegex = env("CUSTOM_PHONE_NUMBER_REGEX", "");
         $this->enableGoogleDistance = (bool) setting('enableGoogleDistance', 1);
         $this->enableSingleVendor = (bool) setting('enableSingleVendor');

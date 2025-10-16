@@ -68,7 +68,7 @@ class BackendSettings extends BaseSettingsComponent
     {
         $this->websiteName = setting('websiteName', env("APP_NAME"));
         $this->websiteColor = setting('websiteColor', '#246fd0');
-        $this->countryCode = setting('countryCode', "GH");
+        $this->countryCode = setting('countryCode', "HN");
         $this->timeZone = setting('timeZone', "UTC");
         $this->oldWebsiteLogo = getValidValue(setting('websiteLogo'), asset('images/logo2.png'));
         $this->oldFavicon = getValidValue(setting('favicon'), asset('favicon.ico'));

@@ -24,7 +24,7 @@ class DriverLivewire extends BaseLivewireComponent
     protected $rules = [
         "name" => "required|string",
         "email" => "required|email|unique:users",
-        "phone" => "required|unique:users",
+        "phone" => "required|phone:HN,mobile|unique:users",
         "password" => "sometimes|nullable|string",
         "commission" => "sometimes|nullable|numeric",
     ];
@@ -33,6 +33,7 @@ class DriverLivewire extends BaseLivewireComponent
     protected $messages = [
         "email.unique" => "Email already associated with any account",
         "phone.unique" => "Phone Number already associated with any account",
+        "phone.phone" => "Phone Number is invalid",
     ];
 
     public function render()
@@ -93,7 +94,7 @@ class DriverLivewire extends BaseLivewireComponent
             [
                 "name" => "required|string",
                 "email" => "required|email|unique:users,email," . $this->selectedModel->id . "",
-                "phone" => "required|unique:users,phone," . $this->selectedModel->id . "",
+                "phone" => "required|phone:HN,mobile|unique:users,phone," . $this->selectedModel->id . "",
                 "password" => "sometimes|nullable|string",
                 "commission" => "sometimes|nullable|numeric",
             ]

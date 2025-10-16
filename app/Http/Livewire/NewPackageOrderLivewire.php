@@ -351,7 +351,7 @@ class NewPackageOrderLivewire extends BaseLivewireComponent
         //
         $this->validate([
             'orderStops.*.contact.name' => 'required',
-            'orderStops.*.contact.phone' => 'required|numeric',
+            'orderStops.*.contact.phone' => 'required|phone:HN,mobile',
         ]);
         //
         $this->nextStep();

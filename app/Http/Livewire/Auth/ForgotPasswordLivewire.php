@@ -33,7 +33,7 @@ class ForgotPasswordLivewire extends BaseLivewireComponent
     public function resetPassword()
     {
 
-        $countryCodeValidate = setting('countryCode', 'GH');
+        $countryCodeValidate = setting('countryCode', 'HN');
         $this->validate(
             ["phone" => "phone:$countryCodeValidate|exists:users"],
             ["phone.exists" => __("No account associated with phone")]

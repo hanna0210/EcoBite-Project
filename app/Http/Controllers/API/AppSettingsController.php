@@ -76,7 +76,7 @@ class AppSettingsController extends Controller
                 "what3wordsApiKey" => env('what3wordsApiKey'),
                 "currency" => $currency->symbol,
                 "currency_code" => $currency->code,
-                "country_code" => setting('countryCode', "GH"),
+                "country_code" => setting('countryCode', "HN"),
                 //links
                 "androidDownloadLink" => setting('androidDownloadLink', ""),
                 "iosDownloadLink" => setting('iosDownloadLink', ""),

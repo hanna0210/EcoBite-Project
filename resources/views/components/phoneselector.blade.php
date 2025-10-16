@@ -6,13 +6,13 @@
                 $inputId .= rand(1000, 99999);
             }
             $modelId = $model ?? 'phone';
-            $defaultCountry = setting('countryCode', 'GH');
+            $defaultCountry = setting('countryCode', 'HN');
             //explode default country code and select the last part
             $defaultCountry = explode(',', $defaultCountry);
-            $defaultCountry = end($defaultCountry) ?? 'US';
+            $defaultCountry = end($defaultCountry) ?? 'HN';
             //
             if (strlen($defaultCountry) > 2) {
-                $defaultCountry = 'US';
+                $defaultCountry = 'HN';
             }
             $phoneInitData = [$inputId, $modelId, $value ?? '', $defaultCountry];
         @endphp

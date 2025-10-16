@@ -10,7 +10,7 @@ class Upgrade60 extends BaseUpgrade
     //Runs or migrations to be done on this version
     public function run()
     {
-        $countryCodes = setting('countryCode', "GH");
+        $countryCodes = setting('countryCode', "HN");
         //replace AUTO with INTERNATIONAL
         $itContains = strpos($countryCodes, 'AUTO');
         if ($itContains !== false) {

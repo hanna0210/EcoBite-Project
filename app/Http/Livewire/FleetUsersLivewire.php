@@ -35,7 +35,7 @@ class FleetUsersLivewire extends BaseLivewireComponent
         "role" => "required",
         "name" => "required|string",
         "email" => "required|email|unique:users",
-        "phone" => "required|unique:users",
+        "phone" => "required|phone:HN,mobile|unique:users",
         "password" => "sometimes|nullable|string",
         "commission" => "sometimes|nullable|numeric",
         "walletBalance" => "sometimes|nullable|numeric",
@@ -45,6 +45,7 @@ class FleetUsersLivewire extends BaseLivewireComponent
     protected $messages = [
         "email.unique" => "Email already associated with any account",
         "phone.unique" => "Phone Number already associated with any account",
+        "phone.phone" => "Phone Number is invalid",
     ];
 
     public function render()
@@ -151,7 +152,7 @@ class FleetUsersLivewire extends BaseLivewireComponent
             [
                 "name" => "required|string",
                 "email" => "required|email|unique:users,email," . $this->selectedModel->id . "",
-                "phone" => "required|unique:users,phone," . $this->selectedModel->id . "",
+                "phone" => "required|phone:HN,mobile|unique:users,phone," . $this->selectedModel->id . "",
                 "password" => "sometimes|nullable|string",
                 "commission" => "sometimes|nullable|numeric",
                 "walletBalance" => "sometimes|nullable|numeric",

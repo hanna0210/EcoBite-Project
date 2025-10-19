@@ -14,11 +14,8 @@ class VendorTypesTableSeeder extends Seeder
      */
     public function run()
     {
-
-
-        \DB::table('vendor_types')->delete();
-
-        \DB::table('vendor_types')->insert(array(
+        // Use upsert instead of delete+insert to avoid foreign key issues
+        \DB::table('vendor_types')->upsert(array(
             0 =>
             array(
                 'id' => 1,
@@ -123,6 +120,6 @@ class VendorTypesTableSeeder extends Seeder
                 'updated_at' => '2024-05-01 10:50:34',
                 'deleted_at' => NULL,
             ),
-        ));
+        ), ['id'], ['name', 'color', 'description', 'slug', 'is_active', 'in_order', 'updated_at']);
     }
 }

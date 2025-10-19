@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Disable foreign key checks to allow delete operations in seeders
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         // $this->call(MediaTableSeeder::class);
         $this->call(CountryStateCityTableSeeder::class);
@@ -60,5 +62,11 @@ class DatabaseSeeder extends Seeder
         
         // Food Rescue offers
         $this->call(FoodRescueSeeder::class);
+        
+        // Partner Logos
+        $this->call(PartnerLogoSeeder::class);
+
+        // Re-enable foreign key checks
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

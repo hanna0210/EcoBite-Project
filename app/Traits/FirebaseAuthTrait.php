@@ -13,10 +13,26 @@ trait FirebaseAuthTrait
     private function getFirebaseFactory()
     {
         try {
-            return (new Factory)
-                ->withServiceAccount(Storage::get(setting('serviceKeyPath', 'vault/firebase_service.json')));
+            $serviceKeyPath = setting('serviceKeyPath', 'vault/firebase_service.json');
+            
+            // Try to get the full path to the service account file
+            $fullPath = storage_path('app/' . $serviceKeyPath);
+            
+            // Check if file exists
+            if (!file_exists($fullPath)) {
+                throw new \Exception(__("Firebase service account file not found at: ") . $fullPath, 1);
+            }
+            
+            // Read file content directly
+            $serviceAccountContent = file_get_contents($fullPath);
+            
+            if (!$serviceAccountContent) {
+                throw new \Exception(__("Unable to read Firebase service account file"), 1);
+            }
+            
+            return (new Factory)->withServiceAccount($serviceAccountContent);
         } catch (\Exception $ex) {
-            throw new \Exception(__("Please setup firebase on backend"), 1);
+            throw new \Exception(__("Firebase setup error: ") . $ex->getMessage(), 1);
         }
     }
 

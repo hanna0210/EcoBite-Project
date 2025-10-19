@@ -14,8 +14,8 @@ class PartnerLogoSeeder extends Seeder
      */
     public function run()
     {
-        // Clear existing partner logos
-        PartnerLogo::truncate();
+        // Clear existing partner logos (using delete instead of truncate to avoid foreign key issues)
+        \DB::table('partner_logos')->delete();
 
         // Partner logos data from the original hardcoded array
         $partnerLogos = [
@@ -57,7 +57,9 @@ class PartnerLogoSeeder extends Seeder
             }
         }
 
-        $this->command->info('Partner logos seeded successfully!');
+        if ($this->command) {
+            $this->command->info('Partner logos seeded successfully!');
+        }
     }
 }
 

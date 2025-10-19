@@ -130,9 +130,25 @@ class ExtensionLivewire extends BaseLivewireComponent
 
     public function copyFile($from, $to)
     {
-        $process = new Process(explode(" ", "cp -a " . $from . " " . $to . ""));
-        $process->setWorkingDirectory(base_path() . "/");
-        $process->run();
+        // Remove trailing "/." from path
+        $from = rtrim($from, '/.');
+        
+        // Create destination directory if it doesn't exist
+        if (!file_exists($to)) {
+            mkdir($to, 0755, true);
+        }
+        
+        // Check if running on Windows
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            // Use xcopy for Windows
+            $command = 'xcopy "' . $from . '" "' . $to . '" /E /I /Y';
+            exec($command);
+        } else {
+            // Use cp for Unix/Linux
+            $process = new Process(explode(" ", "cp -a " . $from . " " . $to . ""));
+            $process->setWorkingDirectory(base_path() . "/");
+            $process->run();
+        }
     }
 
     //
@@ -153,57 +169,57 @@ class ExtensionLivewire extends BaseLivewireComponent
 
     public function extractZipFile($location)
     {
+        $workDir = storage_path() . "/app/" . $location;
+        $zipFile = $workDir . "/extension.zip";
+        $extractTo = $workDir . "/extension";
 
-
-        $workDir = storage_path() . "//app//" . $location;
-
-        //
         try {
-            //update permission
-            $process = new Process(explode(" ", "chmod 777 extension.zip"));
-            $process->setWorkingDirectory($workDir);
-            $process->run();
-
-            // executes after the command finishes
-            if (!$process->isSuccessful()) {
-                logger("chmod Process error", [new ProcessFailedException($process)]);
-            } else {
-                // logger("chmod Process output", [$process->getOutput()]);
-                logger("chmod Process output", ["Done"]);
+            // Create extraction directory if it doesn't exist
+            if (!file_exists($extractTo)) {
+                mkdir($extractTo, 0755, true);
             }
 
-
-            //uunzip
-            $process = new Process(explode(" ", "unzip extension.zip -d extension"));
-            $process->setWorkingDirectory($workDir);
-            $process->run();
-
-            // executes after the command finishes
-            if (!$process->isSuccessful()) {
-                logger("Unzip Process error", [new ProcessFailedException($process)]);
+            // Check if ZipArchive is available
+            if (class_exists('ZipArchive')) {
+                $zip = new \ZipArchive;
+                $res = $zip->open($zipFile);
+                
+                if ($res === TRUE) {
+                    $zip->extractTo($extractTo);
+                    $zip->close();
+                    logger("Zip Extract", ["Successfully extracted using ZipArchive"]);
+                } else {
+                    throw new \Exception("Failed to open zip file. Error code: " . $res);
+                }
             } else {
-                // logger("Unzip Process output", [$process->getOutput()]);
-                logger("Unzip Process output", ["Done"]);
+                // Fallback to command line for Unix/Linux systems
+                if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+                    // Update permission on Unix/Linux
+                    $process = new Process(explode(" ", "chmod 777 extension.zip"));
+                    $process->setWorkingDirectory($workDir);
+                    $process->run();
+
+                    // Unzip
+                    $process = new Process(explode(" ", "unzip extension.zip -d extension"));
+                    $process->setWorkingDirectory($workDir);
+                    $process->run();
+
+                    if (!$process->isSuccessful()) {
+                        logger("Unzip Process error", [new ProcessFailedException($process)]);
+                        throw new \Exception("Failed to extract zip file using unzip command");
+                    }
+                    logger("Unzip Process output", ["Done"]);
+                } else {
+                    throw new \Exception("ZipArchive extension is not installed on this server");
+                }
             }
-            // Madzipper::make($appBaseFolder . "/app.zip")->extractTo($extractedFolder);
+            
             logger("Done Extract", ["Yes"]);
         } catch (\Exception $ex) {
-            logger("Unzip", [$ex->getMessage()]);
-            $process = new Process(explode(" ", "unzip extension.zip -d extension"));
-            $process->setWorkingDirectory($workDir);
-            $process->run();
-
-            // executes after the command finishes
-            if (!$process->isSuccessful()) {
-                logger("Unzip Process error", [new ProcessFailedException($process)]);
-            } else {
-                // logger("Unzip Process output", [$process->getOutput()]);
-                logger("Unzip Process output", ["Done"]);
-            }
+            logger("Unzip Error", [$ex->getMessage()]);
+            throw $ex;
         }
 
-
-        //
         return $workDir;
     }
 }

@@ -574,3 +574,6 @@ Route::group(['middleware' => ['web']], function () {
     });
 });
 
+
+//:DRIVERTRACKINGEXTENSION
+require_once 'driver_tracking_extension.php';

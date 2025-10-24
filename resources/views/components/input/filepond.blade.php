@@ -29,7 +29,7 @@
             },
         });
     }">
-        <input type="file" x-ref="{{ $attributes->get('ref') ?? 'input' }}" />
+        <input type="file" id="{{ $attributes->get('id') ?? ($name ?? 'filepond-input') }}" name="{{ $name ?? 'filepond-input' }}" x-ref="{{ $attributes->get('ref') ?? 'input' }}" />
     </div>
     @error($name ?? '')
         <span class="mt-1 text-xs text-red-700">{{ $message }}</span>

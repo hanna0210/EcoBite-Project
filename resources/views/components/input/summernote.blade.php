@@ -3,9 +3,9 @@
         <x-label :title="$title" />
     @endisset
     <div class="relative inline-block w-full">
-        <textarea name="{{ $name ?? '' }}" id="{{ $id ?? '' }}" class="w-full summernote"></textarea>
+        <textarea name="{{ $name ?? '' }}" id="{{ $id ?? '' }}" class="w-full summernote" autocomplete="off"></textarea>
         {{--  --}}
-        <input type="hidden" id="{{ $id ?? ($name ?? '') }}-Input"
+        <input type="hidden" id="{{ $id ?? ($name ?? '') }}-Input" name="{{ $name ?? '' }}-Input"
             @if ($defer ?? true) wire:model.defer='{{ $name ?? '' }}'
         @else
             wire:model='{{ $name ?? '' }}' @endif />

@@ -2,9 +2,12 @@
     <div class='flex items-start'>
 
         <input class="mt-1 ltr:mr-5 rtl:ml-5"
+        id="{{ $name ?? '' }}"
+        name="{{ $name ?? '' }}"
         placeholder="{{ $placeholder ?? '' }}"
         type="checkbox"
         value="{{ $value ?? '1' }}"
+        autocomplete="off"
         {{-- {{ ($checked ?? false) ? 'checked':'checked' }} --}}
         @if ( $defer ?? true )
             wire:model.defer='{{ $name ?? '' }}'

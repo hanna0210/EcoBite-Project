@@ -1,4 +1,4 @@
-<label class="block mt-4 text-sm">
+<label for="{{ $name ?? 'multiple-file-upload' }}" class="block mt-4 text-sm">
     <x-label :title="$title" />
     <div class="w-full p-2 bg-gray-100 border border-gray-300 border-dashed rounded" x-data="{ isUploading: false, progress: 0 }"
         x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
@@ -8,7 +8,7 @@
         <div x-show="!isUploading">
 
             {{-- Form File picker --}}
-            <input type="file" class="hidden" accept="{{ $fileTypes ?? '' }}"
+            <input type="file" id="{{ $name ?? 'multiple-file-upload' }}" name="{{ $name ?? 'multiple-file-upload' }}" class="hidden" accept="{{ $fileTypes ?? '' }}"
                 {{ $multiple ?? false ? 'multiple' : '' }}
                 @if ($defer ?? true) wire:model.defer='{{ $name ?? '' }}'
                     @else

@@ -5,8 +5,9 @@
     <div class="relative inline-block w-full">
         <select
             class="block w-full px-2 border rounded appearance-none bg-grey-lighter text-grey-darker border-grey-lighter"
-            {{-- on change --}} wire:change="{{ $onchange ?? '' }}" name="{{ $name ?? '' }}"
-            @if ($multiple ?? false) multiple="multiple" @endif id="{{ $id ?? ($name ?? '') }}"
+            {{-- on change --}} wire:change="{{ $onchange ?? '' }}" name="{{ $name ?? '' }}" id="{{ $id ?? ($name ?? '') }}"
+            autocomplete="{{ $autocomplete ?? 'off' }}"
+            @if ($multiple ?? false) multiple="multiple" @endif
             @if ($defer ?? true) wire:model.defer='{{ $name ?? '' }}' @else wire:model='{{ $name ?? '' }}' @endif
             @if ($width ?? false) style="width: {{ $width }}%" @endif>
 

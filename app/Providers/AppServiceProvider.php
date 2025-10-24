@@ -17,6 +17,8 @@ use App\Rules\ValidPhoneNumber;
 use App\Services\Core\ExtraPhoneNumberValidationService;
 use App\Services\CustomDatabaseSettingStore;
 use Propaganistas\LaravelPhone\Rules\Phone as CustomPhoneRule;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Observers\MediaObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Register Media Observer for Google Drive file ID storage
+        Media::observe(MediaObserver::class);
 
         Validator::includeUnvalidatedArrayKeys();
         Schema::defaultStringLength(191);

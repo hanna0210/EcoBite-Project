@@ -103,11 +103,11 @@ class GoogleDriveSetupCommand extends Command
             $testContent = 'Test file created at ' . now();
             $testPath = 'test-connection-' . time() . '.txt';
             
-            $disk->put($testPath, $testContent);
+            $disk->write($testPath, $testContent);
             $this->info('✅ File upload successful');
             
             // Test file read
-            $readContent = $disk->get($testPath);
+            $readContent = $disk->read($testPath);
             if ($readContent === $testContent) {
                 $this->info('✅ File read successful');
             } else {

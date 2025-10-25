@@ -1,7 +1,7 @@
 @section('title', __('Extensions'))
 <div x-data="{ openModal: false }">
 
-    <x-baseview title="{{ __('Extensions') }}" showNew="{{ $showDetails }}" actionTitle="{{ __('Install') }}">
+    <x-baseview title="{{ __('Extensions') }}">
         <x-slot:newBtn>
             <x-buttons.plain title="{{ __('Install') }}" bgColor="bg-primary-500" onClick="openModal = true">
                 <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

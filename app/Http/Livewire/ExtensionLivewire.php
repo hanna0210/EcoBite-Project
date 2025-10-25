@@ -7,10 +7,16 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class ExtensionLivewire extends BaseLivewireComponent
 {
+    // Override parent's showDetails to show extensions by default
+    public $showDetails = true;
 
     public function render()
     {
-        return view('livewire.extensions.index');
+        $extensions = \App\Models\Extension::where('is_active', true)->get();
+        
+        return view('livewire.extensions.index', [
+            'extensions' => $extensions
+        ]);
     }
 
 
@@ -48,6 +54,9 @@ class ExtensionLivewire extends BaseLivewireComponent
 
             //
             $this->showSuccessAlert(__("Extension Installation Successful!"));
+            
+            // Refresh the page to show the new extension
+            $this->emit('refreshView');
         } catch (\Exception $ex) {
             logger("Extension Installation", [$ex]);
             $this->showErrorAlert($ex->getMessage() ?? __("Extension Installation") . " " . __('failed!'));
@@ -58,11 +67,89 @@ class ExtensionLivewire extends BaseLivewireComponent
     //
     public function uploadZipFile($file)
     {
-        $code = \Str::random(20);
-        $extensionFolder = "extensions/" . $code;
-        //
-        $file->storeAs($extensionFolder, "extension.zip");
-        return $extensionFolder;
+        try {
+            // Validate file is actually a zip
+            $mimeType = $file->getMimeType();
+            $extension = $file->getClientOriginalExtension();
+            $originalName = $file->getClientOriginalName();
+            $fileSize = $file->getSize();
+            
+            logger("Upload file info", [
+                'mime_type' => $mimeType,
+                'extension' => $extension,
+                'original_name' => $originalName,
+                'size' => $fileSize,
+                'temp_path' => $file->getRealPath()
+            ]);
+
+            // Check if file exists in temp location
+            if (!file_exists($file->getRealPath())) {
+                throw new \Exception("Temporary file not found. Upload may have failed.");
+            }
+
+            // Check if it's a zip file by MIME type and extension
+            $validMimeTypes = [
+                'application/zip',
+                'application/x-zip-compressed',
+                'application/x-zip',
+                'application/octet-stream' // Sometimes Windows sends this
+            ];
+
+            if (!in_array($mimeType, $validMimeTypes) && strtolower($extension) !== 'zip') {
+                throw new \Exception("Invalid file type. Please upload a valid .zip file. Detected type: " . $mimeType);
+            }
+
+            $code = \Str::random(20);
+            $extensionFolder = "extensions/" . $code;
+            
+            // Ensure the extensions directory exists
+            $fullPath = storage_path('app/' . $extensionFolder);
+            if (!file_exists($fullPath)) {
+                mkdir($fullPath, 0755, true);
+                logger("Created directory", ['path' => $fullPath]);
+            }
+            
+            // Try to store the file explicitly to the 'local' disk
+            $storedPath = $file->storeAs($extensionFolder, "extension.zip", 'local');
+            $finalPath = storage_path('app/' . $extensionFolder . '/extension.zip');
+            
+            logger("File store attempt", [
+                'stored_path' => $storedPath,
+                'final_path' => $finalPath,
+                'file_exists' => file_exists($finalPath),
+                'storage_disk' => 'local'
+            ]);
+            
+            // If storeAs failed or file doesn't exist, manually copy it
+            if (!$storedPath || !file_exists($finalPath)) {
+                logger("StoreAs failed, attempting manual copy", [
+                    'from' => $file->getRealPath(),
+                    'to' => $finalPath
+                ]);
+                
+                // Manually copy the file
+                if (!copy($file->getRealPath(), $finalPath)) {
+                    throw new \Exception("Failed to copy uploaded file from temp location to: " . $finalPath);
+                }
+                
+                logger("Manual copy successful", ['file_exists' => file_exists($finalPath)]);
+            }
+            
+            // Final verification
+            if (!file_exists($finalPath)) {
+                throw new \Exception("File was not successfully stored at: " . $finalPath);
+            }
+            
+            logger("File successfully stored", [
+                'path' => $finalPath,
+                'size' => filesize($finalPath)
+            ]);
+            
+            return $extensionFolder;
+        } catch (\Exception $ex) {
+            logger("Upload Error", ['error' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
+            throw $ex;
+        }
     }
 
     //
@@ -174,6 +261,28 @@ class ExtensionLivewire extends BaseLivewireComponent
         $extractTo = $workDir . "/extension";
 
         try {
+            // Validate zip file exists
+            if (!file_exists($zipFile)) {
+                throw new \Exception("Extension zip file not found at: " . $zipFile);
+            }
+
+            // Check if file is readable
+            if (!is_readable($zipFile)) {
+                throw new \Exception("Extension zip file is not readable. Please check file permissions.");
+            }
+
+            // Validate file size
+            $fileSize = filesize($zipFile);
+            logger("Zip file info", [
+                'path' => $zipFile,
+                'size' => $fileSize,
+                'readable' => is_readable($zipFile)
+            ]);
+
+            if ($fileSize === 0) {
+                throw new \Exception("Extension zip file is empty (0 bytes). Upload may have failed.");
+            }
+
             // Create extraction directory if it doesn't exist
             if (!file_exists($extractTo)) {
                 mkdir($extractTo, 0755, true);
@@ -189,7 +298,28 @@ class ExtensionLivewire extends BaseLivewireComponent
                     $zip->close();
                     logger("Zip Extract", ["Successfully extracted using ZipArchive"]);
                 } else {
-                    throw new \Exception("Failed to open zip file. Error code: " . $res);
+                    // Provide more detailed error messages
+                    $errorMessages = [
+                        \ZipArchive::ER_EXISTS => "File already exists",
+                        \ZipArchive::ER_INCONS => "Zip archive inconsistent",
+                        \ZipArchive::ER_INVAL => "Invalid argument",
+                        \ZipArchive::ER_MEMORY => "Malloc failure",
+                        \ZipArchive::ER_NOENT => "No such file",
+                        \ZipArchive::ER_NOZIP => "Not a valid zip archive",
+                        \ZipArchive::ER_OPEN => "Can't open file",
+                        \ZipArchive::ER_READ => "Read error",
+                        \ZipArchive::ER_SEEK => "Seek error",
+                    ];
+                    
+                    $errorMsg = isset($errorMessages[$res]) ? $errorMessages[$res] : "Unknown error";
+                    logger("Zip Error Details", [
+                        'code' => $res,
+                        'message' => $errorMsg,
+                        'file' => $zipFile,
+                        'file_size' => $fileSize
+                    ]);
+                    
+                    throw new \Exception("Failed to open zip file. Error: " . $errorMsg . " (Code: " . $res . "). The uploaded file may be corrupted. Please try re-downloading and uploading the extension.");
                 }
             } else {
                 // Fallback to command line for Unix/Linux systems

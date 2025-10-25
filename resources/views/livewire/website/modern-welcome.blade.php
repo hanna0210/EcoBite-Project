@@ -686,6 +686,7 @@
                                 name="email" 
                                 placeholder="{{ __('Enter your email') }}" 
                                 required
+                                autocomplete="email"
                                 class="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                             />
                             <button 

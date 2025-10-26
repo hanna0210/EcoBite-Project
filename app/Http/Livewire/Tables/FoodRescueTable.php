@@ -88,9 +88,10 @@ class FoodRescueTable extends BaseDataTableComponent
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $row) {
+                    if (!$row) return $value ?? '-';
                     return view('components.table.title-description', [
-                        'title' => $value,
-                        'description' => \Str::limit($row->description, 50),
+                        'title' => $value ?? '-',
+                        'description' => \Str::limit($row->description ?? '', 50),
                     ]);
                 }),
 
@@ -103,34 +104,38 @@ class FoodRescueTable extends BaseDataTableComponent
 
             Column::make('Prices')
                 ->format(function ($value, $row) {
+                    if (!$row) return '-';
                     return view('components.table.price-comparison', [
-                        'original_price' => currencyFormat($row->original_price),
-                        'rescue_price' => currencyFormat($row->rescue_price),
-                        'discount_percentage' => $row->discount_percentage,
+                        'original_price' => currencyFormat($row->original_price ?? 0),
+                        'rescue_price' => currencyFormat($row->rescue_price ?? 0),
+                        'discount_percentage' => $row->discount_percentage ?? 0,
                     ]);
                 }),
 
             Column::make('Quantity')
                 ->format(function ($value, $row) {
+                    if (!$row) return '-';
                     return view('components.table.quantity-status', [
-                        'available' => $row->available_quantity,
-                        'total' => $row->total_quantity,
-                        'is_sold_out' => $row->available_quantity <= 0,
+                        'available' => $row->available_quantity ?? 0,
+                        'total' => $row->total_quantity ?? 0,
+                        'is_sold_out' => ($row->available_quantity ?? 0) <= 0,
                     ]);
                 }),
 
             Column::make('Availability')
                 ->format(function ($value, $row) {
+                    if (!$row) return '-';
                     return view('components.table.availability-status', [
-                        'available_from' => $row->available_from,
-                        'available_until' => $row->available_until,
-                        'is_available' => $row->is_available,
-                        'time_remaining' => $row->time_remaining,
+                        'available_from' => $row->available_from ?? null,
+                        'available_until' => $row->available_until ?? null,
+                        'is_available' => $row->is_available ?? false,
+                        'time_remaining' => $row->time_remaining ?? null,
                     ]);
                 }),
 
             Column::make('Tags')
                 ->format(function ($value, $row) {
+                    if (!$row) return '-';
                     $tags = $row->tags ?? [];
                     if (empty($tags)) return '-';
                     
@@ -148,6 +153,7 @@ class FoodRescueTable extends BaseDataTableComponent
 
             Column::make('Active', 'is_active')
                 ->format(function ($value, $column, $row) {
+                    if (!$row) return '-';
                     return view('components.table.active', [
                         'model' => $row
                     ]);
@@ -156,6 +162,7 @@ class FoodRescueTable extends BaseDataTableComponent
 
             Column::make('Actions')
                 ->format(function ($value, $row) {
+                    if (!$row) return '-';
                     return view('components.table.actions', [
                         'model' => $row,
                         'actions' => [

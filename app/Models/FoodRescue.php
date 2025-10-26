@@ -112,8 +112,11 @@ class FoodRescue extends BaseModel
     // ATTRIBUTE ACCESSORS
     public function getDiscountPercentageAttribute()
     {
-        if ($this->original_price > 0) {
-            return round((($this->original_price - $this->rescue_price) / $this->original_price) * 100);
+        $originalPrice = $this->original_price ?? 0;
+        $rescuePrice = $this->rescue_price ?? 0;
+        
+        if ($originalPrice > 0) {
+            return round((($originalPrice - $rescuePrice) / $originalPrice) * 100);
         }
         return 0;
     }

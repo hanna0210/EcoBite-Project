@@ -62,11 +62,11 @@
 
             {{-- Tags --}}
             <div>
-                <x-label title="{{ __('Tags') }}" />
+                <p class="block mt-4 mb-1 text-sm text-gray-700">{{ __('Tags') }}</p>
                 <div class="grid grid-cols-3 gap-2 mt-2">
                     @foreach($availableTags as $tag)
                         <label class="flex items-center">
-                            <input type="checkbox" wire:model="tags" value="{{ $tag }}" class="mr-2">
+                            <input type="checkbox" wire:model="tags" value="{{ $tag }}" class="mr-2" id="tag_{{ \Str::slug($tag) }}_create">
                             <span class="text-sm">{{ $tag }}</span>
                         </label>
                     @endforeach
@@ -139,11 +139,11 @@
 
             {{-- Tags --}}
             <div>
-                <x-label title="{{ __('Tags') }}" />
+                <p class="block mt-4 mb-1 text-sm text-gray-700">{{ __('Tags') }}</p>
                 <div class="grid grid-cols-3 gap-2 mt-2">
                     @foreach($availableTags as $tag)
                         <label class="flex items-center">
-                            <input type="checkbox" wire:model="tags" value="{{ $tag }}" class="mr-2">
+                            <input type="checkbox" wire:model="tags" value="{{ $tag }}" class="mr-2" id="tag_{{ \Str::slug($tag) }}_edit">
                             <span class="text-sm">{{ $tag }}</span>
                         </label>
                     @endforeach
@@ -219,17 +219,17 @@
 
                 <div class="grid grid-cols-1 gap-4 pt-4 mt-4 border-t md:grid-cols-2 lg:grid-cols-3">
                     <div>
-                        <x-label title="{{ __('Status') }}" />
+                        <p class="block mb-1 text-sm text-gray-700">{{ __('Status') }}</p>
                         <x-table.active :model="$selectedModel" />
                     </div>
                     
                     <div>
-                        <x-label title="{{ __('Discount') }}" />
+                        <p class="block mb-1 text-sm text-gray-700">{{ __('Discount') }}</p>
                         <span class="text-green-600 font-semibold">{{ $selectedModel->discount_percentage }}% off</span>
                     </div>
 
                     <div>
-                        <x-label title="{{ __('Availability') }}" />
+                        <p class="block mb-1 text-sm text-gray-700">{{ __('Availability') }}</p>
                         @if($selectedModel->is_available)
                             <span class="text-green-600">{{ __('Available') }}</span>
                         @else

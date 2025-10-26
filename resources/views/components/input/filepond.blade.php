@@ -1,7 +1,7 @@
 <div>
 
     @if (!empty($title ?? ''))
-        <x-label :title="$title" />
+        <p class="block mt-4 mb-1 text-sm text-gray-700 {{ isRTL() ? 'text-right':'text-left' }}">{{ $title ?? '' }}</p>
     @endif
 
     <div class="my-2" wire:ignore x-data x-init="() => {
@@ -29,7 +29,7 @@
             },
         });
     }">
-        <input type="file" id="{{ $attributes->get('id') ?? ($name ?? 'filepond-input') }}" name="{{ $name ?? 'filepond-input' }}" x-ref="{{ $attributes->get('ref') ?? 'input' }}" />
+        <input type="file" id="{{ $attributes->get('id') ?? ($name ?? 'filepond-input') }}" name="{{ $name ?? ($attributes->whereStartsWith('wire:model')->first() ?? 'filepond-input') }}" x-ref="{{ $attributes->get('ref') ?? 'input' }}" aria-label="{{ $title ?? 'File upload' }}" />
     </div>
     @error($name ?? '')
         <span class="mt-1 text-xs text-red-700">{{ $message }}</span>

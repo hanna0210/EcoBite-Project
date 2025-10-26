@@ -87,7 +87,7 @@ class FoodRescueTable extends BaseDataTableComponent
             Column::make('Title', 'title')
                 ->sortable()
                 ->searchable()
-                ->format(function ($value, $row) {
+                ->format(function ($value, $column, $row) {
                     if (!$row) return $value ?? '-';
                     return view('components.table.title-description', [
                         'title' => $value ?? '-',
@@ -98,13 +98,14 @@ class FoodRescueTable extends BaseDataTableComponent
             Column::make('Vendor', 'vendor.name')
                 ->sortable()
                 ->searchable()
-                ->format(function ($value, $row) {
+                ->format(function ($value, $column, $row) {
+                    if (!$row || !isset($row->vendor)) return 'N/A';
                     return $row->vendor->name ?? 'N/A';
                 }),
 
             Column::make('Prices')
-                ->format(function ($value, $row) {
-                    if (!$row) return '-';
+                ->format(function ($value, $column, $row) {
+                    if (!$row || !isset($row->original_price)) return '-';
                     return view('components.table.price-comparison', [
                         'original_price' => currencyFormat($row->original_price ?? 0),
                         'rescue_price' => currencyFormat($row->rescue_price ?? 0),
@@ -113,7 +114,7 @@ class FoodRescueTable extends BaseDataTableComponent
                 }),
 
             Column::make('Quantity')
-                ->format(function ($value, $row) {
+                ->format(function ($value, $column, $row) {
                     if (!$row) return '-';
                     return view('components.table.quantity-status', [
                         'available' => $row->available_quantity ?? 0,
@@ -123,7 +124,7 @@ class FoodRescueTable extends BaseDataTableComponent
                 }),
 
             Column::make('Availability')
-                ->format(function ($value, $row) {
+                ->format(function ($value, $column, $row) {
                     if (!$row) return '-';
                     return view('components.table.availability-status', [
                         'available_from' => $row->available_from ?? null,
@@ -134,7 +135,7 @@ class FoodRescueTable extends BaseDataTableComponent
                 }),
 
             Column::make('Tags')
-                ->format(function ($value, $row) {
+                ->format(function ($value, $column, $row) {
                     if (!$row) return '-';
                     $tags = $row->tags ?? [];
                     if (empty($tags)) return '-';
@@ -161,37 +162,10 @@ class FoodRescueTable extends BaseDataTableComponent
                 ->sortable(),
 
             Column::make('Actions')
-                ->format(function ($value, $row) {
+                ->format(function ($value, $column, $row) {
                     if (!$row) return '-';
-                    return view('components.table.actions', [
-                        'model' => $row,
-                        'actions' => [
-                            [
-                                'type' => 'edit',
-                                'route' => '#',
-                                'permission' => true,
-                                'onclick' => '$emit(\'initiateEdit\', ' . $row->id . ')'
-                            ],
-                            [
-                                'type' => 'view',
-                                'route' => '#',
-                                'permission' => true,
-                                'onclick' => '$emit(\'showDetailsModal\', ' . $row->id . ')'
-                            ],
-                            [
-                                'type' => 'inactive',
-                                'route' => '#',
-                                'permission' => $row->is_active,
-                                'onclick' => 'confirm(\'Mark as inactive?\') && $wire.call(\'markAsInactive\', ' . $row->id . ')',
-                                'title' => 'Mark as Inactive'
-                            ],
-                            [
-                                'type' => 'delete',
-                                'route' => '#',
-                                'permission' => true,
-                                'onclick' => '$emit(\'initiateDelete\', ' . $row->id . ')'
-                            ]
-                        ]
+                    return view('components.buttons.crud_actions', [
+                        'model' => $row
                     ]);
                 }),
         ];

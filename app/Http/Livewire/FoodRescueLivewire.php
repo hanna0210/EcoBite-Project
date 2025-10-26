@@ -14,6 +14,15 @@ class FoodRescueLivewire extends BaseLivewireComponent
     // Model
     public $model = FoodRescue::class;
 
+    protected $listeners = [
+        'showCreateModal' => 'showCreateModal',
+        'showEditModal' => 'showEditModal',
+        'showDetailsModal' => 'showDetailsModal',
+        'initiateEdit' => 'initiateEdit',
+        'initiateDelete' => 'initiateDelete',
+        'refreshView' => '$refresh',
+    ];
+
     // Properties
     public $title;
     public $description;
@@ -113,6 +122,7 @@ class FoodRescueLivewire extends BaseLivewireComponent
                 if (!empty($this->photos)) {
                     foreach ($this->photos as $photo) {
                         $foodRescue->addMedia($photo->getRealPath())
+                            ->usingFileName(genFileName($photo))
                             ->toMediaCollection('default');
                     }
                 }
@@ -181,6 +191,7 @@ class FoodRescueLivewire extends BaseLivewireComponent
                     
                     foreach ($this->photos as $photo) {
                         $this->selectedModel->addMedia($photo->getRealPath())
+                            ->usingFileName(genFileName($photo))
                             ->toMediaCollection('default');
                     }
                 }
@@ -208,6 +219,22 @@ class FoodRescueLivewire extends BaseLivewireComponent
         } catch (Exception $ex) {
             logger("Food Rescue Deactivation Error", [$ex]);
             $this->alert('error', '', __('Operation failed!'));
+        }
+    }
+
+    public function deleteModel()
+    {
+        try {
+            DB::beginTransaction();
+            $this->selectedModel->delete();
+            DB::commit();
+            
+            $this->alert('success', '', __('Food Rescue deleted successfully!'));
+            $this->emit('refreshView');
+        } catch (Exception $ex) {
+            DB::rollback();
+            logger("Food Rescue Deletion Error", [$ex]);
+            $this->alert('error', '', __('Failed to delete food rescue!'));
         }
     }
 

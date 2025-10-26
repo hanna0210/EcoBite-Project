@@ -10,13 +10,6 @@ $(function () {
             element: document.getElementById('emailerTextArea')
         });
 
-        // Add name attribute to CodeMirror's internal textarea to fix browser warning
-        const cmTextarea = easyMDE.codemirror.getInputField();
-        if (cmTextarea) {
-            cmTextarea.setAttribute('name', 'emailBodyContent');
-            cmTextarea.setAttribute('id', 'emailBodyContent');
-        }
-
         //
         easyMDE.codemirror.on("change", () => {
             const emailBody = easyMDE.markdown(easyMDE.value());

@@ -114,7 +114,22 @@ class Installer
         }
         //create the file afresh and write the content from the copyPath below
         $copyPath = __DIR__ . '/driver_tracking_extension.php';
-        copy($copyPath, $filePath);
+        
+        // Check if source file exists before attempting to copy
+        if (!file_exists($copyPath)) {
+            throw new \Exception("Extension route file not found at: " . $copyPath . ". Extension files may not have been copied properly.");
+        }
+        
+        // Attempt to copy the file
+        if (!copy($copyPath, $filePath)) {
+            throw new \Exception("Failed to copy extension route file from " . $copyPath . " to " . $filePath);
+        }
+        
+        // Verify the file was copied successfully
+        if (!file_exists($filePath)) {
+            throw new \Exception("Extension route file was not created at: " . $filePath);
+        }
+        
         //then unlink the copyPath
         unlink($copyPath);
 

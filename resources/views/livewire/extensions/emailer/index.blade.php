@@ -14,7 +14,7 @@
         <x-input title="{{ __('Subject') }}" name="title" placeholder="Subject" />
         <p class="my-4"></p>
         <div wire:ignore>
-            <textarea id="emailerTextArea" name="emailBody"></textarea>
+            <textarea id="emailerTextArea"></textarea>
         </div>
 
         {{-- receiver --}}
@@ -49,11 +49,6 @@
     </div>
 
     @endif
-
-    {{-- styles --}}
-    @push('styles')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
-    @endpush
 
     {{-- scripts --}}
     @push('scripts')

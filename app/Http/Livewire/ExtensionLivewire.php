@@ -165,30 +165,35 @@ class ExtensionLivewire extends BaseLivewireComponent
                     $from = $extensionFolder . "/" . $file . "/.";
                     $to = base_path() . "/public/js/extensions";
                     $this->copyFile($from, $to);
+                    logger("Copied js files", ['from' => $from, 'to' => $to]);
                     break;
 
                 case 'css':
                     $from = $extensionFolder . "/" . $file . "/.";
                     $to = base_path() . "/public/css/extensions";
                     $this->copyFile($from, $to);
+                    logger("Copied css files", ['from' => $from, 'to' => $to]);
                     break;
 
                 case 'images':
                     $from = $extensionFolder . "/" . $file . "/.";
                     $to = base_path() . "/public/images/extensions";
                     $this->copyFile($from, $to);
+                    logger("Copied image files", ['from' => $from, 'to' => $to]);
                     break;
 
                 case 'view':
                     $from = $extensionFolder . "/" . $file . "/.";
                     $to = base_path() . "/resources/views/livewire/extensions";
                     $this->copyFile($from, $to);
+                    logger("Copied view files", ['from' => $from, 'to' => $to]);
                     break;
 
                 case 'extension':
                     $from = $extensionFolder . "/" . $file . "/.";
                     $to = base_path() . "/app/Http/Livewire/Extensions";
                     $this->copyFile($from, $to);
+                    logger("Copied extension files", ['from' => $from, 'to' => $to]);
 
                     $files = scandir($extensionFolder . "/" . $file);
                     foreach ($files as $file) {
@@ -197,12 +202,20 @@ class ExtensionLivewire extends BaseLivewireComponent
                             break;
                         }
                     }
+                    
+                    // Verify the extension folder was created
+                    $extensionPath = base_path() . "/app/Http/Livewire/Extensions/" . $extensionComponetLocation;
+                    if (!file_exists($extensionPath)) {
+                        throw new \Exception("Extension folder was not created at: " . $extensionPath);
+                    }
+                    logger("Extension folder verified", ['path' => $extensionPath]);
                     //
                     break;
                 case 'vendor':
                     $from = $extensionFolder . "/" . $file . "/.";
                     $to = base_path() . "/vendor";
                     $this->copyFile($from, $to);
+                    logger("Copied vendor files", ['from' => $from, 'to' => $to]);
                     break;
 
                 default:
@@ -231,10 +244,21 @@ class ExtensionLivewire extends BaseLivewireComponent
             $command = 'xcopy "' . $from . '" "' . $to . '" /E /I /Y';
             exec($command);
         } else {
-            // Use cp for Unix/Linux
-            $process = new Process(explode(" ", "cp -a " . $from . " " . $to . ""));
-            $process->setWorkingDirectory(base_path() . "/");
+            // Use cp for Unix/Linux with proper syntax to copy contents
+            // Add /* to copy contents of directory, and use -r for recursive
+            $process = new Process(['cp', '-r', $from . '/.', $to]);
+            $process->setWorkingDirectory(base_path());
             $process->run();
+            
+            // Log any errors for debugging
+            if (!$process->isSuccessful()) {
+                logger("Copy File Error", [
+                    'from' => $from,
+                    'to' => $to,
+                    'error' => $process->getErrorOutput(),
+                    'output' => $process->getOutput()
+                ]);
+            }
         }
     }
 

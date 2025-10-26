@@ -50,6 +50,11 @@
 
     @endif
 
+    {{-- styles --}}
+    @push('styles')
+    <link href="{{ asset('css/easymde.min.css') }}" rel="stylesheet">
+    @endpush
+
     {{-- scripts --}}
     @push('scripts')
     <script src="{{ asset('js/extensions/emailer-easymde.min.js') }}"></script>

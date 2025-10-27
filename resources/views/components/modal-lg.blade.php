@@ -14,7 +14,7 @@
         @endif
         class="relative inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
          {{-- close model  --}}
-         <button class="absolute p-2 text-white bg-red-500 rounded-full hover:shadow top-4 rtl:left-4 ltr:right-4" @if ( $onCancel ?? false ) wire:click="{{ $onCancel }}" @else wire:click="$emitUp('dismissModal')" @endif>
+         <button class="absolute p-2 text-white bg-red-500 rounded-full hover:shadow top-4 rtl:left-4 ltr:right-4" @if ( $onCancel ?? false ) wire:click="{{ $onCancel }}" @else wire:click="dismissModal" @endif>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
@@ -35,7 +35,7 @@
                     @if ( $onCancel ?? false )
                     wire:click="{{ $onCancel }}"
             @else
-            wire:click="$emitUp('dismissModal')"
+            wire:click="dismissModal"
         @endif
         >
                     {{ $cancelText ?? __('Close') }}

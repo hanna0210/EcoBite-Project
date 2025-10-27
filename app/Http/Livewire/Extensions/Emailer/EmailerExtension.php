@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Extensions\Emailer;
 
-use App\Http\Livewire\Extensions\BaseExtensionComponent;
+use App\Http\Livewire\BaseLivewireComponent;
 use App\Models\User;
 use App\Traits\FirebaseAuthTrait;
 use Spatie\Permission\Models\Role;
@@ -11,7 +11,7 @@ use App\Http\Livewire\Extensions\Emailer\Mail\CustomEmailerMail;
 use App\Http\Livewire\Extensions\Emailer\CommaSeparatedEmails;
 
 
-class EmailerExtension extends BaseExtensionComponent
+class EmailerExtension extends BaseLivewireComponent
 {
 
     use FirebaseAuthTrait;
@@ -30,12 +30,14 @@ class EmailerExtension extends BaseExtensionComponent
         "body" => "required",
     ];
 
-    protected $listeners = [
-        'showEmailerView' => 'showEmailerView',
-        'emailBodyUpdate' => 'emailBodyUpdate',
-        'showExtensions' => 'showExtensions',
-        'closeDialog' => 'closeDialog',
-    ];
+    public function getListeners()
+    {
+        return $this->listeners + [
+            'showEmailerView' => 'showEmailerView',
+            'emailBodyUpdate' => 'emailBodyUpdate',
+            'closeDialog' => 'closeDialog',
+        ];
+    }
 
     public function render()
     {
@@ -61,16 +63,14 @@ class EmailerExtension extends BaseExtensionComponent
         $this->roleReceiver = !$this->customReceiver;
     }
 
-    public function showExtensions()
-    {
-        $this->showView = false;
-        $this->emitUp('showExtensions');
-    }
-
     public function showEmailerView()
     {
-        $this->show();
         $this->emit('initEmailer');
+    }
+
+    public function closeDialog()
+    {
+        $this->showCreate = false;
     }
 
 

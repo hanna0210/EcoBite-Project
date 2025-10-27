@@ -1,12 +1,8 @@
+@section('title', __('Emailer'))
 <div>
     {{-- Success is as dangerous as failure. --}}
-    @if($showView)
     <div class="flex items-center w-full mb-3 text-2xl font-semibold">
-        Emailer
-        <div class="mx-auto"></div>
-        <div class="{{ setting('localeCode') == 'ar' ? 'mr-auto':'ml-auto' }}">
-            <x-buttons.primary title="Back" wireClick="showExtensions" />
-        </div>
+        {{ __('Emailer') }}
     </div>
 
 
@@ -47,8 +43,6 @@
             <img src="{{ asset('images/loading.svg') }}" class="" />
         </div>
     </div>
-
-    @endif
 
     {{-- styles --}}
     @push('styles')

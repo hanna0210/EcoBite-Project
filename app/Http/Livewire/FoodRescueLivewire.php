@@ -128,13 +128,13 @@ class FoodRescueLivewire extends BaseLivewireComponent
                 }
             });
 
-            $this->alert('success', '', __('Food Rescue created successfully!'));
+            $this->showSuccessAlert(__('Food Rescue created successfully!'));
             $this->reset();
             $this->showCreate = false;
             $this->emit('refreshView');
         } catch (Exception $ex) {
             logger("Food Rescue Creation Error", [$ex]);
-            $this->alert('error', '', __('Food Rescue creation failed!'));
+            $this->showErrorAlert(__('Food Rescue creation failed!'));
         }
     }
 
@@ -197,13 +197,13 @@ class FoodRescueLivewire extends BaseLivewireComponent
                 }
             });
 
-            $this->alert('success', '', __('Food Rescue updated successfully!'));
+            $this->showSuccessAlert(__('Food Rescue updated successfully!'));
             $this->reset();
             $this->showEdit = false;
             $this->emit('refreshView');
         } catch (Exception $ex) {
             logger("Food Rescue Update Error", [$ex]);
-            $this->alert('error', '', __('Food Rescue update failed!'));
+            $this->showErrorAlert(__('Food Rescue update failed!'));
         }
     }
 
@@ -213,12 +213,12 @@ class FoodRescueLivewire extends BaseLivewireComponent
             $foodRescue = FoodRescue::find($id);
             if ($foodRescue) {
                 $foodRescue->markAsInactive();
-                $this->alert('success', '', __('Food Rescue marked as inactive!'));
+                $this->showSuccessAlert(__('Food Rescue marked as inactive!'));
                 $this->emit('refreshView');
             }
         } catch (Exception $ex) {
             logger("Food Rescue Deactivation Error", [$ex]);
-            $this->alert('error', '', __('Operation failed!'));
+            $this->showErrorAlert(__('Operation failed!'));
         }
     }
 
@@ -229,12 +229,12 @@ class FoodRescueLivewire extends BaseLivewireComponent
             $this->selectedModel->delete();
             DB::commit();
             
-            $this->alert('success', '', __('Food Rescue deleted successfully!'));
+            $this->showSuccessAlert(__('Food Rescue deleted successfully!'));
             $this->emit('refreshView');
         } catch (Exception $ex) {
             DB::rollback();
             logger("Food Rescue Deletion Error", [$ex]);
-            $this->alert('error', '', __('Failed to delete food rescue!'));
+            $this->showErrorAlert(__('Failed to delete food rescue!'));
         }
     }
 

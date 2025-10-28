@@ -603,7 +603,8 @@
                     ->map(function($logo) {
                         return [
                             'name' => $logo->name,
-                            'logo' => $logo->photo
+                            'logo' => $logo->photo,
+                            'link' => $logo->link
                         ];
                     })
                     ->toArray();
@@ -635,8 +636,24 @@
                         @foreach($partnerLogos as $index => $partner)
                             <div class="flex-shrink-0 px-2 sm:px-3 md:px-4" style="min-width: 16.666%">
                                 <div class="flex items-center justify-center py-4 sm:py-5 md:py-6">
-                                    <img src="{{ $partner['logo'] }}" alt="{{ $partner['name'] }}" 
-                                         class="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                    @if(!empty($partner['link']))
+                                        <a href="{{ $partner['link'] }}" target="_blank" rel="noopener noreferrer" 
+                                           title="{{ __('Visit') }} {{ $partner['name'] }}" 
+                                           class="group relative inline-block">
+                                            <img src="{{ $partner['logo'] }}" alt="{{ $partner['name'] }}" 
+                                                 class="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer group-hover:scale-110 group-hover:drop-shadow-lg">
+                                            <!-- Subtle indicator for clickable logos -->
+                                            <div class="absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <svg class="w-3 h-3 text-blue-600 bg-white rounded-full" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                                                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    @else
+                                        <img src="{{ $partner['logo'] }}" alt="{{ $partner['name'] }}" 
+                                             class="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300">
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

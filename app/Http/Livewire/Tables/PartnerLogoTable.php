@@ -81,6 +81,24 @@ class PartnerLogoTable extends OrderingBaseDataTableComponent
                     "model" => $row
                 ]);
             }),
+            Column::make(__('Website Link'), 'link')->format(function ($value, $column, $row) {
+                if (!empty($row->link)) {
+                    return '
+                        <div class="flex items-center space-x-2">
+                            <a href="' . e($row->link) . '" target="_blank" rel="noopener noreferrer" 
+                               class="text-blue-600 hover:text-blue-800 flex items-center space-x-1" 
+                               title="' . e($row->link) . '">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                                <span class="text-sm truncate max-w-xs">' . e(str_replace(['https://', 'http://', 'www.'], '', $row->link)) . '</span>
+                            </a>
+                        </div>
+                    ';
+                }
+                return '<span class="text-gray-400 text-sm">—</span>';
+            })->asHtml()->searchable(),
             Column::make(__('Active'), 'is_active')->format(function ($value, $column, $row) {
                 return view('components.table.active', $data = [
                     "model" => $row

@@ -14,6 +14,7 @@ class PartnerLogoLivewire extends BaseLivewireComponent
 
     //
     public $name;
+    public $link;
     public $isActive;
 
 
@@ -28,6 +29,7 @@ class PartnerLogoLivewire extends BaseLivewireComponent
         //validate
         $this->validate([
             "name" => "required|string|max:255",
+            "link" => "nullable|url|max:500",
             "photo" => "required|image|max:" . setting("filelimit.banner", 2048) . "",
         ]);
 
@@ -36,6 +38,7 @@ class PartnerLogoLivewire extends BaseLivewireComponent
             DB::beginTransaction();
             $model = new PartnerLogo();
             $model->name = $this->name;
+            $model->link = $this->link;
             $model->is_active = $this->isActive ?? false;
             $model->save();
 
@@ -64,6 +67,7 @@ class PartnerLogoLivewire extends BaseLivewireComponent
     {
         $this->selectedModel = $this->model::find($id);
         $this->name = $this->selectedModel->name;
+        $this->link = $this->selectedModel->link;
         $this->isActive = $this->selectedModel->is_active;
         
         $this->emit('showEditModal');
@@ -74,6 +78,7 @@ class PartnerLogoLivewire extends BaseLivewireComponent
         //validate
         $this->validate([
             "name" => "required|string|max:255",
+            "link" => "nullable|url|max:500",
             "photo" => "sometimes|nullable|image|max:" . setting("filelimit.banner", 2048) . "",
         ]);
 
@@ -82,6 +87,7 @@ class PartnerLogoLivewire extends BaseLivewireComponent
             DB::beginTransaction();
             $model = $this->selectedModel;
             $model->name = $this->name;
+            $model->link = $this->link;
             $model->is_active = $this->isActive ?? false;
             $model->save();
 

@@ -6,7 +6,7 @@ class PartnerLogo extends BaseModel
 {
 
     protected $appends = ['formatted_date', 'photo'];
-    protected $fillable = ['name', 'is_active', 'in_order'];
+    protected $fillable = ['name', 'link', 'is_active', 'in_order'];
 
     // Scope for active logos
     public function scopeActive($query)

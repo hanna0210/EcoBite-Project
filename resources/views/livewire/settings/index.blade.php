@@ -11,6 +11,7 @@
                 <x-tab.header tab="3" title="{{ __('General Settings') }}" />
                 <x-tab.header tab="4" title="{{ __('Custom Order Notification Messages') }}" />
                 <x-tab.header tab="5" title="{{ __('File Upload Limits') }}" />
+                <x-tab.header tab="6" title="{{ __('File Storage Settings') }}" />
             </x-slot>
 
             <x-slot name="body">
@@ -28,6 +29,9 @@
                 </x-tab.body>
                 <x-tab.body tab="5">
                     <livewire:settings.file-limit />
+                </x-tab.body>
+                <x-tab.body tab="6">
+                    <livewire:settings.storage-settings />
                 </x-tab.body>
             </x-slot>
 

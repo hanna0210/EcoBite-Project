@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Extensions\Emailer;
 
-use App\Http\Livewire\BaseLivewireComponent;
+use App\Http\Livewire\Extensions\BaseExtensionComponent;
 use App\Models\User;
 use App\Traits\FirebaseAuthTrait;
 use Spatie\Permission\Models\Role;
 use App\Http\Livewire\Extensions\Emailer\Job\SendCustomEmailerMailJob;
 use App\Http\Livewire\Extensions\Emailer\Mail\CustomEmailerMail;
 use App\Http\Livewire\Extensions\Emailer\CommaSeparatedEmails;
+use Exception;
 
 
-class EmailerExtension extends BaseLivewireComponent
+class EmailerExtension extends BaseExtensionComponent
 {
 
     use FirebaseAuthTrait;
@@ -30,13 +31,17 @@ class EmailerExtension extends BaseLivewireComponent
         "body" => "required",
     ];
 
-    public function getListeners()
+    protected $listeners = [
+        'showEmailerView' => 'showEmailerView',
+        'showExtensions' => 'showExtensions',
+        'closeDialog' => 'closeDialog',
+    ];
+
+    public function mount()
     {
-        return $this->listeners + [
-            'showEmailerView' => 'showEmailerView',
-            'emailBodyUpdate' => 'emailBodyUpdate',
-            'closeDialog' => 'closeDialog',
-        ];
+        // Set showView to true when component loads as a standalone page
+        $this->showView = true;
+        $this->emit('initEmailer');
     }
 
     public function render()
@@ -63,59 +68,74 @@ class EmailerExtension extends BaseLivewireComponent
         $this->roleReceiver = !$this->customReceiver;
     }
 
+    public function showExtensions()
+    {
+        // Redirect back to extensions page or previous page
+        return redirect()->route('extensions');
+    }
+
     public function showEmailerView()
     {
+        $this->show();
         $this->emit('initEmailer');
-    }
-
-    public function closeDialog()
-    {
-        $this->showCreate = false;
-    }
-
-
-    public function emailBodyUpdate($body)
-    {
-        $this->body = $body;
     }
 
     public function sendEmails()
     {
 
-        if (!$this->customReceiver) {
-            $this->validate();
-        } else {
+        if ($this->customReceiver) {
             $this->validate(
                 $this->rules + [
-                    "customerEmails" => [new CommaSeparatedEmails],
+                    "customerEmails" => ["required", new CommaSeparatedEmails],
                 ]
             );
+        } else {
+            $this->validate();
         }
         //
         //fetching topic to send message to
         try {
+            $emailsSent = 0;
+            
             if ($this->roleReceiver) {
+                if (empty($this->customReceiverRoles)) {
+                    $this->showErrorAlert(__("Please select at least one role"));
+                    return;
+                }
 
                 foreach ($this->customReceiverRoles as $role) {
                     //users with that roles
-                    $emails = User::role($role)->pluck('email');
+                    $emails = User::role($role)->pluck('email')->toArray();
                     //send mail
-                    $this->queueMail($emails);
+                    if (!empty($emails)) {
+                        $this->queueMail($emails);
+                        $emailsSent += count($emails);
+                    }
                 }
             } else if ($this->customReceiver) {
-                $emails = explode(";",$this->customerEmails);
+                $emails = array_map('trim', explode(";", $this->customerEmails));
+                $emails = array_filter($emails); // Remove empty values
                 //send mail
-                $this->queueMail($emails);
+                if (!empty($emails)) {
+                    $this->queueMail($emails);
+                    $emailsSent += count($emails);
+                }
             } else {
-                $emails = User::pluck('email');
+                $emails = User::pluck('email')->toArray();
                 //send mail
-                $this->queueMail($emails);
+                if (!empty($emails)) {
+                    $this->queueMail($emails);
+                    $emailsSent += count($emails);
+                }
             }
 
-            //
-            $this->showSuccessAlert(__("Email sent successfully!"));
-            $this->emit('resetEmailer');
-            $this->reset(['title']);
+            if ($emailsSent > 0) {
+                $this->showSuccessAlert(__("Email queued successfully! $emailsSent email(s) will be sent."));
+                $this->emit('resetEmailer');
+                $this->reset(['title', 'customReceiverRoles', 'customerEmails']);
+            } else {
+                $this->showWarningAlert(__("No recipients found to send emails to."));
+            }
         } catch (Exception $error) {
             $this->showErrorAlert($error->getMessage() ?? __("Email sending failed!"));
         }
@@ -123,11 +143,15 @@ class EmailerExtension extends BaseLivewireComponent
 
     public function queueMail($emails)
     {
-
         //send mail
         foreach ($emails as $email) {
+            // Skip invalid emails
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                continue;
+            }
+            
             SendCustomEmailerMailJob::dispatch($email, $this->title, $this->body)
-                ->delay(now()->addMinutes(1));
+                ->delay(now()->addSeconds(30));
         }
     }
 

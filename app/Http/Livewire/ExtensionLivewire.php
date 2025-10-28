@@ -10,9 +10,16 @@ class ExtensionLivewire extends BaseLivewireComponent
     // Override parent's showDetails to show extensions by default
     public $showDetails = true;
 
+    protected $listeners = [
+        'refreshView' => '$refresh',
+    ];
+
     public function render()
     {
-        $extensions = \App\Models\Extension::where('is_active', true)->get();
+        // Get all active extensions except Emailer (which has its own menu item)
+        $extensions = \App\Models\Extension::where('is_active', true)
+            ->where('action', '!=', 'showEmailerView')
+            ->get();
         
         return view('livewire.extensions.index', [
             'extensions' => $extensions

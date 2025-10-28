@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Extensions\Emailer;
 
+use App\Models\Extension;
 use GeoSot\EnvEditor\Facades\EnvEditor;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
@@ -11,9 +12,21 @@ class Installer
 
     public function run()
     {
-        // Note: Emailer is now accessible from the left sidebar navigation menu
-        // It does not appear in the Extensions panel (similar to Driver Tracking extension)
-        
+
+        $emailer = Extension::where('action', 'showEmailerView')->first();
+        if (empty($emailer)) {
+            \DB::table('extensions')->insert(array(
+                0 =>
+                array(
+                    'name' => 'Emailer',
+                    'description' => 'Send emails to your customers',
+                    'action' => 'showEmailerView',
+                    'icon' => 'heroicon-o-mail',
+                    'component' => 'extensions.emailer.emailer-extension',
+                    'is_active' => true,
+                ),
+            ));
+        }
         //
         $key = "QUEUE_CONNECTION";
         $exists = EnvEditor::keyExists($key);

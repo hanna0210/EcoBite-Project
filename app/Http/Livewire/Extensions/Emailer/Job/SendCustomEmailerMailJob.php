@@ -34,6 +34,12 @@ class SendCustomEmailerMailJob implements ShouldQueue
      */
     public function handle()
     {
-        \Mail::to($this->email)->send(new CustomEmailerMail($this->title, $this->body));
+        try {
+            \Mail::to($this->email)->send(new CustomEmailerMail($this->title, $this->body));
+            \Log::info("Email sent successfully to: {$this->email}");
+        } catch (\Exception $e) {
+            \Log::error("Failed to send email to {$this->email}: " . $e->getMessage());
+            throw $e;
+        }
     }
 }

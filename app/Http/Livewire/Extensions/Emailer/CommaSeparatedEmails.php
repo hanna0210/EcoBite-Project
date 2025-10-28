@@ -16,9 +16,16 @@ class CommaSeparatedEmails implements Rule
      */
     public function passes($attribute, $value)
     {
+        // Trim and filter empty values
+        $emails = array_filter(array_map('trim', explode(';', $value)));
+        
+        if (empty($emails)) {
+            return false;
+        }
+        
         return !Validator::make(
             [
-                "{$attribute}" => explode(';', $value)
+                "{$attribute}" => $emails
             ],
             [
                 "{$attribute}.*" => 'required|email'

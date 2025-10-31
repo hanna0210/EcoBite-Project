@@ -131,8 +131,8 @@ class EmailerExtension extends BaseExtensionComponent
 
             if ($emailsSent > 0) {
                 $this->showSuccessAlert(__("Email queued successfully! $emailsSent email(s) will be sent."));
+                $this->reset(['title', 'body', 'customReceiverRoles', 'customerEmails']);
                 $this->emit('resetEmailer');
-                $this->reset(['title', 'customReceiverRoles', 'customerEmails']);
             } else {
                 $this->showWarningAlert(__("No recipients found to send emails to."));
             }

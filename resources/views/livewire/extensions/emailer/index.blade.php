@@ -12,7 +12,7 @@
 
     {{-- Main Form Container --}}
     <div class="bg-white rounded-lg shadow-sm">
-        <x-form action="sendEmails">
+        <x-form action="sendEmails" id="emailerForm">
             <div class="p-6 space-y-6">
                 
                 {{-- Subject Input --}}
@@ -31,7 +31,7 @@
                     <label class="block mb-2 text-sm font-medium text-gray-900">{{ __('Email Body') }}</label>
                     <div wire:ignore>
                         <div id="emailerEditor" style="min-height: 400px;"></div>
-                        <input type="hidden" id="emailerBody" wire:model.defer="body" />
+                        <input type="hidden" id="emailerBody" />
                     </div>
                     @error('body')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

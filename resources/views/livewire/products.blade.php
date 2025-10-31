@@ -103,6 +103,12 @@
 
                 <x-checkbox title="{{ __('Age Restriction') }}" name="age_restricted"
                     description="{{ __('Customer will be informed they must be of legal age when buying this product') }}" />
+
+                <x-checkbox title="{{ __('Free Item') }}" name="is_free"
+                    description="{{ __('Mark this item as free (no charge)') }}" />
+
+                <x-checkbox title="{{ __('Exchange Item') }}" name="is_exchange"
+                    description="{{ __('Mark this item as available for exchange') }}" />
             </div>
 
             {{-- digital --}}
@@ -279,6 +285,12 @@
 
                 <x-checkbox title="{{ __('Age Restriction') }}" name="age_restricted"
                     description="{{ __('Customer will be informed they must be of legal age when buying this product') }}" />
+
+                <x-checkbox title="{{ __('Free Item') }}" name="is_free"
+                    description="{{ __('Mark this item as free (no charge)') }}" />
+
+                <x-checkbox title="{{ __('Exchange Item') }}" name="is_exchange"
+                    description="{{ __('Mark this item as available for exchange') }}" />
 
             </div>
             <div class="p-2 border rounded-sm">
@@ -506,6 +518,16 @@
             </div>
 
             <div class="grid grid-cols-1 gap-4 pt-4 mt-4 border-t md:grid-cols-2 lg:grid-cols-3">
+
+                <div>
+                    <x-label title="{{ __('Free Item') }}" />
+                    <x-table.bool isTrue="{{ $selectedModel->is_free ?? false }}" />
+                </div>
+
+                <div>
+                    <x-label title="{{ __('Exchange Item') }}" />
+                    <x-table.bool isTrue="{{ $selectedModel->is_exchange ?? false }}" />
+                </div>
 
 
 

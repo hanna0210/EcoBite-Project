@@ -33,6 +33,8 @@ class Product extends BaseModel
         "vendor_id",
         "approved",
         'brand_id',
+        'is_free',
+        'is_exchange',
     ];
 
     protected $appends = ['formatted_date', 'sell_price', 'photo', 'is_favourite', 'rating', 'option_groups', 'photos', 'digital_files', 'token', "description_url"];
@@ -40,6 +42,8 @@ class Product extends BaseModel
     protected $withCount = ['reviews'];
     protected $casts = [
         'age_restricted' => "bool",
+        'is_free' => "bool",
+        'is_exchange' => "bool",
     ];
 
     public function scopeActive($query)

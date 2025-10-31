@@ -46,6 +46,8 @@ class ProductLivewire extends ProductTimingLivewire
     public $age_restricted = 0;
     public $featured = 0;
     public $brand_id;
+    public $is_free = 0;
+    public $is_exchange = 0;
 
     //
     public $menusIDs = [];
@@ -180,6 +182,8 @@ class ProductLivewire extends ProductTimingLivewire
             $model->in_order = $this->in_order;
             $model->age_restricted = $this->age_restricted;
             $model->brand_id = $this->brand_id;
+            $model->is_free = $this->is_free;
+            $model->is_exchange = $this->is_exchange;
             $model->save();
 
             if ($this->photos) {
@@ -278,6 +282,8 @@ class ProductLivewire extends ProductTimingLivewire
         $this->in_order = $this->selectedModel->in_order;
         $this->age_restricted = $this->selectedModel->age_restricted;
         $this->brand_id = $this->selectedModel->brand_id;
+        $this->is_free = $this->selectedModel->is_free ?? false;
+        $this->is_exchange = $this->selectedModel->is_exchange ?? false;
 
         //load option groups
         $this->optionGroups = [];
@@ -370,6 +376,8 @@ class ProductLivewire extends ProductTimingLivewire
             $model->in_order = $this->in_order;
             $model->age_restricted = $this->age_restricted;
             $model->brand_id = $this->brand_id;
+            $model->is_free = $this->is_free;
+            $model->is_exchange = $this->is_exchange;
             $model->save();
 
             if ($this->photos) {

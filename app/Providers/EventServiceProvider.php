@@ -57,6 +57,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \Spatie\Backup\Events\BackupHasFailed::class => [],
+        \Spatie\Backup\Events\BackupWasSuccessful::class => [],
+        \Spatie\Backup\Events\CleanupHasFailed::class => [],
+        \Spatie\Backup\Events\CleanupWasSuccessful::class => [],
+        \Spatie\Backup\Events\HealthyBackupWasFound::class => [],
+        \Spatie\Backup\Events\UnhealthyBackupWasFound::class => [],
     ];
 
     protected $subscribe = [

@@ -48,40 +48,95 @@ class BackUpLivewire extends BaseLivewireComponent
     public function newBackUp()
     {
         try {
+            // Verify database connection first
+            try {
+                \DB::connection()->getPdo();
+            } catch (\Exception $e) {
+                throw new Exception(__("Database connection failed. Please check your database configuration."));
+            }
+
+            // Get the current number of backups
+            $backupsBefore = count($this->backups);
+            
+            // Run the backup command
             Artisan::call("backup:run --only-db");
             
-            // Check if backup was actually successful by checking the output
+            // Get the output
             $output = Artisan::output();
             
+            // Check if backup was actually successful
             if (str_contains($output, 'Backup failed') || str_contains($output, 'Error')) {
                 \Log::error('Database backup failed: ' . $output);
-                $this->showErrorAlert(__("Database backup failed. Check logs for details."));
-            } else {
-                $this->showSuccessAlert(__("Database backup successful"));
+                throw new Exception(__("Database backup failed. Check logs for details."));
             }
+            
+            // Verify a new backup was created
+            $this->resetBackupsCache();
+            $backupsAfter = count($this->backups);
+            
+            if ($backupsAfter > $backupsBefore) {
+                $latestBackup = $this->backups[0] ?? null;
+                $backupName = $latestBackup ? basename($latestBackup) : '';
+                $this->showSuccessAlert(__("Database backup created successfully!") . " ({$backupName})");
+                $this->emit('refreshTable');
+            } else {
+                throw new Exception(__("Backup command completed but no backup file was created."));
+            }
+            
         } catch (Exception $error) {
             \Log::error('Database backup exception: ' . $error->getMessage());
             $this->showErrorAlert(__("Database backup failed") . ": " . $error->getMessage());
         }
     }
+    
+    // Helper method to reset the backups cache
+    private function resetBackupsCache()
+    {
+        // Force refresh by clearing the cached property
+        unset($this->backups);
+    }
 
     public function newFullBackUp()
     {
         try {
+            // Verify database connection first
+            try {
+                \DB::connection()->getPdo();
+            } catch (\Exception $e) {
+                throw new Exception(__("Database connection failed. Please check your database configuration."));
+            }
+
+            // Get the current number of backups
+            $backupsBefore = count($this->backups);
+            
+            // Run the full backup command (database + files)
             Artisan::call("backup:run");
             
-            // Check if backup was actually successful by checking the output
+            // Get the output
             $output = Artisan::output();
             
+            // Check if backup was actually successful
             if (str_contains($output, 'Backup failed') || str_contains($output, 'Error')) {
                 \Log::error('Full backup failed: ' . $output);
-                $this->showErrorAlert(__("Whole System backup failed. Check logs for details."));
-            } else {
-                $this->showSuccessAlert(__("Whole System backup successful"));
+                throw new Exception(__("Full backup failed. Check logs for details."));
             }
+            
+            // Verify a new backup was created
+            $this->resetBackupsCache();
+            $backupsAfter = count($this->backups);
+            
+            if ($backupsAfter > $backupsBefore) {
+                $latestBackup = $this->backups[0] ?? null;
+                $backupName = $latestBackup ? basename($latestBackup) : '';
+                $this->showSuccessAlert(__("Full system backup created successfully!") . " ({$backupName})");
+                $this->emit('refreshTable');
+            } else {
+                throw new Exception(__("Backup command completed but no backup file was created."));
+            }
+            
         } catch (Exception $error) {
             \Log::error('Full backup exception: ' . $error->getMessage());
-            $this->showErrorAlert(__("Whole System backup failed") . ": " . $error->getMessage());
+            $this->showErrorAlert(__("Full backup failed") . ": " . $error->getMessage());
         }
     }
 
@@ -105,19 +160,66 @@ class BackUpLivewire extends BaseLivewireComponent
 
     public function deleteModel()
     {
-
         try {
-
-            Storage::delete($this->selectedModel);
-            $this->showSuccessAlert(__("Backup Deleted"));
+            $disk = Storage::disk('local');
+            
+            // Verify the file exists before trying to delete
+            if (!$disk->exists($this->selectedModel)) {
+                throw new Exception(__("Backup file not found."));
+            }
+            
+            $fileName = basename($this->selectedModel);
+            
+            // Delete the backup file
+            $disk->delete($this->selectedModel);
+            
+            // Refresh the backups list
+            $this->resetBackupsCache();
+            $this->emit('refreshTable');
+            
+            $this->showSuccessAlert(__("Backup deleted successfully") . ": {$fileName}");
+            
         } catch (Exception $error) {
-            $this->showErrorAlert($error->getMessage() ?? __("Backup delete Failed"));
+            \Log::error('Backup deletion failed: ' . $error->getMessage());
+            $this->showErrorAlert($error->getMessage() ?? __("Backup delete failed"));
         }
     }
 
 
     public function downloadBackup($file)
     {
-        return Storage::download($file);
+        try {
+            $disk = Storage::disk('local');
+            
+            // Verify the file exists before trying to download
+            if (!$disk->exists($file)) {
+                $this->showErrorAlert(__("Backup file not found."));
+                return;
+            }
+            
+            // Download the backup file
+            return $disk->download($file);
+            
+        } catch (Exception $error) {
+            \Log::error('Backup download failed: ' . $error->getMessage());
+            $this->showErrorAlert(__("Failed to download backup") . ": " . $error->getMessage());
+        }
+    }
+    
+    /**
+     * Get information about the current database being backed up
+     */
+    public function getDatabaseInfo()
+    {
+        try {
+            $database = config('database.connections.mysql.database');
+            $host = config('database.connections.mysql.host');
+            return [
+                'database' => $database,
+                'host' => $host,
+            ];
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }

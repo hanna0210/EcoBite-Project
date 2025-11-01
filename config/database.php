@@ -64,11 +64,11 @@ return [
             'dump' => [
                 // For Windows: Leave empty to use system PATH or specify full path to mysqldump.exe
                 // For Linux/Mac: Use '/usr/bin' or '/usr/local/bin'
-                'dump_binary_path' => env('DB_DUMP_PATH', ''), // empty string will use system PATH
+                'dump_binary_path' => env('DB_DUMP_PATH', 'C:/xampp/mysql/bin'), // Path to mysqldump
                 'use_single_transaction' => true,
                 'timeout' => 60 * 5, // 5 minute timeout
                 // 'exclude_tables' => ['table1', 'table2'], // Uncomment to exclude specific tables
-                'add_extra_option' => '--column-statistics=0', // Fixes compatibility issues with some MySQL versions
+                // 'add_extra_option' => '--column-statistics=0', // Only for newer MySQL versions (8.0.19+)
             ]
         ],
 

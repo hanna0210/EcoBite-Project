@@ -2,6 +2,24 @@
 <div>
 
     <x-baseview title="{{ __('Database Backups') }}" showButton="true">
+        
+        {{-- Database Info --}}
+        @php
+            $dbInfo = $this->getDatabaseInfo();
+        @endphp
+        @if($dbInfo)
+        <div class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <p class="text-sm text-blue-800">
+                <strong>{{ __('Database') }}:</strong> {{ $dbInfo['database'] ?? 'N/A' }} 
+                <span class="mx-2">|</span>
+                <strong>{{ __('Host') }}:</strong> {{ $dbInfo['host'] ?? 'N/A' }}
+            </p>
+            <p class="text-xs text-blue-600 mt-1">
+                {{ __('Backups will save the current state of this database') }}
+            </p>
+        </div>
+        @endif
+        
         <div class="ml-auto flex space-x-2 justify-end items-end w-full md:w-4/12 lg:w-4/12">
             <x-buttons.primary title="{{ __('Backup Database') }}" wireClick='newBackUp'>
                 <svg class="w-5 h-5 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -39,9 +57,9 @@
                         <tr class="border-b">
                             <td class="p-2">{{ $count }}</td>
                             <td class="p-2">{{ basename($backup) }}</td>
-                            <td class="p-2">{{ Storage::size($backup) / 1000 }} KB</td>
+                            <td class="p-2">{{ number_format(Storage::disk('local')->size($backup) / 1000, 2) }} KB</td>
                             <td class="p-2">
-                                {{ \Carbon\Carbon::createFromTimestamp(Storage::lastModified($backup))->format("d M Y \\a\\t h:i a") }}
+                                {{ \Carbon\Carbon::createFromTimestamp(Storage::disk('local')->lastModified($backup))->format("d M Y \\a\\t h:i a") }}
                             </td>
 
                             <td class="flex p-2 space-x-4">

@@ -24,34 +24,64 @@ class BackUpLivewire extends BaseLivewireComponent
 
     public function getBackupsProperty()
     {
-        $files = Storage::allFiles(env("APP_NAME"));
-        //reverse the array so that the latest backup is shown first
-        $files = array_reverse($files);
+        $disk = Storage::disk(config('backup.backup.destination.disks')[0] ?? 'local');
+        $appName = config('backup.backup.name');
+        
+        // Get all backup files from the backup directory
+        if ($disk->exists($appName)) {
+            $files = collect($disk->allFiles($appName))
+                ->filter(function ($file) {
+                    return pathinfo($file, PATHINFO_EXTENSION) === 'zip';
+                })
+                ->sortByDesc(function ($file) use ($disk) {
+                    return $disk->lastModified($file);
+                })
+                ->values()
+                ->toArray();
+        } else {
+            $files = [];
+        }
+        
         return $files;
     }
 
     public function newBackUp()
     {
-
         try {
-
             Artisan::call("backup:run --only-db");
-            $this->showSuccessAlert(__("Database backup successful"));
+            
+            // Check if backup was actually successful by checking the output
+            $output = Artisan::output();
+            
+            if (str_contains($output, 'Backup failed') || str_contains($output, 'Error')) {
+                \Log::error('Database backup failed: ' . $output);
+                $this->showErrorAlert(__("Database backup failed. Check logs for details."));
+            } else {
+                $this->showSuccessAlert(__("Database backup successful"));
+            }
         } catch (Exception $error) {
-
-            $this->showErrorAlert(__("Database backup failed"));
+            \Log::error('Database backup exception: ' . $error->getMessage());
+            $this->showErrorAlert(__("Database backup failed") . ": " . $error->getMessage());
         }
     }
 
     public function newFullBackUp()
     {
-
         try {
-
             Artisan::call("backup:run");
-            $this->showSuccessAlert(__("Whole System backup successful"));
+            
+            // Check if backup was actually successful by checking the output
+            $output = Artisan::output();
+            
+            if (str_contains($output, 'Backup failed') || str_contains($output, 'Error')) {
+                \Log::error('Full backup failed: ' . $output);
+                $this->showErrorAlert(__("Whole System backup failed. Check logs for details."));
+            } else {
+                $this->showSuccessAlert(__("Whole System backup successful"));
+            }
         } catch (Exception $error) {
-            $this->showErrorAlert(__("Whole System backup failed"));
+            \Log::error('Full backup exception: ' . $error->getMessage());
+            $this->showErrorAlert(__("Whole System backup failed") . ": " . $error->getMessage());
         }
     }
 

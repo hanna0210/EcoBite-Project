@@ -62,12 +62,13 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
             'dump' => [
-                'dump_binary_path' => '/usr/bin', // only the path, so without `mysqldump` or `pg_dump`
-                // 'dump_binary_path' => '/usr/local/Cellar/mysql-client@5.7/5.7.32/bin', // for macos
-                'use_single_transaction',
+                // For Windows: Leave empty to use system PATH or specify full path to mysqldump.exe
+                // For Linux/Mac: Use '/usr/bin' or '/usr/local/bin'
+                'dump_binary_path' => env('DB_DUMP_PATH', ''), // empty string will use system PATH
+                'use_single_transaction' => true,
                 'timeout' => 60 * 5, // 5 minute timeout
-                'exclude_tables' => ['table1', 'table2'],
-                //'add_extra_option' => '--optionname=optionvalue', // for example '--column_statistics=0'
+                // 'exclude_tables' => ['table1', 'table2'], // Uncomment to exclude specific tables
+                'add_extra_option' => '--column-statistics=0', // Fixes compatibility issues with some MySQL versions
             ]
         ],
 

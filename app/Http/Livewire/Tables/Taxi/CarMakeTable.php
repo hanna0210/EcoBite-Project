@@ -2,17 +2,19 @@
 
 namespace App\Http\Livewire\Tables\Taxi;
 
-use App\Http\Livewire\Tables\BaseTableComponent;
+use App\Http\Livewire\Tables\BaseDataTableComponent;
 use App\Models\CarMake;
-use Kdion4891\LaravelLivewireTables\Column;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class CarMakeTable extends BaseTableComponent
+class CarMakeTable extends BaseDataTableComponent
 {
 
     public $model = CarMake::class;
-    public $header_view = 'components.buttons.new';
+    public array $perPageAccepted = [20, 50, 100, 200];
+    public string $defaultSortColumn = 'id';
+    public string $defaultSortDirection = 'desc';
 
     protected $listeners = [
         'activateModel',
@@ -28,13 +30,13 @@ class CarMakeTable extends BaseTableComponent
         return CarMake::query();
     }
 
-    public function columns()
+    public function columns(): array
     {
         return [
-            Column::make(__('ID'),"id")->searchable()->sortable(),
-            Column::make(__('Name'),'name')->searchable(),
-            Column::make(__('Actions'))->view('components.buttons.edit'),
-            Column::make(__('Delete'))->view('components.buttons.delete'),
+            $this->indexColumn(),
+            Column::make(__('Name'), 'name')->searchable()->sortable(),
+            $this->actionsColumn('components.buttons.edit'),
+            $this->customColumn(__('Delete'), 'components.buttons.delete'),
         ];
     }
 

@@ -83,7 +83,7 @@ class BackendSettings extends BaseSettingsComponent
 
         $this->validate([
             "websiteLogo" => "sometimes|nullable|image|max:1024",
-            "favicon" => "sometimes|nullable|image|mimes:png|max:48",
+            "favicon" => "sometimes|nullable|image|mimes:png,ico,jpg,jpeg|max:512",
             "loginImage" => "sometimes|nullable|image|max:3072",
             "registerImage" => "sometimes|nullable|image|max:3072",
         ]);
@@ -96,22 +96,30 @@ class BackendSettings extends BaseSettingsComponent
 
             // store new logo
             if ($this->websiteLogo) {
-                $this->oldWebsiteLogo = Storage::url($this->websiteLogo->store('public/logos'));
+                $this->oldWebsiteLogo = Storage::url($this->websiteLogo->store('logos', 'public'));
             }
 
-            // store new logo
+            // store new favicon
             if ($this->favicon) {
-                $this->oldFavicon = Storage::url($this->favicon->store('public/favicons'));
+                // Delete old favicon if exists
+                $oldFaviconPath = str_replace('/storage/', '', parse_url($this->oldFavicon, PHP_URL_PATH));
+                if ($oldFaviconPath && Storage::disk('public')->exists($oldFaviconPath)) {
+                    Storage::disk('public')->delete($oldFaviconPath);
+                }
+                
+                // Store new favicon
+                $faviconPath = $this->favicon->store('favicons', 'public');
+                $this->oldFavicon = Storage::disk('public')->url($faviconPath);
             }
 
-            // store new logo
+            // store new login image
             if ($this->loginImage) {
-                $this->oldLoginImage = Storage::url($this->loginImage->store('public/auth/login'));
+                $this->oldLoginImage = Storage::url($this->loginImage->store('auth/login', 'public'));
             }
 
-            // store new logo
+            // store new register image
             if ($this->registerImage) {
-                $this->oldRegisterImage = Storage::url($this->registerImage->store('public/auth/register'));
+                $this->oldRegisterImage = Storage::url($this->registerImage->store('auth/register', 'public'));
             }
 
 

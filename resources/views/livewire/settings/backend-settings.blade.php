@@ -56,27 +56,43 @@
             <div>
                 {{-- logo --}}
                 <div class="flex items-center mt-5 space-x-10">
-                    <img src="{{ $oldWebsiteLogo }}" class="w-24 h-24 rounded" />
-                    <x-input title="{{ __('Website Logo') }}" name="websiteLogo" :defer="false" type="file" />
+                    @if($websiteLogo)
+                        <img src="{{ $websiteLogo->temporaryUrl() }}" class="w-24 h-24 rounded object-cover" />
+                    @else
+                        <img src="{{ $oldWebsiteLogo }}" class="w-24 h-24 rounded object-cover" />
+                    @endif
+                    <x-input title="{{ __('Website Logo') }}" name="websiteLogo" :defer="false" type="file" accept="image/*" />
                 </div>
 
                 {{-- favicon --}}
                 <div class="flex items-center mt-5 space-x-10">
-                    <img src="{{ $oldFavicon }}" class="w-24 h-24 rounded" />
-                    <x-input title="{{ __('Website Favicon') }}" name="favicon" :defer="false" type="file" />
+                    @if($favicon)
+                        <img src="{{ $favicon->temporaryUrl() }}" class="w-24 h-24 rounded object-cover" />
+                    @else
+                        <img src="{{ $oldFavicon }}" class="w-24 h-24 rounded object-cover" />
+                    @endif
+                    <x-input title="{{ __('Website Favicon') }}" name="favicon" :defer="false" type="file" accept="image/png" />
                 </div>
 
                 {{-- loginImage --}}
                 <div class="flex items-center mt-5 space-x-10">
-                    <img src="{{ $oldLoginImage }}" class="w-24 h-24 rounded" />
-                    <x-input title="{{ __('Login Image') }}" name="loginImage" :defer="false" type="file" />
+                    @if($loginImage)
+                        <img src="{{ $loginImage->temporaryUrl() }}" class="w-24 h-24 rounded object-cover" />
+                    @else
+                        <img src="{{ $oldLoginImage }}" class="w-24 h-24 rounded object-cover" />
+                    @endif
+                    <x-input title="{{ __('Login Image') }}" name="loginImage" :defer="false" type="file" accept="image/*" />
                 </div>
 
                 {{-- registerImage --}}
                 <div class="flex items-center my-5 space-x-10">
-                    <img src="{{ $oldRegisterImage }}" class="w-24 h-24 rounded" />
+                    @if($registerImage)
+                        <img src="{{ $registerImage->temporaryUrl() }}" class="w-24 h-24 rounded object-cover" />
+                    @else
+                        <img src="{{ $oldRegisterImage }}" class="w-24 h-24 rounded object-cover" />
+                    @endif
                     <x-input title="{{ __('Register Image') }}" name="registerImage" :defer="false"
-                        type="file" />
+                        type="file" accept="image/*" />
                 </div>
 
             </div>
